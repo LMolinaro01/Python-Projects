@@ -1,4 +1,4 @@
-# Rápidos Projetos em Python
+# Exercícios em Python
 
 * Biblioteca de Filmes
 * Criação de Classe e Instanciação de Objetos
