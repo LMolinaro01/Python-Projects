@@ -31,6 +31,8 @@ Este é um programa em Python para gerenciar uma biblioteca de filmes. Ele ofere
     
 *   **Sair:** Encerra o programa
 
+---------------------------------------------------  
+
 ## Criação de Classe e Instanciação de Objetos
 
 
