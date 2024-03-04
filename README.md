@@ -1,10 +1,14 @@
-Biblioteca de Filmes
-====================
+# Rápidos Projetos em Python
+
+* Biblioteca de Filmes
+
+
+## Biblioteca de Filmes (Dicionário + CRUD)
+
 
 Este é um programa em Python para gerenciar uma biblioteca de filmes. Ele oferece funcionalidades para adicionar, editar, excluir e exibir filmes na lista, permitindo ao usuário organizar sua coleção de filmes de forma simples e eficiente.
 
-Funcionalidades
----------------
+### Funcionalidades
 
 *   **Adicionar Filme:** Permite ao usuário adicionar um novo filme à lista, inserindo o nome do filme, gênero, nota e uma revisão ou comentários sobre o filme.
    
