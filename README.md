@@ -1,4 +1,4 @@
-# Rápidos Projetos em Python
+# Exercícios em Python
 
 * Biblioteca de Filmes
 
