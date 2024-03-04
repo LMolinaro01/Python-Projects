@@ -1,6 +1,7 @@
 # Rápidos Projetos em Python
 
 * Biblioteca de Filmes
+* Criação de Classe e Instanciação de Objetos
 
 
 ## Biblioteca de Filmes (Dicionário + CRUD)
@@ -29,3 +30,12 @@ Este é um programa em Python para gerenciar uma biblioteca de filmes. Ele ofere
     ![image](https://github.com/LMolinaro01/Biblioteca-de-Filmes-em-Python/assets/126402616/1701f0ff-0220-4ea4-88fb-9b64efe95fb2)
     
 *   **Sair:** Encerra o programa
+
+## Criação de Classe e Instanciação de Objetos
+
+### Descrição
+
+Este código é uma implementação em Python de uma classe `Guitarra`, que permite criar objetos representando guitarras com diferentes características, como tamanho da corda, formato, afinação e captadores. A classe `Guitarra` possui métodos para tocar a guitarra e afiná-la.
+
+Além da definição da classe `Guitarra`, o código também demonstra como criar objetos dessa classe e interagir com eles, solicitando informações do usuário para criar uma guitarra personalizada e exibindo informações sobre as guitarras criadas.
+
