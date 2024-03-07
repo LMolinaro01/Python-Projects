@@ -58,3 +58,44 @@ Além da definição da classe `Guitarra`, o código também demonstra como cria
   ![image](https://github.com/LMolinaro01/Pequenos-Projetos-em-Python/assets/126402616/4ed6c7bd-cea7-480b-94db-b07e62ed3368)
 
    ![image](https://github.com/LMolinaro01/Pequenos-Projetos-em-Python/assets/126402616/0e0c9df1-ae8a-46cc-b061-dae7040b422f)
+
+---------------------------------------------------
+
+## Descrição do Código - Calculadora de IMC
+
+Este código Python apresenta duas versões de uma calculadora de Índice de Massa Corporal (IMC) que permite ao usuário inserir os nomes e pesos das pessoas, calculando seus respectivos IMCs e classificando-os de acordo com os padrões de classificação de IMC. Ambas as versões do código permitem a entrada de múltiplas pessoas, fornecendo uma descrição breve dos resultados ao final da entrada dos dados.
+
+#### Recursos Utilizados:
+* Utilização de listas para armazenar nomes, pesos e IMCs.
+* Utilização de um loop `while` para permitir a entrada contínua de dados até que o usuário decida parar.
+* Cálculo do IMC utilizando a fórmula: IMC = peso / (altura ^ 2).
+* Utilização de estruturas condicionais `if`, `elif` e `else` para classificar os IMCs em categorias: Magro, Saudável, Sobrepeso e Obeso.
+* Utilização de um loop `for` para percorrer os dados inseridos e determinar a pessoa com o maior e menor IMC.
+* Utilização de variáveis para armazenar o maior e menor IMC, bem como os respectivos nomes das pessoas.
+
+#### Exemplo de Utilização:
+
+```
+Digite o nome da pessoa: João
+Digite o peso da pessoa (em kg): 70
+Digite a altura da pessoa (em metros): 1.75
+
+Nome: João, IMC: 22.86
+Classificação: Saudável
+
+Deseja adicionar outra pessoa? (Sim/Não): sim
+Digite o nome da pessoa: Maria
+Digite o peso da pessoa (em kg): 55
+Digite a altura da pessoa (em metros): 1.60
+
+Nome: Maria, IMC: 21.48
+Classificação: Saudável
+
+Deseja adicionar outra pessoa? (Sim/Não): não
+
+Pessoa com o maior IMC:
+Nome: João, IMC: 22.86
+
+Pessoa com o menor IMC:
+Nome: Maria, IMC: 21.48
+```
