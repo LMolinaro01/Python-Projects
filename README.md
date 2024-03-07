@@ -32,6 +32,163 @@ Este é um programa em Python para gerenciar uma biblioteca de filmes. Ele ofere
     
 *   **Sair:** Encerra o programa
 
+### Exemplo de Utilização - CRUD:
+
+#### Adicionar Filme:
+
+```
+---| Bem vindo a sua Biblioteca de filmes! |---
+
+--> Faça sua escolha:
+      
+|Adicionar (1)
+        
+|Editar (2)
+        
+|Excluir (3)
+        
+|Exibir (4)
+        
+|Sair (0)
+        
+Escolha: 1
+
+Insira o Nome do filme: Interestelar
+Insira o Gênero/Temática do filme: Sci-Fi
+Insira a Nota do filme: 9.5
+Insira sua Review/Comentários do filme: Um filme incrível que explora as possibilidades do universo.
+
+(filme adicionado na lista com sucesso!)
+
+------------------------------
+```
+
+#### Editar Filme:
+
+```
+--> Faça sua escolha:
+      
+|Adicionar (1)
+        
+|Editar (2)
+        
+|Excluir (3)
+        
+|Exibir (4)
+        
+|Sair (0)
+        
+Escolha: 2
+
+----------------------------------------
+1)
+                  
+ Nome: Interestelar,
+
+ Genero: Sci-Fi,
+
+ Nota: 9.5,
+
+ Review: Um filme incrível que explora as possibilidades do universo.
+
+----------------------------------------
+
+Digite o nome do filme que deseja Editar: Interestelar
+Insira o novo Gênero/Temática do filme: Sci-Fi, Drama
+Insira a nova Nota do filme: 9.7
+Insira a nova Review do filme: Uma jornada emocionante através do tempo e do espaço.
+
+(Filme editado com sucesso!)
+
+----------------------------------------
+Resultado:
+                      
+ Nome: Interestelar,
+
+ Genero (Editado): Sci-Fi, Drama,
+
+ Nota (Editada): 9.7,
+
+ Review (Editada): Uma jornada emocionante através do tempo e do espaço.
+
+----------------------------------------
+```
+
+#### Excluir Filme:
+
+```
+--> Faça sua escolha:
+      
+|Adicionar (1)
+        
+|Editar (2)
+        
+|Excluir (3)
+        
+|Exibir (4)
+        
+|Sair (0)
+        
+Escolha: 3
+
+----------------------------------------
+1)
+                  
+ Nome: Interestelar,
+
+ Genero: Sci-Fi, Drama,
+
+ Nota: 9.7,
+
+ Review: Uma jornada emocionante através do tempo e do espaço.
+
+----------------------------------------
+
+Digite o nome do filme que deseja Excluir: Interestelar
+
+(O filme escolhido foi removido.)
+```
+
+#### Exibir Lista de Filmes:
+
+```
+--> Faça sua escolha:
+      
+|Adicionar (1)
+        
+|Editar (2)
+        
+|Excluir (3)
+        
+|Exibir (4)
+        
+|Sair (0)
+        
+Escolha: 4
+
+(Lista Vazia)
+```
+
+#### Sair do Programa:
+
+```
+--> Faça sua escolha:
+      
+|Adicionar (1)
+        
+|Editar (2)
+        
+|Excluir (3)
+        
+|Exibir (4)
+        
+|Sair (0)
+        
+Escolha: 0
+
+(Saindo...)
+
+```
 ---------------------------------------------------  
 
 ## Criação de Classe e Instanciação de Objetos
