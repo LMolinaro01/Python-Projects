@@ -61,7 +61,7 @@ Além da definição da classe Guitarra, o código também demonstra como criar 
 
 ---------------------------------------------------
 
-## Descrição do Código - Calculadora de IMC
+## Calculadora de IMC
 
 Este código Python apresenta duas versões de uma calculadora de Índice de Massa Corporal (IMC) que permite ao usuário inserir os nomes e pesos das pessoas, calculando seus respectivos IMCs e classificando-os de acordo com os padrões de classificação de IMC. Ambas as versões do código permitem a entrada de múltiplas pessoas, fornecendo uma descrição breve dos resultados ao final da entrada dos dados.
 
