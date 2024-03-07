@@ -37,13 +37,13 @@ Este é um programa em Python para gerenciar uma biblioteca de filmes. Ele ofere
 ## Criação de Classe e Instanciação de Objetos
 
 
-Este código é uma implementação em Python de uma classe `Guitarra`, que permite criar objetos representando guitarras com diferentes características, como tamanho da corda, formato, afinação e captadores. A classe `Guitarra` possui métodos para tocar a guitarra e afiná-la.
+Este código é uma implementação em Python de uma classe "Guitarra", que permite criar objetos representando guitarras com diferentes características, como tamanho da corda, formato, afinação e captadores. A classe Guitarra possui métodos para tocar a guitarra e afiná-la.
 
 * **Criando uma Classe:**
   
   ![image](https://github.com/LMolinaro01/Pequenos-Projetos-em-Python/assets/126402616/8f1601b9-f05a-4022-b7c4-17afb8459968)
 
-Além da definição da classe `Guitarra`, o código também demonstra como criar objetos dessa classe e interagir com eles, solicitando informações do usuário para criar uma guitarra personalizada e exibindo informações sobre as guitarras criadas.
+Além da definição da classe Guitarra, o código também demonstra como criar objetos dessa classe e interagir com eles, solicitando informações do usuário para criar uma guitarra personalizada e exibindo informações sobre as guitarras criadas.
 
 * **Instanciando Objetos:**
   
@@ -67,10 +67,10 @@ Este código Python apresenta duas versões de uma calculadora de Índice de Mas
 
 #### Recursos Utilizados:
 * Utilização de listas para armazenar nomes, pesos e IMCs.
-* Utilização de um loop `while` para permitir a entrada contínua de dados até que o usuário decida parar.
+* Utilização de um loop While para permitir a entrada contínua de dados até que o usuário decida parar.
 * Cálculo do IMC utilizando a fórmula: IMC = peso / (altura ^ 2).
-* Utilização de estruturas condicionais `if`, `elif` e `else` para classificar os IMCs em categorias: Magro, Saudável, Sobrepeso e Obeso.
-* Utilização de um loop `for` para percorrer os dados inseridos e determinar a pessoa com o maior e menor IMC.
+* Utilização de estruturas condicionais If, Elif e Else para classificar os IMCs em categorias: Magro, Saudável, Sobrepeso e Obeso.
+* Utilização de um loop For para percorrer os dados inseridos e determinar a pessoa com o maior e menor IMC.
 * Utilização de variáveis para armazenar o maior e menor IMC, bem como os respectivos nomes das pessoas.
 
 #### Exemplo de Utilização:
