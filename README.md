@@ -1,8 +1,8 @@
 # Exercícios em Python
 
-* Cálculo de IMC (Utilizando Listas e Coleta de Dados do Usuário)
 * Biblioteca de Filmes
 * Criação de Classe e Instanciação de Objetos
+* Calculadora de IMC 
 
 
 ## Biblioteca de Filmes (Dicionário + CRUD)
