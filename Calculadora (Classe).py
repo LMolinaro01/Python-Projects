@@ -18,7 +18,7 @@ class Calculadora:
 
     def divisao(self, x, y):
         if y == 0:
-            print("Erro! Divisão por zero não é permitida.")
+            print("\nErro! Divisão por zero não é permitida.")
             self.resultado = None
         else:
             self.resultado = x / y
@@ -30,7 +30,7 @@ class Calculadora:
 
     def raiz_quadrada(self, x):
         if x < 0:
-            print("Erro! Não é possível calcular a raiz quadrada de um número negativo.")
+            print("\nErro! Não é possível calcular a raiz quadrada de um número negativo.")
             self.resultado = None
         else:
             self.resultado = math.sqrt(x)
@@ -40,9 +40,11 @@ class Calculadora:
 def main():
     calc = Calculadora()
 
+    print("""\n---------------- Calculadora ----------------""")
+
     while True:
         print("\nSelecione a operação:")
-        print("1. Adição")
+        print("\n1. Adição")
         print("2. Subtração")
         print("3. Multiplicação")
         print("4. Divisão")
@@ -50,36 +52,36 @@ def main():
         print("6. Raiz Quadrada")
         print("7. Sair")
 
-        opcao = input("Digite a opção (1-7): ")
+        opcao = input("\nDigite a opção (1-7): ")
 
         if opcao in ['1', '2', '3', '4']:
-            num1 = float(input("Digite o primeiro número: "))
+            num1 = float(input("\nDigite o primeiro número: "))
             num2 = float(input("Digite o segundo número: "))
 
             if opcao == '1':
-                print("Resultado:", calc.adicao(num1, num2))
+                print("\nResultado:", calc.adicao(num1, num2))
             elif opcao == '2':
-                print("Resultado:", calc.subtracao(num1, num2))
+                print("\nResultado:", calc.subtracao(num1, num2))
             elif opcao == '3':
-                print("Resultado:", calc.multiplicacao(num1, num2))
+                print("\nResultado:", calc.multiplicacao(num1, num2))
             elif opcao == '4':
-                print("Resultado:", calc.divisao(num1, num2))
+                print("\nResultado:", calc.divisao(num1, num2))
 
         elif opcao == '5':
-            num1 = float(input("Digite a base: "))
+            num1 = float(input("\nDigite a base: "))
             num2 = float(input("Digite o expoente: "))
             print("Resultado:", calc.potencia(num1, num2))
 
         elif opcao == '6':
-            num = float(input("Digite o número: "))
+            num = float(input("\nDigite o número: "))
             print("Resultado:", calc.raiz_quadrada(num))
 
         elif opcao == '7':
-            print("Encerrando o programa...")
+            print("\nEncerrando o programa...")
             break
 
         else:
-            print("Opção inválida!")
+            print("\nOpção inválida!")
 
 if __name__ == "__main__":
     main()
