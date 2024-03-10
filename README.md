@@ -2,7 +2,8 @@
 
 * Biblioteca de Filmes
 * Criação de Classe e Instanciação de Objetos
-* Calculadora de IMC 
+* Calculadora de IMC
+* Calculadora utilizando Classe
 
 
 ## Biblioteca de Filmes (Dicionário + CRUD)
@@ -217,7 +218,124 @@ Além da definição da classe Guitarra, o código também demonstra como criar 
    ![image](https://github.com/LMolinaro01/Pequenos-Projetos-em-Python/assets/126402616/0e0c9df1-ae8a-46cc-b061-dae7040b422f)
 
 ---------------------------------------------------
+## Calculadora utilizando Classe
 
+### Funcionalidades do Programa:
+
+1. **Adição:** Permite ao usuário somar dois números.
+
+2. **Subtração:** Permite ao usuário subtrair um número do outro.
+
+3. **Multiplicação:** Permite ao usuário multiplicar dois números.
+
+4. **Divisão:** Permite ao usuário dividir um número pelo outro. Se o segundo número for zero, exibe uma mensagem de erro.
+
+5. **Potência:** Permite ao usuário calcular a potência de um número, elevando-o a uma potência especificada.
+
+6. **Raiz Quadrada:** Permite ao usuário calcular a raiz quadrada de um número. Se o número for negativo, exibe uma mensagem de erro.
+
+7. **Sair:** Permite ao usuário encerrar o programa.
+
+#### Exemplo de Utilização:
+
+1. **Adição:**
+```
+Selecione a operação:
+1. Adição
+2. Subtração
+3. Multiplicação
+4. Divisão
+5. Potência
+6. Raiz Quadrada
+7. Sair
+Digite a opção (1-7): 1
+Digite o primeiro número: 10
+Digite o segundo número: 5
+Resultado: 15.0
+```
+
+2. **Subtração:**
+```
+Selecione a operação:
+1. Adição
+2. Subtração
+3. Multiplicação
+4. Divisão
+5. Potência
+6. Raiz Quadrada
+7. Sair
+Digite a opção (1-7): 2
+Digite o primeiro número: 20
+Digite o segundo número: 8
+Resultado: 12.0
+```
+
+3. **Multiplicação:**
+```
+Selecione a operação:
+1. Adição
+2. Subtração
+3. Multiplicação
+4. Divisão
+5. Potência
+6. Raiz Quadrada
+7. Sair
+Digite a opção (1-7): 3
+Digite o primeiro número: 6
+Digite o segundo número: 4
+Resultado: 24.0
+```
+
+4. **Divisão:**
+```
+Selecione a operação:
+1. Adição
+2. Subtração
+3. Multiplicação
+4. Divisão
+5. Potência
+6. Raiz Quadrada
+7. Sair
+Digite a opção (1-7): 4
+Digite o primeiro número: 50
+Digite o segundo número: 5
+Resultado: 10.0
+```
+
+5. **Potência:**
+```
+Selecione a operação:
+1. Adição
+2. Subtração
+3. Multiplicação
+4. Divisão
+5. Potência
+6. Raiz Quadrada
+7. Sair
+Digite a opção (1-7): 5
+Digite a base: 3
+Digite o expoente: 4
+Resultado: 81.0
+```
+
+6. **Raiz Quadrada:**
+```
+Selecione a operação:
+1. Adição
+2. Subtração
+3. Multiplicação
+4. Divisão
+5. Potência
+6. Raiz Quadrada
+7. Sair
+Digite a opção (1-7): 6
+Digite o número: 64
+Resultado: 8.0
+```
+
+Estes são exemplos de como cada operação funciona e o que é exibido para o usuário após a entrada dos números. O usuário pode continuar realizando operações ou sair do programa conforme necessário.
+
+--------------------------------------------------
 ## Calculadora de IMC
 
 Este código Python apresenta duas versões de uma calculadora de Índice de Massa Corporal (IMC) que permite ao usuário inserir os nomes e pesos das pessoas, calculando seus respectivos IMCs e classificando-os de acordo com os padrões de classificação de IMC. Ambas as versões do código permitem a entrada de múltiplas pessoas, fornecendo uma descrição breve dos resultados ao final da entrada dos dados.
