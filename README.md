@@ -220,21 +220,60 @@ Além da definição da classe Guitarra, o código também demonstra como criar 
 ---------------------------------------------------
 ## Calculadora utilizando Classe
 
+### Criação da Classe:
+
+```class Calculadora:
+    def __init__(self):
+        self.resultado = None
+
+    def adicao(self, x, y):
+        self.resultado = x + y
+        return self.resultado
+
+    def subtracao(self, x, y):
+        self.resultado = x - y
+        return self.resultado
+
+    def multiplicacao(self, x, y):
+        self.resultado = x * y
+        return self.resultado
+
+    def divisao(self, x, y):
+        if y == 0:
+            print("Erro! Divisão por zero não é permitida.")
+            self.resultado = None
+        else:
+            self.resultado = x / y
+        return self.resultado
+
+    def potencia(self, x, y):
+        self.resultado = x ** y
+        return self.resultado
+
+    def raiz_quadrada(self, x):
+        if x < 0:
+            print("Erro! Não é possível calcular a raiz quadrada de um número negativo.")
+            self.resultado = None
+        else:
+            self.resultado = math.sqrt(x)
+        return self.resultado
+```
+
 ### Funcionalidades do Programa:
 
-1. **Adição:** Permite ao usuário somar dois números.
+* Adição: Permite ao usuário somar dois números.
 
-2. **Subtração:** Permite ao usuário subtrair um número do outro.
+* Subtração: Permite ao usuário subtrair um número do outro.
 
-3. **Multiplicação:** Permite ao usuário multiplicar dois números.
+* Multiplicação: Permite ao usuário multiplicar dois números.
 
-4. **Divisão:** Permite ao usuário dividir um número pelo outro. Se o segundo número for zero, exibe uma mensagem de erro.
+* Divisão: Permite ao usuário dividir um número pelo outro. Se o segundo número for zero, exibe uma mensagem de erro.
 
-5. **Potência:** Permite ao usuário calcular a potência de um número, elevando-o a uma potência especificada.
+* Potência: Permite ao usuário calcular a potência de um número, elevando-o a uma potência especificada.
 
-6. **Raiz Quadrada:** Permite ao usuário calcular a raiz quadrada de um número. Se o número for negativo, exibe uma mensagem de erro.
+* Raiz Quadrada: Permite ao usuário calcular a raiz quadrada de um número. Se o número for negativo, exibe uma mensagem de erro.
 
-7. **Sair:** Permite ao usuário encerrar o programa.
+* Sair: Permite ao usuário encerrar o programa.
 
 #### Exemplo de Utilização:
 
