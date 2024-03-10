@@ -35,7 +35,7 @@ Este é um programa em Python para gerenciar uma biblioteca de filmes. Ele ofere
 
 ### Exemplo de Utilização - CRUD:
 
-#### Adicionar Filme:
+#### Adicionar Filme: 
 
 ```
 ---| Bem vindo a sua Biblioteca de filmes! |---
@@ -220,44 +220,6 @@ Além da definição da classe Guitarra, o código também demonstra como criar 
 ---------------------------------------------------
 ## Calculadora utilizando Classe <a name="calculadora-utilizando-classe"></a>
 
-### Criação da Classe:
-
-```class Calculadora:
-    def __init__(self):
-        self.resultado = None
-
-    def adicao(self, x, y):
-        self.resultado = x + y
-        return self.resultado
-
-    def subtracao(self, x, y):
-        self.resultado = x - y
-        return self.resultado
-
-    def multiplicacao(self, x, y):
-        self.resultado = x * y
-        return self.resultado
-
-    def divisao(self, x, y):
-        if y == 0:
-            print("Erro! Divisão por zero não é permitida.")
-            self.resultado = None
-        else:
-            self.resultado = x / y
-        return self.resultado
-
-    def potencia(self, x, y):
-        self.resultado = x ** y
-        return self.resultado
-
-    def raiz_quadrada(self, x):
-        if x < 0:
-            print("Erro! Não é possível calcular a raiz quadrada de um número negativo.")
-            self.resultado = None
-        else:
-            self.resultado = math.sqrt(x)
-        return self.resultado
-```
 ### Funcionalidades do Programa:
 
 | Operação       | Descrição                                                             |
@@ -270,7 +232,7 @@ Além da definição da classe Guitarra, o código também demonstra como criar 
 | Raiz Quadrada  | Permite ao usuário calcular a raiz quadrada de um número. Se o número for negativo, exibe uma mensagem de erro. |
 | Sair           | Permite ao usuário encerrar o programa.                               |
 
-#### Exemplo de Utilização:
+### Exemplo de Utilização:
 
 ```
 ---------------- Calculadora ----------------
@@ -458,6 +420,44 @@ Resultado: 8.0
 
 Estes são exemplos de como cada operação funciona e o que é exibido para o usuário após a entrada dos números. O usuário pode continuar realizando operações ou sair do programa conforme necessário.
 
+### Criação da Classe:
+
+```class Calculadora:
+    def __init__(self):
+        self.resultado = None
+
+    def adicao(self, x, y):
+        self.resultado = x + y
+        return self.resultado
+
+    def subtracao(self, x, y):
+        self.resultado = x - y
+        return self.resultado
+
+    def multiplicacao(self, x, y):
+        self.resultado = x * y
+        return self.resultado
+
+    def divisao(self, x, y):
+        if y == 0:
+            print("Erro! Divisão por zero não é permitida.")
+            self.resultado = None
+        else:
+            self.resultado = x / y
+        return self.resultado
+
+    def potencia(self, x, y):
+        self.resultado = x ** y
+        return self.resultado
+
+    def raiz_quadrada(self, x):
+        if x < 0:
+            print("Erro! Não é possível calcular a raiz quadrada de um número negativo.")
+            self.resultado = None
+        else:
+            self.resultado = math.sqrt(x)
+        return self.resultado
+```
 --------------------------------------------------
 ## Calculadora de IMC <a name="calculadora-de-imc"></a>
 
