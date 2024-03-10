@@ -258,28 +258,25 @@ Além da definição da classe Guitarra, o código também demonstra como criar 
             self.resultado = math.sqrt(x)
         return self.resultado
 ```
-
 ### Funcionalidades do Programa:
 
-* Adição: Permite ao usuário somar dois números.
-
-* Subtração: Permite ao usuário subtrair um número do outro.
-
-* Multiplicação: Permite ao usuário multiplicar dois números.
-
-* Divisão: Permite ao usuário dividir um número pelo outro. Se o segundo número for zero, exibe uma mensagem de erro.
-
-* Potência: Permite ao usuário calcular a potência de um número, elevando-o a uma potência especificada.
-
-* Raiz Quadrada: Permite ao usuário calcular a raiz quadrada de um número. Se o número for negativo, exibe uma mensagem de erro.
-
-* Sair: Permite ao usuário encerrar o programa.
+| Operação       | Descrição                                                             |
+|----------------|-----------------------------------------------------------------------|
+| Adição         | Permite ao usuário somar dois números.                                |
+| Subtração      | Permite ao usuário subtrair um número do outro.                       |
+| Multiplicação  | Permite ao usuário multiplicar dois números.                           |
+| Divisão        | Permite ao usuário dividir um número pelo outro. Se o segundo número for zero, exibe uma mensagem de erro. |
+| Potência       | Permite ao usuário calcular a potência de um número, elevando-o a uma potência especificada. |
+| Raiz Quadrada  | Permite ao usuário calcular a raiz quadrada de um número. Se o número for negativo, exibe uma mensagem de erro. |
+| Sair           | Permite ao usuário encerrar o programa.                               |
 
 #### Exemplo de Utilização:
 
-1. **Adição:**
 ```
+---------------- Calculadora ----------------
+
 Selecione a operação:
+
 1. Adição
 2. Subtração
 3. Multiplicação
@@ -287,15 +284,84 @@ Selecione a operação:
 5. Potência
 6. Raiz Quadrada
 7. Sair
+
+Digite a opção (1-7): 4 #Usuário Escolheu Divisão
+
+Digite o primeiro número: 10
+Digite o segundo número: 0
+
+Erro! Divisão por zero não é permitida.
+
+Selecione a operação:
+
+1. Adição
+2. Subtração
+3. Multiplicação
+4. Divisão
+5. Potência
+6. Raiz Quadrada
+7. Sair
+
+Digite a opção (1-7): 5 #Usuário escolheu Potência
+
+Digite a base: 2
+Digite o expoente: 3
+Resultado: 8.0
+
+Selecione a operação:
+
+1. Adição
+2. Subtração
+3. Multiplicação
+4. Divisão
+5. Potência
+6. Raiz Quadrada
+7. Sair
+
+Digite a opção (1-7): 6 #Raiz Quadrada
+
+Digite o número: 9
+Resultado: 3.0
+
+Selecione a operação:
+
+1. Adição
+2. Subtração
+3. Multiplicação
+4. Divisão
+5. Potência
+6. Raiz Quadrada
+7. Sair
+
+Digite a opção (1-7): 7
+
+Encerrando o programa...
+
+```
+
+1. **Adição:**
+```
+Selecione a operação:
+
+1. Adição
+2. Subtração
+3. Multiplicação
+4. Divisão
+5. Potência
+6. Raiz Quadrada
+7. Sair
+
 Digite a opção (1-7): 1
 Digite o primeiro número: 10
 Digite o segundo número: 5
+
 Resultado: 15.0
 ```
 
 2. **Subtração:**
 ```
 Selecione a operação:
+
 1. Adição
 2. Subtração
 3. Multiplicação
@@ -303,15 +369,19 @@ Selecione a operação:
 5. Potência
 6. Raiz Quadrada
 7. Sair
+
 Digite a opção (1-7): 2
+
 Digite o primeiro número: 20
 Digite o segundo número: 8
+
 Resultado: 12.0
 ```
 
 3. **Multiplicação:**
 ```
 Selecione a operação:
+
 1. Adição
 2. Subtração
 3. Multiplicação
@@ -319,15 +389,19 @@ Selecione a operação:
 5. Potência
 6. Raiz Quadrada
 7. Sair
+
 Digite a opção (1-7): 3
+
 Digite o primeiro número: 6
 Digite o segundo número: 4
+
 Resultado: 24.0
 ```
 
 4. **Divisão:**
 ```
 Selecione a operação:
+
 1. Adição
 2. Subtração
 3. Multiplicação
@@ -336,14 +410,17 @@ Selecione a operação:
 6. Raiz Quadrada
 7. Sair
 Digite a opção (1-7): 4
+
 Digite o primeiro número: 50
 Digite o segundo número: 5
+
 Resultado: 10.0
 ```
 
 5. **Potência:**
 ```
 Selecione a operação:
+
 1. Adição
 2. Subtração
 3. Multiplicação
@@ -351,15 +428,19 @@ Selecione a operação:
 5. Potência
 6. Raiz Quadrada
 7. Sair
+
 Digite a opção (1-7): 5
+
 Digite a base: 3
 Digite o expoente: 4
+
 Resultado: 81.0
 ```
 
 6. **Raiz Quadrada:**
 ```
 Selecione a operação:
+
 1. Adição
 2. Subtração
 3. Multiplicação
@@ -367,8 +448,11 @@ Selecione a operação:
 5. Potência
 6. Raiz Quadrada
 7. Sair
+
 Digite a opção (1-7): 6
+
 Digite o número: 64
+
 Resultado: 8.0
 ```
 
