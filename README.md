@@ -1,12 +1,12 @@
 # Exercícios em Python
 
-* Biblioteca de Filmes
-* Criação de Classe e Instanciação de Objetos
-* Calculadora de IMC
-* Calculadora utilizando Classe
+* [Biblioteca de Filmes](#biblioteca-de-filmes)
+* [Criação de Classe e Instanciação de Objetos](#criação-de-classe-e-instanciação-de-objetos)
+* [Calculadora utilizando Classe](#calculadora-utilizando-classe)
+* [Calculadora de IMC](#calculadora-de-imc)
 
 
-## Biblioteca de Filmes (Dicionário + CRUD)
+## Biblioteca de Filmes (Dicionário + CRUD) <a name="biblioteca-de-filmes"></a>
 
 
 Este é um programa em Python para gerenciar uma biblioteca de filmes. Ele oferece funcionalidades para adicionar, editar, excluir e exibir filmes na lista, permitindo ao usuário organizar sua coleção de filmes de forma simples e eficiente.
@@ -192,7 +192,7 @@ Escolha: 0
 ```
 ---------------------------------------------------  
 
-## Criação de Classe e Instanciação de Objetos
+## Criação de Classe e Instanciação de Objetos <a name="criação-de-classe-e-instanciação-de-objetos"></a>
 
 
 Este código é uma implementação em Python de uma classe "Guitarra", que permite criar objetos representando guitarras com diferentes características, como tamanho da corda, formato, afinação e captadores. A classe Guitarra possui métodos para tocar a guitarra e afiná-la.
@@ -218,7 +218,7 @@ Além da definição da classe Guitarra, o código também demonstra como criar 
    ![image](https://github.com/LMolinaro01/Pequenos-Projetos-em-Python/assets/126402616/0e0c9df1-ae8a-46cc-b061-dae7040b422f)
 
 ---------------------------------------------------
-## Calculadora utilizando Classe
+## Calculadora utilizando Classe <a name="calculadora-utilizando-classe"></a>
 
 ### Criação da Classe:
 
@@ -375,7 +375,7 @@ Resultado: 8.0
 Estes são exemplos de como cada operação funciona e o que é exibido para o usuário após a entrada dos números. O usuário pode continuar realizando operações ou sair do programa conforme necessário.
 
 --------------------------------------------------
-## Calculadora de IMC
+## Calculadora de IMC <a name="calculadora-de-imc"></a>
 
 Este código Python apresenta duas versões de uma calculadora de Índice de Massa Corporal (IMC) que permite ao usuário inserir os nomes e pesos das pessoas, calculando seus respectivos IMCs e classificando-os de acordo com os padrões de classificação de IMC. Ambas as versões do código permitem a entrada de múltiplas pessoas, fornecendo uma descrição breve dos resultados ao final da entrada dos dados.
 
