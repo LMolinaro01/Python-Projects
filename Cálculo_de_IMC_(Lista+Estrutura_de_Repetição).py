@@ -1,47 +1,51 @@
-nomes = []
-pesos = []
-imcs = []
-
-nome = input(f"""\n--------------------------------
-Digite o nome da pessoa: """)
-
-while nome.lower() not in ("nao", "não"):
-    peso = float(input("\nDigite o peso da pessoa (em kg): "))
-    altura = float(input("\nDigite a altura da pessoa (em metros): "))
-    
-    nomes.append(nome)
-    pesos.append(peso)
-    
-    imc = peso / (altura ** 2)
-    imcs.append(imc)
-
-    print(f"\nNome: {nome}, IMC: {imc:.2f}")
-    if imc < 18.5:
-        print("Classificação: Magro")
-    elif 18.5 <= imc < 24.9:
-        print("Classificação: Saudável")
-    elif 25 <= imc < 29.9:
-        print("Classificação: Sobrepeso")
-    else:
-        print("Classificação: Obeso")
+try:
+    nomes = []
+    pesos = []
+    imcs = []
 
     nome = input(f"""\n--------------------------------
+Digite o nome da pessoa: """)
+
+    while nome.lower() not in ("nao", "não"):
+        peso = float(input("\nDigite o peso da pessoa (em kg): "))
+        altura = float(input("\nDigite a altura da pessoa (em metros): "))
+        
+        nomes.append(nome)
+        pesos.append(peso)
+        
+        imc = peso / (altura ** 2)
+        imcs.append(imc)
+
+        print(f"\nNome: {nome}, IMC: {imc:.2f}")
+        if imc < 18.5:
+            print("Classificação: Magro")
+        elif 18.5 <= imc < 24.9:
+            print("Classificação: Saudável")
+        elif 25 <= imc < 29.9:
+            print("Classificação: Sobrepeso")
+        else:
+            print("Classificação: Obeso")
+
+        nome = input(f"""\n--------------------------------
 Digite o nome da próxima pessoa ("Não" para Finalizar): """)
 
-if nomes:
+    if nomes:
 
-    indice_maior_imc = imcs.index(max(imcs))
-     
-    indice_menor_imc = imcs.index(min(imcs))
+        indice_maior_imc = imcs.index(max(imcs))
+         
+        indice_menor_imc = imcs.index(min(imcs))
 
-    print("\nPessoa com o maior IMC:")
-    print(f"Nome: {nomes[indice_maior_imc]}, IMC: {imcs[indice_maior_imc]:.2f}")
+        print("\nPessoa com o maior IMC:")
+        print(f"Nome: {nomes[indice_maior_imc]}, IMC: {imcs[indice_maior_imc]:.2f}")
 
-    print("\nPessoa com o menor IMC:")
-    print(f"Nome: {nomes[indice_menor_imc]}, IMC: {imcs[indice_menor_imc]:.2f}\n")
-else:
-    print("Nenhum dado foi inserido.")
-
+        print("\nPessoa com o menor IMC:")
+        print(f"Nome: {nomes[indice_menor_imc]}, IMC: {imcs[indice_menor_imc]:.2f}\n")
+    else:
+        print("Nenhum dado foi inserido.")
+        
+except:
+    
+    print(\n"Um Erro Ocorreu.")
 
 #--------------------------------------------------------------------------------------------
 #Outra versão do Código:
