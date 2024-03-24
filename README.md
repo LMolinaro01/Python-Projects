@@ -4,6 +4,7 @@
 * [Criação de Classe e Instanciação de Objetos](#criação-de-classe-e-instanciação-de-objetos)
 * [Calculadora utilizando Classe](#calculadora-utilizando-classe)
 * [Calculadora de IMC](#calculadora-de-imc)
+* [Regex no Python](#regex)
 
 
 ## Biblioteca de Filmes (Dicionário + CRUD) <a name="biblioteca-de-filmes"></a>
@@ -497,3 +498,29 @@ Nome: João, IMC: 22.86
 Pessoa com o menor IMC:
 Nome: Maria, IMC: 21.48
 ```
+---------------------------------------------------
+## Regex no Python <a name="regex"></a>
+
+### Comandos para Procurar Algo:
+
+* a -> Procura a Letra A
+* . -> Procura qualquer coisa (menos pular linha)
+* \d -> Procura um digito (\D procura o que não for um digito)
+* \w -> alfanumérico (\W não alfanumérico)
+* [abc] -> Procura A, B ou C
+* \n -> Pular linha
+  
+### Comandos para Determinar a Quantidade:
+
+* + -> Pega o Máximo possível (1 a infinito)
+* * -> Pega o Máximo (zero a infinito)
+* {n} -> Pega N coisas
+* | -> Comando OU
+
+### Comandos de Agrupamento:
+* (?=...) -> Positive Lookahead
+* (?<=...) -> Positive Lookbehind
+* () -> Agrupa
+
+
+### Exemplo de Uso:
