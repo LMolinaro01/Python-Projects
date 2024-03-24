@@ -512,15 +512,15 @@ Nome: Maria, IMC: 21.48
   
 ### Comandos para Determinar a Quantidade:
 
-* + -> Pega o Máximo possível (1 a infinito)
-* * -> Pega o Máximo (zero a infinito)
+* "+" -> Pega o Máximo possível (1 a infinito)
+* "*" -> Pega o Máximo (zero a infinito)
 * {n} -> Pega N coisas
 * | -> Comando OU
 
 ### Comandos de Agrupamento:
 * (?=...) -> Positive Lookahead
 * (?<=...) -> Positive Lookbehind
-* () -> Agrupa
+* ( ) -> Agrupa
 
 
 ### Exemplo de Uso:
