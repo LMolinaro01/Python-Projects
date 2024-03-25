@@ -2,23 +2,28 @@ import re
 
 # String contendo os dados das duas pessoas
 dados = """
-Nome: João
-Data de Nascimento: 01/01/1990
-Salário: R$ 3,500.00
-
-Nome: Maria
-Data de Nascimento: 1995-05-05
-Salário: R$ 4.200,00
+Nome: pedro dos santos             Data nascimento: 01/01/2000
+cpf: 123.456.789-00       Endereço: nova america, del castilho
+                                loja 3
+Valor dos serviços: R$ 1.200,00
+Tipo de contrato: Mei
+--------------------------------------------------------------
+Nome: ana             Data nascimento: 01-01-2010
+cpf: 123.456.789-00       Endereço: norte shop
+Valor dos serviços: R$ 1200
+Tipo de contrato: clt
 """
 
-# Comando 1: Exibir todos os nomes
-nomes = re.findall(r'Nome: (\w+)', dados)
+#Exibi todos os nomes
+nomes = re.findall(r'Nome: ([^\n]+)', dados)
+# Removi as informações dps do nome (data de nascimento)
+nomes = [nome.split()[0] for nome in nomes]
 print("Nomes:", nomes)
 
-# Comando 2: Exibir as datas de nascimento
-datas_nascimento = re.findall(r'Data de Nascimento: (\d{2}/\d{2}/\d{4}|\d{4}-\d{2}-\d{2})', dados)
+#Exibi as datas de nascimento
+datas_nascimento = re.findall(r'Data nascimento: (\d{2}/\d{2}/\d{4}|\d{2}-\d{2}-\d{4})', dados)
 print("Datas de Nascimento:", datas_nascimento)
 
-# Comando 3: Exibir os salários
-salarios = re.findall(r'Salário: R\$ (\d+(?:[.,]\d{2}))', dados)
+#Exibi os salários
+salarios = re.findall(r'Valor dos serviços: R\$ (\d{1,3}(?:[.,]\d{3})*(?:[.,]\d{2}))', dados)
 print("Salários:", salarios)
