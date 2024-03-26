@@ -60,7 +60,7 @@ Insira o Gênero/Temática do filme: Sci-Fi
 Insira a Nota do filme: 9.5
 Insira sua Review/Comentários do filme: Um filme incrível que explora as possibilidades do universo.
 
-(filme adicionado na lista com sucesso!)
+(Filme adicionado na lista com sucesso!)
 
 ------------------------------
 ```
@@ -148,7 +148,7 @@ Escolha: 3
 
 Digite o nome do filme que deseja Excluir: Interestelar
 
-(O filme escolhido foi removido.)
+(O Filme escolhido foi Removido.)
 ```
 
 #### Exibir Lista de Filmes:
@@ -168,7 +168,7 @@ Digite o nome do filme que deseja Excluir: Interestelar
         
 Escolha: 4
 
-(Lista Vazia)
+(Lista Vazia...)
 ```
 
 #### Sair do Programa:
@@ -537,7 +537,7 @@ print("Salários:", salarios)
 
 ```
 
-### Comandos para Procurar Algo:
+#### Comandos para Procurar Algo:
 
 * a -> Procura a Letra A
 * . -> Procura qualquer coisa (menos pular linha)
@@ -546,17 +546,17 @@ print("Salários:", salarios)
 * [abc] -> Procura A, B ou C
 * \n -> Pular linha
   
-### Comandos para Determinar a Quantidade:
+#### Comandos para Determinar a Quantidade:
 
 * "+" -> Pega o Máximo possível (1 a infinito)
 * "*" -> Pega o Máximo (zero a infinito)
 * {n} -> Pega N coisas
 * | -> Comando OU
 
-### Comandos de Agrupamento:
+#### Comandos de Agrupamento:
 * (?=...) -> Positive Lookahead
 * (?<=...) -> Positive Lookbehind
 * ( ) -> Agrupa
 
 
-### Exemplo de Uso:
+#### Exemplo de Uso:
