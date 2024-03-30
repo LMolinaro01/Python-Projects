@@ -4,19 +4,18 @@ from tkinter import ttk
  
 def janela():
     root = tkinter.Tk()
-    root.title("Janela do SIA")
+    root.title("Janela de Login")
     root.resizable(True, True)
-    label = tkinter.Label(root, text="Estácio")
+    label = tkinter.Label(root, text="Faça seu Login")
     label.pack()
-    label = tkinter.Label(root, text="SIA - Sistema de Informações Acadêmicas")
-    label.pack()
-    botaoAzul = tkinter.Button(root, text="Entrar com e-mail de estudante")
+    
+    botaoAzul = tkinter.Button(root, text="Entrar com a conta do Google")
     botaoAzul.pack()
  
     label = tkinter.Label(root, text="------------- ou -------------")
     label.pack()
  
-    label = tkinter.Label(root, text="Matricula")
+    label = tkinter.Label(root, text="E-Mail")
     label.pack()
     textomatricula = tkinter.StringVar()
  
