@@ -558,5 +558,3 @@ print("Salários:", salarios)
 * (?<=...) -> Positive Lookbehind
 * ( ) -> Agrupa
 
-
-#### Exemplo de Uso:
