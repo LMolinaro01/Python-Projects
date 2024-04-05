@@ -5,6 +5,8 @@
 * [Calculadora utilizando Classe](#calculadora-utilizando-classe)
 * [Calculadora de IMC](#calculadora-de-imc)
 * [Regex no Python](#regex)
+* [Interface Visual com TKinter]
+* [Utilizando um Banco de Dados local com SQLite3]
 
 
 ## Biblioteca de Filmes (Dicionário + CRUD) <a name="biblioteca-de-filmes"></a>
