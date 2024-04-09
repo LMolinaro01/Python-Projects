@@ -27,4 +27,4 @@ def buscarAluno(nome_ou_matricula):
 
 adicionarAluno("Leonardo", 12345, 20011111111, "Ciência da Computação", 3)
 buscarAluno("Leonardo")
-buscarAluno(12345
+buscarAluno(12345)
