@@ -10,8 +10,8 @@ from PIL import Image, ImageTk
 connection = sqlite3.connect("Database.db")
 cursor = connection.cursor()
 
-cursor.execute("CREATE TABLE IF NOT EXISTS Questoes (enunciado TEXT, resposta TEXT, ID TEXT)")
 cursor.execute("CREATE TABLE IF NOT EXISTS Alunos (nome TEXT, senha TEXT, curso TEXT)")
+cursor.execute("CREATE TABLE IF NOT EXISTS Questoes (enunciado TEXT, resposta TEXT, ID TEXT)")
 
 #root = None
 
@@ -174,7 +174,7 @@ def janelaProva():
 
     tkinter.Radiobutton(janelaProva, text="x²/2", variable=v, value=1).grid(row=2, column=0, sticky="w", padx=10, pady=5) #sticky w alinha com da esquerda
     tkinter.Radiobutton(janelaProva, text="2x²", variable=v, value=2).grid(row=3, column=0, sticky="w", padx=10, pady=5)
-    tkinter.Radiobutton(janelaProva, text="2x²/2 + c", variable=v, value=3).grid(row=4, column=0, sticky="w", padx=10, pady=5) #correta
+    tkinter.Radiobutton(janelaProva, text="x²/2 + c", variable=v, value=3).grid(row=4, column=0, sticky="w", padx=10, pady=5) #correta
     tkinter.Radiobutton(janelaProva, text="x² + c", variable=v, value=4).grid(row=5, column=0, sticky="w", padx=10, pady=5)
     
     #Questão 2
@@ -188,7 +188,7 @@ def janelaProva():
     
     #Questão 3 
     label3 = tkinter.Label(janelaProva, text="Questão 3) A área de um triângulo que possui 12 cm de altura e base medindo 9 cm é:")
-    label3.grid(row=13, column=0, columnspan=4, padx=10, pady=10)
+    label3.grid(row=13, column=0, padx=10, pady=10)
 
     tkinter.Radiobutton(janelaProva, text="54 cm²", variable=v3, value=1).grid(row=14, column=0, sticky="w", padx=10, pady=5) #correta
     tkinter.Radiobutton(janelaProva, text="70 cm²", variable=v3, value=2).grid(row=15, column=0, sticky="w", padx=10, pady=5)
@@ -209,16 +209,51 @@ def finalizarProva():
 
     janelaResultProva = tkinter.Toplevel()
     janelaResultProva.title("Resultado da Prova")
-    janelaResultProva.geometry("700x400")
+    janelaResultProva.geometry("300x400")
     janelaResultProva.resizable(False, False)
 
     label = tkinter.Label(janelaResultProva, text="Nome: ")
-    label.grid(row=0, column=0, columnspan=4, padx=10, pady=10)
+    label.grid(row=0, column=0, padx=10, pady=10)
+
+    label = tkinter.Label(janelaResultProva, text="Curso: ")
+    label.grid(row=1, column=0, padx=10, pady=10)
+
+    label = tkinter.Label(janelaResultProva, text="Pontuação Final: ")
+    label.grid(row=2, column=0, padx=10, pady=10)
+
+    botao_Resposta = tkinter.Button(janelaResultProva, text="Resolução das Questões", bg="#009FD6", fg="white",command=lambda: ResolucaoProva())
+    botao_Resposta.grid(row=3, column=0, padx=10, pady=10)
+
+def ResolucaoProva():
+    janelaRespProva = tkinter.Toplevel()
+    janelaRespProva.title("Gabarito")
+    #janelaRespProva.geometry("480x425")
+    janelaRespProva.resizable(False, False)
+
+    #Questão 1 
+    label = tkinter.Label(janelaRespProva, text="Questão 1) Escolha o resultado da seguinte operação: Integral de 2x")
+    label.grid(row=0, column=0, padx=10, pady=10)
+
+    labelR = tkinter.Label(janelaRespProva, text="Resposta: 2x²/2 + c = x² + c")
+    labelR.grid(row=1, column=0, padx=10, pady=10)
+    
+    #Questão 2
+    label2 = tkinter.Label(janelaRespProva, text="Questão 2) Calcule a derivada da seguinte função: f(x) = 2x+1")
+    label2.grid(row=2, column=0, padx=10, pady=10)
+
+    label2R = tkinter.Label(janelaRespProva, text="Resposta: 2.")
+    label2R.grid(row=3, column=0, padx=10, pady=10)
+    
+    #Questão 3 
+    label3 = tkinter.Label(janelaRespProva, text="Questão 3) A área de um triângulo que possui 12 cm de altura e base medindo 9 cm é:")
+    label3.grid(row=4, column=0, columnspan=4, padx=10, pady=10)
+
+    label3R = tkinter.Label(janelaRespProva, text="Resposta: b.h/2 = 9*12/2 = 54 cm²")
+    label3R.grid(row=5, column=0, padx=10, pady=10)
 
 
 telaInicial()
 
-e = str(cursor.execute("SELECT * from Alunos").fetchall())
+'''e = str(cursor.execute("SELECT * from Alunos").fetchall())
 print(e)
-
-connection.commit()
+connection.commit()'''
