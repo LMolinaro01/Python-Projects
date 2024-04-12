@@ -102,7 +102,7 @@ def voltarTelaInicial_Cadastro(janela2):
     root.deiconify()
 
 def adicionarAluno(nome, senha, curso):
-    caracteres_especiais = ";-'!+.=[|,"
+    caracteres_especiais = ";-'!+@#$%&*().=[]}`{|,"
     if any(caracter in caracteres_especiais for caracter in str(nome) + str(senha) + str(curso)):
         print("Caracteres especiais não são permitidos.")
     else:
@@ -114,7 +114,7 @@ def verificarLogin(nome, senha):
     cursor.execute(query, (nome, senha))
     aluno = cursor.fetchone()
  
-    caracteres_especiais = ";-'!+.=[|,"
+    caracteres_especiais = ";-'!+@#$%&*().=[]}`{|,"
     if any(caracter in caracteres_especiais for caracter in str(nome) + str(senha)):
         mb.showinfo("Aviso", "Caracteres especiais não são permitidos.")
         
@@ -129,7 +129,7 @@ def verificarLogin(nome, senha):
 
 def verificarCadastroAluno(nome, senha, curso):
     global janela2
-    caracteres_especiais = ";-'!+.=[|,"
+    caracteres_especiais = ";-'!+@#$%&*().=[]}`{|,"
     if any(caracter in caracteres_especiais for caracter in str(nome) + str(senha) + str(curso)):
         mb.showinfo("Aviso", "Caracteres especiais não são permitidos.")
         
