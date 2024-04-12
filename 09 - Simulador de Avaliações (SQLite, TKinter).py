@@ -224,7 +224,7 @@ def finalizarProva(variaveis_resposta):
     pontuacao = calcular_pontuacao(variaveis_resposta)
 
     janelaResultProva = tkinter.Toplevel()
-    janelaResultProva.title("Resultado da Prova")
+    janelaResultProva.title("Resultado")
     janelaResultProva.geometry("240x415")
     janelaResultProva.resizable(False, False)
 
