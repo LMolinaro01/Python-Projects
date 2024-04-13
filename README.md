@@ -1,6 +1,9 @@
+# Projetos usando Python
+
+* [Simulador de Avaliações (SQLite, TKinter)](#simulado)
+  
 # Exercícios em Python
 
-* [Simulador de Avaliações (SQLite, TKinter](#simulado)
 * [Biblioteca de Filmes](#biblioteca-de-filmes)
 * [Criação de Classe e Instanciação de Objetos](#criação-de-classe-e-instanciação-de-objetos)
 * [Calculadora utilizando Classe](#calculadora-utilizando-classe)
