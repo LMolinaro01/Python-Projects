@@ -1,12 +1,13 @@
 # Exercícios em Python
 
+* [Simulador de Avaliações (SQLite, TKinter](#simulado)
 * [Biblioteca de Filmes](#biblioteca-de-filmes)
 * [Criação de Classe e Instanciação de Objetos](#criação-de-classe-e-instanciação-de-objetos)
 * [Calculadora utilizando Classe](#calculadora-utilizando-classe)
+* [Utilizando um Banco de Dados local com SQLite3](#sqlite)
 * [Calculadora de IMC](#calculadora-de-imc)
 * [Regex no Python](#regex)
 * [Interface Visual com TKinter](#tkinter1)
-* [Utilizando um Banco de Dados local com SQLite3](#sqlite)
 
 
 ## Biblioteca de Filmes (Dicionário + CRUD) <a name="biblioteca-de-filmes"></a>
