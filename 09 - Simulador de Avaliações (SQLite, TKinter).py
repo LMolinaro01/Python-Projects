@@ -310,16 +310,16 @@ def calcular_pontuacao(variaveis_resposta):
     cursor.execute("SELECT resposta FROM Questoes")
     respostas_corretas = [resposta[0] for resposta in cursor.fetchall()]
 
-    print("Respostas Corretas:", respostas_corretas)
+    #print("Respostas Corretas:", respostas_corretas)
 
     for i, resposta_selecionada in enumerate(variaveis_resposta):
-        print("Resposta Selecionada:", resposta_selecionada.get())
-        print("Resposta Correta:", respostas_corretas[i])
+        #print("Resposta Selecionada:", resposta_selecionada.get())
+        #print("Resposta Correta:", respostas_corretas[i])
         
         if resposta_selecionada.get() == respostas_corretas[i]:
             pontuacao += 1
 
-    print("Pontuação Final:", pontuacao)
+    #print("Pontuação Final:", pontuacao)
     return pontuacao
 
 #TELA DO GABARITO/RESOLUÇÃO
