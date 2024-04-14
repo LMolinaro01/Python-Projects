@@ -10,23 +10,30 @@ connection = sqlite3.connect("Database.db")
 cursor = connection.cursor()
 
 cursor.execute("CREATE TABLE IF NOT EXISTS Alunos (nome TEXT, senha TEXT)")
-cursor.execute("CREATE TABLE IF NOT EXISTS Participantes (nomeP TEXT, nota INTEGER, cursoP TEXT)")
+cursor.execute(
+    "CREATE TABLE IF NOT EXISTS Participantes (nomeP TEXT, nota INTEGER, cursoP TEXT)")
 cursor.execute("CREATE TABLE IF NOT EXISTS Questoes (enunciado TEXT, resposta TEXT, alternativa2 TEXT, alternativa3 TEXT, alternativa4 TEXT, ID TEXT)")
+
 
 def inserir_questao(enunciado, resposta, alternativa2, alternativa3, alternativa4, ID):
     query = "SELECT * FROM Questoes WHERE enunciado=?"
     cursor.execute(query, (enunciado,))
     if not cursor.fetchone():  # Verifica se não há resultados
-        cursor.execute("INSERT INTO Questoes (enunciado, resposta, alternativa2, alternativa3, alternativa4, ID) VALUES (?, ?, ?, ?, ?, ?)", (enunciado, resposta, alternativa2, alternativa3, alternativa4, ID))
+        cursor.execute("INSERT INTO Questoes (enunciado, resposta, alternativa2, alternativa3, alternativa4, ID) VALUES (?, ?, ?, ?, ?, ?)",
+                       (enunciado, resposta, alternativa2, alternativa3, alternativa4, ID))
         connection.commit()
 
-#vai inserir as questões só se elas não existirem
-inserir_questao("Escolha o resultado da seguinte operação: Integral de 2x dx", "x² + c", "2x²", "x²/3 + c", "x²/2 + c", "1")
-inserir_questao("Calcule a derivada da seguinte função: f(x) = 2x+1", "2", "2x", "x + 1", "x/2", "2")
-inserir_questao("A área de um triângulo que possui 12 cm de altura e base medindo 9 cm é:", "54 cm²", "70 cm²", "85 cm²", "108 cm²", "3")
+
+# vai inserir as questões só se elas não existirem
+inserir_questao("Escolha o resultado da seguinte operação: Integral de 2x dx",
+                "x² + c", "2x²", "x²/3 + c", "x²/2 + c", "1")
+inserir_questao("Calcule a derivada da seguinte função: f(x) = 2x+1",
+                "2", "2x", "x + 1", "x/2", "2")
+inserir_questao("A área de um triângulo que possui 12 cm de altura e base medindo 9 cm é:",
+                "54 cm²", "70 cm²", "85 cm²", "108 cm²", "3")
 connection.commit()
 
-#TELA INICIAL
+# TELA INICIAL
 def telaInicial():
     global root
     root = tkinter.Tk()
@@ -43,21 +50,28 @@ def telaInicial():
     test = ImageTk.PhotoImage(image1)
     label1 = tkinter.Label(root, image=test)
     label1.image = test
-    label1.grid(row=1, column=1, pady=10, padx = 47)
+    label1.grid(row=1, column=1, pady=10, padx=47)
 
-    button = tkinter.Button(root, text="Cadastre-se", bg="#009FD6", fg="white", command = abrirJanelaAluno)
-    button.grid(row=2, column=1, padx=10, pady=10, sticky='ew') #sticky='ew' -> estica o botao horizontalmente
+    button = tkinter.Button(root, text="Cadastre-se",
+                            bg="#009FD6", fg="white", command=abrirJanelaAluno)
+    # sticky='ew' -> estica o botao horizontalmente
+    button.grid(row=2, column=1, padx=10, pady=10, sticky='ew')
 
-    botao_prova = tkinter.Button(root, text="Realizar Prova", bg="#009FD6", fg="white", command=validarJanelaProva)
+    botao_prova = tkinter.Button(
+        root, text="Realizar Prova", bg="#009FD6", fg="white", command=validarJanelaProva)
     botao_prova.grid(row=3, column=1, padx=10, pady=10, sticky='ew')
 
-    botao_tabela = tkinter.Button(root, text="Ver Pontuações", bg="#009FD6", fg="white", command=exibirTabelaParticipantes)
+    botao_tabela = tkinter.Button(
+        root, text="Ver Pontuações", bg="#009FD6", fg="white", command=exibirTabelaParticipantes)
     botao_tabela.grid(row=4, column=1, padx=10, pady=10, sticky='ew')
 
-    button = tkinter.Button(root, text="Sair do Programa", bg="#009FD6", fg="white", command = lambda : root.destroy())
-    button.grid(row=5, column=1, padx=10, pady=10, sticky='e') #stiky e vai pra direita
+    button = tkinter.Button(root, text="Sair do Programa",
+                            bg="#009FD6", fg="white", command=lambda: root.destroy())
+    button.grid(row=5, column=1, padx=10, pady=10,
+                sticky='e')  # stiky e vai pra direita
 
     root.mainloop()
+
 
 def exibirTabelaParticipantes():
     global root
@@ -75,26 +89,30 @@ def exibirTabelaParticipantes():
     tabela.grid(row=0, column=0, padx=10, pady=10)
 
     # Criei uma tabela (Usei a Documentação)
-    tv = tkinter.ttk.Treeview(tabela, columns=('Nome', 'Curso', 'Pontuação'), show='headings')
+    tv = tkinter.ttk.Treeview(tabela, columns=(
+        'Nome', 'Curso', 'Pontuação'), show='headings')
     tv.heading('Nome', text='Nome')
     tv.heading('Curso', text='Curso')
     tv.heading('Pontuação', text='Pontuação')
 
     # Inserindo dados na tabela -> Documentação Tkinter
     for linha in dados:
-        tv.insert('', 'end', values=(linha[0], linha[2], linha[1]))  # os valores são partes da lista que criei com o fetchall
+        # os valores são partes da lista que criei com o fetchall
+        tv.insert('', 'end', values=(linha[0], linha[2], linha[1]))
 
     tv.pack()
 
-    botao_fechar = tkinter.Button(janela_tabela, text="Voltar", bg="#009FD6", fg="white", command=lambda: [janela_tabela.destroy(), root.deiconify()])
-    botao_fechar.grid(row=1, column=0, padx=10, pady=10, sticky= "ew")
+    botao_fechar = tkinter.Button(janela_tabela, text="Voltar", bg="#009FD6", fg="white", command=lambda: [
+                                  janela_tabela.destroy(), root.deiconify()])
+    botao_fechar.grid(row=1, column=0, padx=10, pady=10, sticky="ew")
+
 
 def abrirJanelaAluno():
     global root
-    root.withdraw() #fecha janela inicial
+    root.withdraw()  # fecha janela inicial
     janelaAluno()
 
-#TELA DE CADASTRO
+# TELA DE CADASTRO
 def janelaAluno():
     global root
     root.withdraw()
@@ -106,52 +124,57 @@ def janelaAluno():
 
     janela2.title("Cadastro Aluno")
 
-    #nome
+    # nome
     label_nome = tkinter.Label(janela2, text="Nome:")
     label_nome.grid(row=0, column=0, padx=10, pady=15)
     textoNome = tkinter.StringVar()
     nome = tkinter.Entry(janela2, textvariable=textoNome)
     nome.grid(row=0, column=1, padx=10, pady=15)
-    
-    #senha
+
+    # senha
     label_senha = tkinter.Label(janela2, text="Senha:")
     label_senha.grid(row=1, column=0, padx=10, pady=15)
     textosenha = tkinter.StringVar()
     senha = tkinter.Entry(janela2, textvariable=textosenha)
     senha.grid(row=1, column=1, padx=10, pady=15)
-    
-    
-    botao_cadastrar = tkinter.Button(janela2, text="Cadastre-se", bg="#009FD6", fg="white", command=lambda: verificarCadastroAluno(nome.get(), senha.get()))
+
+    botao_cadastrar = tkinter.Button(janela2, text="Cadastre-se", bg="#009FD6",
+                                     fg="white", command=lambda: verificarCadastroAluno(nome.get(), senha.get()))
     botao_cadastrar.grid(row=3, column=1, padx=10, pady=10, sticky='ew')
 
-    botao_voltar = tkinter.Button(janela2, text="Voltar para Tela Inicial", bg="#009FD6", fg="white", command=lambda: voltarTelaInicial_Cadastro(janela2))
+    botao_voltar = tkinter.Button(janela2, text="Voltar para Tela Inicial",
+                                  bg="#009FD6", fg="white", command=lambda: voltarTelaInicial_Cadastro(janela2))
     botao_voltar.grid(row=4, column=1, padx=10, pady=10, sticky='ew')
+
 
 def voltarTelaInicial_Cadastro(janela2):
     janela2.destroy()
     root.deiconify()
+
 
 def adicionarAluno(nome, senha):
     caracteres_especiais = ";-'!+@#$%&*().=[]}`{|,"
     if any(caracter in caracteres_especiais for caracter in str(nome) + str(senha)):
         print("Caracteres especiais não são permitidos.")
     else:
-        cursor.execute("INSERT INTO Alunos (nome, senha) VALUES (?, ?)", (nome, senha))
+        cursor.execute(
+            "INSERT INTO Alunos (nome, senha) VALUES (?, ?)", (nome, senha))
         connection.commit()
+
 
 def verificarLogin(nome, senha):
     query = "SELECT * FROM Alunos WHERE nome=? AND senha=?"
     cursor.execute(query, (nome, senha))
     aluno = cursor.fetchone()
- 
+
     caracteres_especiais = ";-'!+@#$%&*().=[]}`{|,"
     if any(caracter in caracteres_especiais for caracter in str(nome) + str(senha)):
         mb.showinfo("Aviso", "Caracteres especiais não são permitidos.")
-        
-    elif not(nome and senha):       
+
+    elif not (nome and senha):
         mb.showinfo("Aviso", "O campo não pode ficar em branco.")
 
-    elif aluno:    
+    elif aluno:
         abrirJanelaProva()
     else:
         mb.showinfo("Aviso", "Credenciais inválidas.")
@@ -162,22 +185,23 @@ def verificarCadastroAluno(nome, senha):
     caracteres_especiais = ";-'!+@#$%&*().=[]}`{|,"
     if any(caracter in caracteres_especiais for caracter in str(nome) + str(senha)):
         mb.showinfo("Aviso", "Caracteres especiais não são permitidos.")
-        
-    elif not(nome and senha): #verifica se está vazio        
+
+    elif not (nome and senha):  # verifica se está vazio
         mb.showinfo("Aviso", "O campo não pode ficar em branco.")
-        
+
     else:
         mb.showinfo("Sucesso", "Cadastro válido.")
         adicionarAluno(nome, senha)
         validarJanelaProva()
         janela2.destroy()
 
+
 def voltarTelaInicialLogin():
     global janelaValidProva
     janelaValidProva.destroy()
     root.deiconify()
 
-#TELA DE LOGIN
+# TELA DE LOGIN
 def validarJanelaProva():
     global root
     root.withdraw()
@@ -187,27 +211,29 @@ def validarJanelaProva():
     janelaValidProva.geometry("250x400")
     janelaValidProva.title("Faça seu Login")
 
-    #nome
+    # nome
     label_nome = tkinter.Label(janelaValidProva, text="Nome:")
     label_nome.grid(row=0, column=0, padx=10, pady=15)
     textoNome = tkinter.StringVar()
     nome = tkinter.Entry(janelaValidProva, textvariable=textoNome)
     nome.grid(row=0, column=1, padx=10, pady=15)
-    
-    #senha
+
+    # senha
     label_senha = tkinter.Label(janelaValidProva, text="Senha:")
     label_senha.grid(row=1, column=0, padx=10, pady=15)
     textosenha = tkinter.StringVar()
     senha = tkinter.Entry(janelaValidProva, textvariable=textosenha)
     senha.grid(row=1, column=1, padx=10, pady=15)
-    
-    botao_cadastrar = tkinter.Button(janelaValidProva, text="Realize seu Login", bg="#009FD6", fg="white",command=lambda: verificarLogin(nome.get(), senha.get()))
+
+    botao_cadastrar = tkinter.Button(janelaValidProva, text="Realize seu Login",
+                                     bg="#009FD6", fg="white", command=lambda: verificarLogin(nome.get(), senha.get()))
     botao_cadastrar.grid(row=3, column=1, padx=10, pady=10, sticky='ew')
 
-    botao_voltar = tkinter.Button(janelaValidProva, text="Voltar para Tela Inicial", bg="#009FD6", fg="white",command=lambda: voltarTelaInicialLogin())
+    botao_voltar = tkinter.Button(janelaValidProva, text="Voltar para Tela Inicial",
+                                  bg="#009FD6", fg="white", command=lambda: voltarTelaInicialLogin())
     botao_voltar.grid(row=4, column=1, padx=10, pady=10, sticky='ew')
 
-#TELA DA PROVA
+# TELA DA PROVA
 def abrirJanelaProva():
     global janelaValidProva
     janelaValidProva.withdraw()
@@ -217,17 +243,18 @@ def abrirJanelaProva():
     janelaProva.title("Prova da Estácio")
     janelaProva.resizable(False, False)
 
-    #pegar do banco
+    # pegar do banco
     cursor.execute("SELECT * FROM Questoes")
     questoes = cursor.fetchall()
 
-    variaveis_resposta = []  #armazena as alternativas
+    variaveis_resposta = []  # armazena as alternativas
 
     for i, questao in enumerate(questoes):
-        label_questao = tkinter.Label(janelaProva, text=f"Questão {i+1}) {questao[0]}")
+        label_questao = tkinter.Label(
+            janelaProva, text=f"Questão {i+1}) {questao[0]}")
         label_questao.grid(row=i*5, column=0, padx=10, pady=10)
 
-        #Converti a tupla de alternativas em uma lista e aleatorizá-la
+        # Converti a tupla de alternativas em uma lista e aleatorizá-la
         alternativas = list(questao[1:-1])
         random.shuffle(alternativas)
 
@@ -236,48 +263,59 @@ def abrirJanelaProva():
         variaveis_resposta.append(resposta_var)
 
         for j, option_text in enumerate(alternativas):
-            tkinter.Radiobutton(janelaProva, text=option_text, variable=resposta_var, value=option_text).grid(row=i*5+j+1, column=0, sticky="w", padx=10, pady=5)
+            tkinter.Radiobutton(janelaProva, text=option_text, variable=resposta_var, value=option_text).grid(
+                row=i*5+j+1, column=0, sticky="w", padx=10, pady=5)
 
     label_nome = tkinter.Label(janelaProva, text="Assine seu Nome:")
-    label_nome.grid(row=len(questoes)*5+1, column=0, padx=10, pady=10, sticky='ew')
+    label_nome.grid(row=len(questoes)*5+1, column=0,
+                    padx=10, pady=10, sticky='ew')
     assinaturaNome = tkinter.StringVar()
-    
+
     assinatura = tkinter.Entry(janelaProva, textvariable=assinaturaNome)
-    assinatura.grid(row=len(questoes)*6+1, column=0, padx=10, pady=10, sticky="ew")
+    assinatura.grid(row=len(questoes)*6+1, column=0,
+                    padx=10, pady=10, sticky="ew")
 
     label_nome = tkinter.Label(janelaProva, text="Digite seu Curso:")
-    label_nome.grid(row=len(questoes)*7+1, column=0, padx=10, pady=10, sticky='ew')
+    label_nome.grid(row=len(questoes)*7+1, column=0,
+                    padx=10, pady=10, sticky='ew')
     cursoP = tkinter.StringVar()
     assinaturacurso = tkinter.Entry(janelaProva, textvariable=cursoP)
-    assinaturacurso.grid(row=len(questoes)*8+1, column=0, padx=10, pady=10, sticky='ew')
+    assinaturacurso.grid(row=len(questoes)*8+1, column=0,
+                         padx=10, pady=10, sticky='ew')
 
-    botao_finalizar = tkinter.Button(janelaProva, text="Concluir Prova", bg="#009FD6", fg="white", command=lambda: verificarFimProva(variaveis_resposta,assinaturaNome, cursoP))
-    botao_finalizar.grid(row=len(questoes)*8+1, column=1, padx=10, pady=10, sticky='ew')
+    botao_finalizar = tkinter.Button(janelaProva, text="Concluir Prova", bg="#009FD6", fg="white",
+                                     command=lambda: verificarFimProva(variaveis_resposta, assinaturaNome, cursoP))
+    botao_finalizar.grid(row=len(questoes)*8+1, column=1,
+                         padx=10, pady=10, sticky='ew')
+
 
 def verificarFimProva(variaveis_resposta, assinaturaNome, cursoP):
     global janelaProva
-    if not assinaturaNome.get() or not cursoP.get():  # Verifica se os campos de assinatura e curso estão vazios
+    # Verifica se os campos de assinatura e curso estão vazios
+    if not assinaturaNome.get() or not cursoP.get():
         mb.showerror("Erro", "Por favor, preencha todos os campos.")
     else:
-        resposta = mb.askyesno("Finalizar Prova", "Deseja realmente finalizar a prova?")
+        resposta = mb.askyesno(
+            "Finalizar Prova", "Deseja realmente finalizar a prova?")
         if resposta:
             finalizarProva(variaveis_resposta, assinaturaNome, cursoP)
             janelaProva.destroy()
 
-#RESULTADO DA PROVA
-def finalizarProva(variaveis_resposta, assinaturaNome, cursoP): 
+# RESULTADO DA PROVA
+def finalizarProva(variaveis_resposta, assinaturaNome, cursoP):
     global janelaProva
     pontuacao = calcular_pontuacao(variaveis_resposta)
 
     janelaResultProva = tkinter.Toplevel()
     janelaResultProva.title("Resultado")
-    #janelaResultProva.geometry("240x415")
     janelaResultProva.resizable(False, False)
 
-    cursor.execute("INSERT INTO Participantes (nomeP, nota, cursoP) VALUES (?, ?, ?)", (assinaturaNome.get(), pontuacao, cursoP.get()))
+    cursor.execute("INSERT INTO Participantes (nomeP, nota, cursoP) VALUES (?, ?, ?)",
+                   (assinaturaNome.get(), pontuacao, cursoP.get()))
     connection.commit()
 
-    label_pontuacao = tkinter.Label(janelaResultProva, text=f"""Prova Concluída, Parabéns pelo esforço {assinaturaNome.get()}!""")
+    label_pontuacao = tkinter.Label(
+        janelaResultProva, text=f"""Prova Concluída, Parabéns pelo esforço {assinaturaNome.get()}!""")
     label_pontuacao.grid(row=0, column=0, padx=10, pady=10, sticky='ew')
 
     image1 = Image.open("logoEstacio.png")
@@ -288,20 +326,22 @@ def finalizarProva(variaveis_resposta, assinaturaNome, cursoP):
     label1.image = test
     label1.grid(row=1, column=0, padx=10, pady=10, sticky='ew')
 
-    label_pontuacao = tkinter.Label(janelaResultProva, text=f"Sua Pontuação Final: {pontuacao}/3")
+    label_pontuacao = tkinter.Label(
+        janelaResultProva, text=f"Sua Pontuação Final: {pontuacao}/3")
     label_pontuacao.grid(row=2, column=0, padx=10, pady=10, sticky='ew')
 
-    botao_Resposta = tkinter.Button(janelaResultProva, text="Resolução das Questões", bg="#009FD6", fg="white", command=ResolucaoProva)
+    botao_Resposta = tkinter.Button(
+        janelaResultProva, text="Resolução das Questões", bg="#009FD6", fg="white", command=ResolucaoProva)
     botao_Resposta.grid(row=3, column=0, padx=10, pady=10, sticky='ew')
 
-    #button = tkinter.Button(janelaResultProva, text="Tela Inicial", bg="#009FD6", fg="white", command=lambda: [(janelaResultProva.destroy()), root.deiconify(), janelaProva.destroy()])
-    #button.grid(row=4, column=0, padx=10, pady=10, sticky='ew')
-
-    button = tkinter.Button(janelaResultProva, text="Tela Inicial", bg="#009FD6", fg="white", command=lambda: [(janelaResultProva.destroy()), root.deiconify(), janelaProva.destroy()])
+    button = tkinter.Button(janelaResultProva, text="Tela Inicial", bg="#009FD6", fg="white", command=lambda: [
+                            (janelaResultProva.destroy()), root.deiconify(), janelaProva.destroy()])
     button.grid(row=4, column=0, padx=10, pady=10, sticky='ew')
 
-    button = tkinter.Button(janelaResultProva, text="Sair do Programa", bg="#009FD6", fg="white", command=lambda: [(janelaResultProva.destroy()), janelaProva.destroy()])
+    button = tkinter.Button(janelaResultProva, text="Sair do Programa", bg="#009FD6",
+                            fg="white", command=lambda: [(janelaResultProva.destroy()), janelaProva.destroy()])
     button.grid(row=5, column=0, padx=10, pady=10, sticky='ew')
+
 
 def calcular_pontuacao(variaveis_resposta):
     pontuacao = 0
@@ -310,26 +350,27 @@ def calcular_pontuacao(variaveis_resposta):
     cursor.execute("SELECT resposta FROM Questoes")
     respostas_corretas = [resposta[0] for resposta in cursor.fetchall()]
 
-    #print("Respostas Corretas:", respostas_corretas)
+    # print("Respostas Corretas:", respostas_corretas)
 
     for i, resposta_selecionada in enumerate(variaveis_resposta):
-        #print("Resposta Selecionada:", resposta_selecionada.get())
-        #print("Resposta Correta:", respostas_corretas[i])
-        
+        # print("Resposta Selecionada:", resposta_selecionada.get())
+        # print("Resposta Correta:", respostas_corretas[i])
+
         if resposta_selecionada.get() == respostas_corretas[i]:
             pontuacao += 1
 
-    #print("Pontuação Final:", pontuacao)
+    # print("Pontuação Final:", pontuacao)
     return pontuacao
 
-#TELA DO GABARITO/RESOLUÇÃO
+# TELA DO GABARITO
 def ResolucaoProva():
     janelaRespProva = tkinter.Toplevel()
     janelaRespProva.title("Gabarito")
     janelaRespProva.resizable(False, False)
 
-    # Questão 1 
-    label = tkinter.Label(janelaRespProva, text="Questão 1) Escolha o resultado da seguinte operação: Integral de 2x dx")
+    # Questão 1
+    label = tkinter.Label(
+        janelaRespProva, text="Questão 1) Escolha o resultado da seguinte operação: Integral de 2x dx")
     label.grid(row=0, column=0, padx=10, pady=10)
 
     image1 = Image.open("q1.jpg")
@@ -339,9 +380,10 @@ def ResolucaoProva():
     label1 = tkinter.Label(janelaRespProva, image=test1)
     label1.image = test1
     label1.grid(row=1, column=0, padx=10, pady=10)
-    
+
     # Questão 2
-    label2 = tkinter.Label(janelaRespProva, text="Questão 2) Calcule a derivada da seguinte função: f(x) = 2x+1")
+    label2 = tkinter.Label(
+        janelaRespProva, text="Questão 2) Calcule a derivada da seguinte função: f(x) = 2x+1")
     label2.grid(row=2, column=0, padx=10, pady=10)
 
     image2 = Image.open("q2.jpg")
@@ -350,9 +392,10 @@ def ResolucaoProva():
     label2 = tkinter.Label(janelaRespProva, image=test2)
     label2.image = test2
     label2.grid(row=3, column=0, padx=10, pady=10)
-    
-    # Questão 3 
-    label3 = tkinter.Label(janelaRespProva, text="Questão 3) A área de um triângulo que possui 12 cm de altura e base medindo 9 cm é:")
+
+    # Questão 3
+    label3 = tkinter.Label(
+        janelaRespProva, text="Questão 3) A área de um triângulo que possui 12 cm de altura e base medindo 9 cm é:")
     label3.grid(row=4, column=0, padx=10, pady=10)
 
     image3 = Image.open("q3.jpg")
@@ -362,8 +405,10 @@ def ResolucaoProva():
     label3.image = test3
     label3.grid(row=5, column=0, padx=10, pady=10)
 
-    button = tkinter.Button(janelaRespProva, text="Fechar", bg="#009FD6", fg="white", command = lambda : janelaRespProva.destroy())
+    button = tkinter.Button(janelaRespProva, text="Fechar", bg="#009FD6",
+                            fg="white", command=lambda: janelaRespProva.destroy())
     button.grid(row=6, column=1, padx=10, pady=10, sticky='ew')
+
 
 telaInicial()
 
