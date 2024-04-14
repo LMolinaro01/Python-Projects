@@ -1,6 +1,34 @@
 # Projetos usando Python
 
 * [Simulador de Avaliações (SQLite, TKinter)](#simulado)
+
+## Simulador de Avaliações <a name="simulado"></a>
+
+Este código em Python é um programa de simulador de avaliações, que permite aos usuários se cadastrarem, realizarem provas e verem suas pontuações. Vou descrever suas principais funcionalidades e recursos:
+
+1. **Banco de Dados SQLite**: O código utiliza um banco de dados SQLite para armazenar informações sobre os alunos, participantes, e questões da prova.
+
+2. **Interface Gráfica com Tkinter**: A interface gráfica é construída utilizando a biblioteca Tkinter, fornecendo uma experiência visual para o usuário.
+
+3. **Cadastro de Questões**: O código possui uma função `inserir_questao` que permite adicionar questões ao banco de dados, verificando se a questão já existe antes de inseri-la.
+
+4. **Telas Principais**:
+   - **Tela Inicial**: Apresenta as opções principais, como cadastro, realização de prova e visualização de pontuações.
+   - **Tela de Cadastro**: Permite que novos alunos se cadastrem fornecendo nome e senha.
+   - **Tela de Login**: Permite que alunos cadastrados realizem login para acessar a prova.
+   - **Tela da Prova**: Apresenta as questões da prova, permitindo que o aluno selecione suas respostas.
+   - **Tela de Resultado**: Após finalizar a prova, exibe a pontuação obtida e oferece opções para visualizar a resolução das questões ou voltar para a tela inicial.
+   - **Tela de Gabarito/Resolução**: Apresenta as questões da prova com as respostas corretas após a conclusão da prova.
+
+5. **Validação de Entradas**: O código realiza validações de entrada, como garantir que os campos não estejam vazios e que não contenham caracteres especiais.
+
+6. **Cálculo de Pontuação**: Após a conclusão da prova, o código calcula a pontuação do aluno com base nas respostas fornecidas.
+
+7. **Manipulação de Imagens**: O código utiliza a biblioteca PIL (Python Imaging Library) para manipular e exibir imagens, como o logo da instituição.
+
+8. **Utilização de Botões e Entradas**: O código utiliza botões e entradas para interação do usuário, como botões de cadastro, login, realização de prova e fechamento de janelas.
+
+Em resumo, este código implementa um sistema completo de simulador de avaliações, desde o cadastro de alunos até a realização e correção de provas, utilizando uma interface gráfica simples.
   
 # Exercícios em Python
 
