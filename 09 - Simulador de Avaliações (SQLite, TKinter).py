@@ -152,7 +152,7 @@ def verificarLogin(nome, senha):
         mb.showinfo("Aviso", "O campo não pode ficar em branco.")
 
     elif aluno:    
-        janelaProva()
+        abrirJanelaProva()
     else:
         mb.showinfo("Aviso", "Credenciais inválidas.")
 
@@ -208,7 +208,7 @@ def validarJanelaProva():
     botao_voltar.grid(row=4, column=1, padx=10, pady=10, sticky='ew')
 
 #TELA DA PROVA
-def janelaProva():
+def abrirJanelaProva():
     global janelaValidProva
     janelaValidProva.withdraw()
 
@@ -296,6 +296,9 @@ def finalizarProva(variaveis_resposta, assinaturaNome, cursoP):
 
     #button = tkinter.Button(janelaResultProva, text="Tela Inicial", bg="#009FD6", fg="white", command=lambda: [(janelaResultProva.destroy()), root.deiconify(), janelaProva.destroy()])
     #button.grid(row=4, column=0, padx=10, pady=10, sticky='ew')
+
+    button = tkinter.Button(janelaResultProva, text="Tela Inicial", bg="#009FD6", fg="white", command=lambda: [(janelaResultProva.destroy()), root.deiconify(), janelaProva.destroy()])
+    button.grid(row=4, column=0, padx=10, pady=10, sticky='ew')
 
     button = tkinter.Button(janelaResultProva, text="Sair do Programa", bg="#009FD6", fg="white", command=lambda: [(janelaResultProva.destroy()), janelaProva.destroy()])
     button.grid(row=5, column=0, padx=10, pady=10, sticky='ew')
