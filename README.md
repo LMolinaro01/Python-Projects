@@ -14,19 +14,45 @@ Este código em Python é um programa de simulador de avaliações, que permite 
 
 4. **Telas Principais**:
    - **Tela Inicial**: Apresenta as opções principais, como cadastro, realização de prova e visualização de pontuações.
+     
+    ![image](https://github.com/LMolinaro01/Projetos-em-Python/assets/126402616/2da75ebb-a158-40aa-a7a0-663efd4aedb2)
+   
    - **Tela de Cadastro**: Permite que novos alunos se cadastrem fornecendo nome e senha.
+     
+    ![image](https://github.com/LMolinaro01/Projetos-em-Python/assets/126402616/ccc186f5-f629-465a-a9f4-5c38221e4d62)
+    ![image](https://github.com/LMolinaro01/Projetos-em-Python/assets/126402616/33a2e786-b71c-4dba-af98-3b729cf8aab0)
+    ![image](https://github.com/LMolinaro01/Projetos-em-Python/assets/126402616/c6e5171f-1508-42d3-b2cf-0a7ddff16cdf)
+   
    - **Tela de Login**: Permite que alunos cadastrados realizem login para acessar a prova.
+     
+     ![image](https://github.com/LMolinaro01/Projetos-em-Python/assets/126402616/c4da515d-d84f-4f75-bef0-543bb9c7ce8e)
+     
    - **Tela da Prova**: Apresenta as questões da prova, permitindo que o aluno selecione suas respostas.
+     
+     ![image](https://github.com/LMolinaro01/Projetos-em-Python/assets/126402616/ee72ebd3-6862-46e1-a6bb-ebd0dd0000c4)
+     
+     ![image](https://github.com/LMolinaro01/Projetos-em-Python/assets/126402616/3f36950d-0207-4ee1-8b45-fa7c0e1a95cf)
+     
    - **Tela de Resultado**: Após finalizar a prova, exibe a pontuação obtida e oferece opções para visualizar a resolução das questões ou voltar para a tela inicial.
+
+     ![image](https://github.com/LMolinaro01/Projetos-em-Python/assets/126402616/426387dd-2aee-4bf7-a5c7-3f37d9e5b5c2)
+     
    - **Tela de Gabarito/Resolução**: Apresenta as questões da prova com as respostas corretas após a conclusão da prova.
 
-5. **Validação de Entradas**: O código realiza validações de entrada, como garantir que os campos não estejam vazios e que não contenham caracteres especiais.
+     ![image](https://github.com/LMolinaro01/Projetos-em-Python/assets/126402616/ffb947b7-6e99-4873-a20f-6ea5b61729b6)
+     
+   - **Tela de Pontuações: Exibe a pontuação dos alunos.
 
-6. **Cálculo de Pontuação**: Após a conclusão da prova, o código calcula a pontuação do aluno com base nas respostas fornecidas.
+     ![image](https://github.com/LMolinaro01/Projetos-em-Python/assets/126402616/0c8a791c-6b6e-4b28-ba16-7d3a1b14a3e3)
 
-7. **Manipulação de Imagens**: O código utiliza a biblioteca PIL (Python Imaging Library) para manipular e exibir imagens, como o logo da instituição.
 
-8. **Utilização de Botões e Entradas**: O código utiliza botões e entradas para interação do usuário, como botões de cadastro, login, realização de prova e fechamento de janelas.
+6. **Validação de Entradas**: O código realiza validações de entrada, como garantir que os campos não estejam vazios e que não contenham caracteres especiais.
+
+7. **Cálculo de Pontuação**: Após a conclusão da prova, o código calcula a pontuação do aluno com base nas respostas fornecidas.
+
+8. **Manipulação de Imagens**: O código utiliza a biblioteca PIL (Python Imaging Library) para manipular e exibir imagens, como o logo da instituição.
+
+9. **Utilização de Botões e Entradas**: O código utiliza botões e entradas para interação do usuário, como botões de cadastro, login, realização de prova e fechamento de janelas.
 
 Em resumo, este código implementa um sistema completo de simulador de avaliações, desde o cadastro de alunos até a realização e correção de provas, utilizando uma interface gráfica simples.
   
