@@ -1,12 +1,16 @@
- # Exercícios em Python
+# Projetos
+
+* [Simulador de Avaliações em Python](https://github.com/LMolinaro01/Simulador-de-Avaliacoes-em-Python/tree/main)
+ 
+# Exercícios em Python
 
 * [Biblioteca de Filmes](#biblioteca-de-filmes)
 * [Criação de Classe e Instanciação de Objetos](#criação-de-classe-e-instanciação-de-objetos)
 * [Calculadora utilizando Classe](#calculadora-utilizando-classe)
-* [Utilizando um Banco de Dados local com SQLite3](#sqlite)
 * [Calculadora de IMC](#calculadora-de-imc)
 * [Regex no Python](#regex)
 * [Interface Visual com TKinter](#tkinter1)
+* [Utilizando um Banco de Dados local com SQLite3](#sqlite)
 
 
 ## Biblioteca de Filmes (Dicionário + CRUD) <a name="biblioteca-de-filmes"></a>
