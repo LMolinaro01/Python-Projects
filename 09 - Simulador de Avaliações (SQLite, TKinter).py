@@ -18,10 +18,13 @@ cursor.execute("CREATE TABLE IF NOT EXISTS Questoes (enunciado TEXT, resposta TE
 def inserir_questao(enunciado, resposta, alternativa2, alternativa3, alternativa4, ID):
     query = "SELECT * FROM Questoes WHERE enunciado=?"
     cursor.execute(query, (enunciado,))
-    if not cursor.fetchone():  # Verifica se não há resultados
+    if not cursor.fetchone():  
+        # Se não houver duplicata, inserir a questão na tabela
         cursor.execute("INSERT INTO Questoes (enunciado, resposta, alternativa2, alternativa3, alternativa4, ID) VALUES (?, ?, ?, ?, ?, ?)",
                        (enunciado, resposta, alternativa2, alternativa3, alternativa4, ID))
         connection.commit()
+    else:
+        print("A questão já existe na base de dados.")
 
 
 # vai inserir as questões só se elas não existirem
