@@ -1,6 +1,6 @@
-# Projetos
+<h1 align = "center"> Projetos em Python </h1>
 
-* [Simulador de Avaliações em Python (Outro Repositório)](https://github.com/LMolinaro01/Simulador-de-Avaliacoes-em-Python/tree/main)
+* [Simulador de Avaliações (Outro Repositório)](https://github.com/LMolinaro01/Simulador-de-Avaliacoes-em-Python/tree/main)
 * [Sistema de Controle de Estoque](#Sistema-de-Estoque)
 
 ## Sistema de Estoque (Interface Visual, Banco de Dados, CRUD) <a name="Sistema-de-Estoque"></a>
@@ -27,7 +27,7 @@ Controle de estoque desenvolvido em Python utilizando as bibliotecas Tkinter par
 - Pillow (PIL) (para manipulação de imagens)
 
 
-# Exercícios em Python
+<h1 align = "center">Exercícios em Python</h1>
 
 * [Biblioteca de Filmes](#biblioteca-de-filmes)
 * [Criação de Classe e Instanciação de Objetos](#criação-de-classe-e-instanciação-de-objetos)
