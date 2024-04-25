@@ -1,6 +1,6 @@
 # Projetos
 
-* [Simulador de Avaliações em Python](https://github.com/LMolinaro01/Simulador-de-Avaliacoes-em-Python/tree/main)
+* [Simulador de Avaliações em Python (Outro Repositório)](https://github.com/LMolinaro01/Simulador-de-Avaliacoes-em-Python/tree/main)
 * [Sistema de Controle de Estoque](#Sistema-de-Estoque)
 
 ## Sistema de Estoque (Interface Visual, Banco de Dados, CRUD) <a name="Sistema-de-Estoque"></a>
