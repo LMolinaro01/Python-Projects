@@ -12,7 +12,7 @@ def telaInicial():
     telaInicio.resizable(False, False)
     telaInicio.geometry("300x500")
 
-    label = tkinter.Label(telaInicio, text="Bem vindo ao Simulador de Avaliações!")
+    label = tkinter.Label(telaInicio, text="Bem vindo ao Sistema de Estoque!")
     label.grid(row=0, column=1, pady=10)
 
     image1 = Image.open("logoEstacio2.png")
