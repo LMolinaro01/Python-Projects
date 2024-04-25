@@ -1,7 +1,32 @@
 # Projetos
 
 * [Simulador de Avaliações em Python](https://github.com/LMolinaro01/Simulador-de-Avaliacoes-em-Python/tree/main)
- 
+* [Sistema de Controle de Estoque](#Sistema-de-Estoque)
+
+## Sistema de Estoque (Interface Visual, Banco de Dados, CRUD) <a name="Sistema-de-Estoque"></a>
+
+Controle de estoque desenvolvido em Python utilizando as bibliotecas Tkinter para a interface gráfica, SQLite para o armazenamento de dados e Pillow (PIL) para a inserção de Imagens.
+
+<p align="center">
+    <img src="https://github.com/LMolinaro01/Projetos-e-Exercicios-em-Python/assets/126402616/3d54adf5-1e86-4f52-8010-b79071d72468">
+</p>
+
+### Funcionalidades Principais
+
+- Adicionar produtos ao estoque.
+- Editar informações de produtos existentes, incluindo a capacidade de modificar a quantidade em estoque ou remover produtos do registro.
+- Visualizar o estoque atual.
+- Alertas de estoque baixo.
+- Interface gráfica intuitiva para os funcionários das lojas.
+
+### Tecnologias Utilizadas
+
+- Python
+- Tkinter (para a interface gráfica)
+- SQLite (para o armazenamento e gerenciamento dos dados do estoque)
+- Pillow (PIL) (para manipulação de imagens)
+
+
 # Exercícios em Python
 
 * [Biblioteca de Filmes](#biblioteca-de-filmes)
