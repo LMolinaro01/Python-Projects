@@ -11,7 +11,7 @@ Controle de estoque desenvolvido em Python utilizando as bibliotecas Tkinter par
     <img src="https://github.com/LMolinaro01/Projetos-e-Exercicios-em-Python/assets/126402616/3d54adf5-1e86-4f52-8010-b79071d72468">
 </p>
 
-### Funcionalidades Principais
+### Funcionalidades Principais:
 
 - Adicionar produtos ao estoque.
 - Editar informações de produtos existentes, incluindo a capacidade de modificar a quantidade em estoque ou remover produtos do registro.
@@ -19,7 +19,7 @@ Controle de estoque desenvolvido em Python utilizando as bibliotecas Tkinter par
 - Alertas de estoque baixo.
 - Interface gráfica intuitiva para os funcionários das lojas.
 
-### Tecnologias Utilizadas
+### Tecnologias Utilizadas:
 
 - Python
 - Tkinter (para a interface gráfica)
