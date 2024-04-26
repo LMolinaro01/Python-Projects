@@ -3,9 +3,11 @@ import sqlite3
 import tkinter
 from tkinter import *
 from tkinter import Tk, font
+from tkinter import ttk
 from tkinter import messagebox as mb
 from PIL import Image, ImageTk
 
+#Janelas
 def telaInicial():
     global telaInicio
     telaInicio = tkinter.Tk()
@@ -24,7 +26,7 @@ def telaInicial():
     label1.grid(row=1, column=1, pady=10, padx=47)
 
     button = tkinter.Button(telaInicio, text="Adicionar ao Estoque", font= "Consolas 10", 
-                            bg="#6B58FF", fg="white")
+                            bg="#6B58FF", fg="white", command= telaAddProd)
     button.grid(row=2, column=1, padx=20, pady=10, sticky='ew')
 
     botao_prova = tkinter.Button(
@@ -32,13 +34,98 @@ def telaInicial():
     botao_prova.grid(row=3, column=1, padx=20, pady=10, sticky='ew')
 
     botao_tabela = tkinter.Button(
-        telaInicio, text="Exibir Estoque", font= "Consolas 10", bg="#1CB9E4", fg="white")
+        telaInicio, text="Exibir Estoque", font= "Consolas 10", bg="#1CB9E4", fg="white", command= selectProd)
     botao_tabela.grid(row=4, column=1, padx=20, pady=10, sticky='ew')
 
     button = tkinter.Button(telaInicio, text="Sair do Programa", font= "Consolas 10",
                             bg="#4A2ED1", fg="white", command=lambda: telaInicio.destroy())
-    button.grid(row=5, column=1, padx=120, pady=50)
+    button.grid(row=5, column=1, padx=160, pady=50)
 
     telaInicio.mainloop()
 
+def telaAddProd():
+    global janelaAdd
+    janelaAdd = tkinter.Tk()
+    janelaAdd.resizable(False, False)
+
+    janelaAdd.title("Cadastro de Produtos")
+
+    label_nome = tkinter.Label(janelaAdd, text="Nome:")
+    label_nome.grid(row=0, column=0, padx=0, pady=15, sticky='ew')
+    textoNome = tkinter.StringVar()
+    nome = tkinter.Entry(janelaAdd, textvariable=textoNome)
+    nome.grid(row=0, column=1, padx=40, pady=15, sticky='ew')
+
+    label_qtde = tkinter.Label(janelaAdd, text="Qtde:")
+    label_qtde.grid(row=1, column=0, padx=10, pady=15, sticky='ew')
+    textoQtde = tkinter.StringVar()
+    qtde = tkinter.Entry(janelaAdd, textvariable=textoQtde)
+    qtde.grid(row=1, column=1, padx=40, pady=15, sticky='ew')
+
+    label_preco = tkinter.Label(janelaAdd, text="Preço:")
+    label_preco.grid(row=2, column=0, padx=10, pady=15, sticky='ew')
+    textopreco = tkinter.StringVar()
+    preco = tkinter.Entry(janelaAdd, textvariable=textopreco)
+    preco.grid(row=2, column=1, padx=40, pady=15, sticky='ew')
+
+
+    botao_add = tkinter.Button(janelaAdd, text="Concluir", bg="#6B58FF",
+                                     fg="white", command= addProd( 0 , nome.get(), qtde.get(), preco.get()))
+    botao_add.grid(row=3, column=1, padx=40, pady=10, sticky='ew')
+
+    botao_voltar = tkinter.Button(janelaAdd, text="Voltar para Tela Inicial",
+                                  bg="#3D8EF0", fg="white", command=lambda: janelaAdd().destroy)
+    botao_voltar.grid(row=4, column=1, padx=90, pady=10, sticky='ew')
+
+
+#Banco de Dados
+connection = sqlite3.connect("Database.db")
+cursor = connection.cursor()
+cursor.execute("CREATE TABLE IF NOT EXISTS Produtos (iD INTEGER, nome TEXT, qtde INTEGER, preco REAL)")
+
+def addProd(iD, nome, qtde, preco):
+    query = "SELECT * FROM Produtos WHERE iD=?"
+    cursor.execute(query, (iD,))
+    if not cursor.fetchone():  
+        cursor.execute("INSERT INTO Produtos (iD, nome, qtde, preco) VALUES (?, ?, ?, ?)", (iD, nome, qtde, preco))
+        connection.commit()
+    else:
+        print(f"ID: {iD} já existente no Banco de Dados.")
+
+def selectProd():
+    rootSelect = tkinter.Tk()
+    rootSelect.resizable(False, False)
+    rootSelect.title("Tabela de Produtos")
+    rootSelect.geometry("622x400")
+
+
+    cursor.execute("SELECT * FROM Produtos")
+    dados = cursor.fetchall()
+
+    tabela = tkinter.Frame(rootSelect)
+    tabela.grid(row=0, column=0, padx=10, pady=10)
+
+    tv = tkinter.ttk.Treeview(tabela, columns=('nome', 'preco', 'qtde'), show='headings')
+    tv.heading("nome", text='Nome')
+    tv.heading('preco', text='Preço')
+    tv.heading('qtde', text='Quantidade')
+
+    for linha in dados:
+        preco_formatado = f'R$ {linha[3]:.2f}'
+        tv.insert('', 'end', values=(linha[1], preco_formatado, linha[2]))
+
+    tv.pack()
+    botao_fechar = tkinter.Button(rootSelect, text="Voltar", bg="#6B58FF", fg="white", command=lambda: [
+                                  rootSelect.destroy()])
+    botao_fechar.grid(row=1, column=0, padx=10, pady=10, sticky="ew")
+
+
 telaInicial()
+
+addProd(1, "Samsung A12", 12, 789.90)
+addProd(2, "Samsung A12", 8, 899.90)
+addProd(3, "Samsung Galaxy S21", 12, 3451.00)
+addProd(4, "Samsung Galaxy S23", 12,  2969.10)
+addProd(5, "Mangá 'GoGo Monster'", 8,  85.50)
+addProd(6, "Mangá 'Os Gatos do Louvre Vol. 01'", 12,  61.43)
+connection.commit()
