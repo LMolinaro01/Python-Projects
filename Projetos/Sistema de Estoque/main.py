@@ -61,6 +61,7 @@ def telaAddProd():
     qtde = tkinter.Entry(janelaAdd, textvariable=textoQtde)
     qtde.grid(row=1, column=1, padx=40, pady=15, sticky='ew')
 
+    #Posso fazer um dropdown e colocar do lado no nome
     label_preco = tkinter.Label(janelaAdd, text="Preço:")
     label_preco.grid(row=2, column=0, padx=10, pady=15, sticky='ew')
     textopreco = tkinter.StringVar()
@@ -82,6 +83,7 @@ cursor = connection.cursor()
 cursor.execute("CREATE TABLE IF NOT EXISTS Produtos (iD INTEGER PRIMARY KEY, nome TEXT, qtde INTEGER, preco REAL)")
 
 def addProd(nome, qtde, preco):
+    #fazer um yes or no e validação (sql injection, não deixar colocar virgula só ponto por conta do float, não deixar em branco)
     cursor.execute("INSERT INTO Produtos (nome, qtde, preco) VALUES (?, ?, ?)", (nome, qtde, preco))
     connection.commit()
 
