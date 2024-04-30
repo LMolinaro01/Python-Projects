@@ -7,13 +7,16 @@ from tkinter import messagebox as mb
 from PIL import Image, ImageTk
 
 # Janelas
+
+
 def telaInicial():
     global telaInicio
     telaInicio = tkinter.Tk()
     telaInicio.title("Inicio")
     telaInicio.resizable(False, False)
 
-    label = tkinter.Label(telaInicio, text="Bem vindo ao Sistema de Estoque!", font="Consolas 13 bold")
+    label = tkinter.Label(
+        telaInicio, text="Bem vindo ao Sistema de Estoque!", font="Consolas 13 bold")
     label.grid(row=0, column=1, pady=10, sticky='ew')
 
     image1 = Image.open("Projetos\Sistema de Estoque\logo.png")
@@ -24,7 +27,7 @@ def telaInicial():
     label1.image = test
     label1.grid(row=1, column=1, pady=10, padx=47)
 
-    button = tkinter.Button(telaInicio, text="Adicionar ao Estoque", font="Consolas 10", 
+    button = tkinter.Button(telaInicio, text="Adicionar ao Estoque", font="Consolas 10",
                             bg="#6B58FF", fg="white", command=telaAddProd)
     button.grid(row=2, column=1, padx=20, pady=10, sticky='ew')
 
@@ -41,6 +44,7 @@ def telaInicial():
     button.grid(row=5, column=1, padx=160, pady=50)
 
     telaInicio.mainloop()
+
 
 def telaAddProd():
     global janelaAdd
@@ -61,7 +65,7 @@ def telaAddProd():
     qtde = tkinter.Entry(janelaAdd, textvariable=textoQtde)
     qtde.grid(row=1, column=1, padx=40, pady=15, sticky='ew')
 
-    #Posso fazer um dropdown e colocar do lado no nome
+    # Posso fazer um dropdown e colocar do lado no nome
     label_preco = tkinter.Label(janelaAdd, text="Preço:")
     label_preco.grid(row=2, column=0, padx=10, pady=15, sticky='ew')
     textopreco = tkinter.StringVar()
@@ -80,12 +84,32 @@ def telaAddProd():
 # Banco de Dados
 connection = sqlite3.connect("Database.db")
 cursor = connection.cursor()
-cursor.execute("CREATE TABLE IF NOT EXISTS Produtos (iD INTEGER PRIMARY KEY, nome TEXT, qtde INTEGER, preco REAL)")
+cursor.execute(
+    "CREATE TABLE IF NOT EXISTS Produtos (iD INTEGER PRIMARY KEY, nome TEXT, qtde INTEGER, preco REAL)")
+
 
 def addProd(nome, qtde, preco):
-    #fazer um yes or no e validação (sql injection, não deixar colocar virgula só ponto por conta do float, não deixar em branco)
-    cursor.execute("INSERT INTO Produtos (nome, qtde, preco) VALUES (?, ?, ?)", (nome, qtde, preco))
-    connection.commit()
+
+    janelaAdd.destroy()
+
+    try:
+        qtde = int(qtde)
+        preco = float(preco.replace(',', '.').replace('R$', ''))
+        cursor.execute(
+        "INSERT INTO Produtos (nome, qtde, preco) VALUES (?, ?, ?)", (nome, qtde, preco))
+        connection.commit()
+
+    except ValueError:
+        mb.showerror(
+            "Erro", "Por favor, insira uma quantidade e preço válidos.")
+        return
+
+    mb.showinfo(
+        "Sucesso", f"'{nome}'({qtde}) Adicionado ao Estoque .")
+
+    if mb.askyesno("Adicionar outro produto", "Deseja adicionar outro produto?"):
+        telaAddProd()
+
 
 def selectProd():
     rootSelect = tkinter.Tk()
@@ -99,7 +123,8 @@ def selectProd():
     tabela = tkinter.Frame(rootSelect)
     tabela.grid(row=0, column=0, padx=10, pady=10)
 
-    tv = tkinter.ttk.Treeview(tabela, columns=('nome', 'preco', 'qtde'), show='headings')
+    tv = tkinter.ttk.Treeview(tabela, columns=(
+        'nome', 'preco', 'qtde'), show='headings')
     tv.heading("nome", text='Nome')
     tv.heading('preco', text='Preço')
     tv.heading('qtde', text='Quantidade')
@@ -113,7 +138,8 @@ def selectProd():
         tv.insert('', 'end', values=(linha[1], preco_formatado, linha[2]))
 
     tv.pack()
-    botao_fechar = tkinter.Button(rootSelect, text="Voltar", bg="#6B58FF", fg="white", command=rootSelect.destroy)
+    botao_fechar = tkinter.Button(
+        rootSelect, text="Voltar", bg="#6B58FF", fg="white", command=rootSelect.destroy)
     botao_fechar.grid(row=1, column=0, padx=10, pady=10, sticky="ew")
 
 
