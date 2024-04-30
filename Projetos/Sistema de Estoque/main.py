@@ -45,7 +45,6 @@ def telaInicial():
 
     telaInicio.mainloop()
 
-
 def telaAddProd():
     global janelaAdd
     janelaAdd = tkinter.Tk()
@@ -89,7 +88,7 @@ cursor.execute(
 
 
 def addProd(nome, qtde, preco):
-
+    
     janelaAdd.destroy()
 
     try:
