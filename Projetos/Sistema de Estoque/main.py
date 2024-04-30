@@ -1,5 +1,3 @@
-# REALIZAR AS VALIDAÇÕES (CONTRA SQLINJECTION)
-
 import sqlite3
 import tkinter
 from tkinter import *
