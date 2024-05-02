@@ -150,16 +150,20 @@ def addProd(nome, qtde, preco):
 
 
 def selectProd():
-    rootEdit = tkinter.Tk()
-    rootEdit.resizable(False, False)
-    rootEdit.title("Tabela de Produtos")
-    rootEdit.geometry("622x400")
+    rootSelect = tkinter.Tk()
+    rootSelect.resizable(False, False)
+    rootSelect.title("Tabela de Produtos")
+    rootSelect.geometry("622x400")
+
+    label = tkinter.Label(
+        rootSelect, text="Estoque dos Produtos", font="Consolas 13 bold")
+    label.grid(row=0, column= 0, pady=10, sticky='ew')
 
     cursor.execute("SELECT * FROM Produtos")
     dados = cursor.fetchall()
 
-    tabela = tkinter.Frame(rootEdit)
-    tabela.grid(row=0, column=0, padx=10, pady=10)
+    tabela = tkinter.Frame(rootSelect)
+    tabela.grid(row=1, column=0, padx=10, pady=10)
 
     tv = tkinter.ttk.Treeview(tabela, columns=(
         'nome', 'preco', 'qtde'), show='headings')
@@ -177,8 +181,8 @@ def selectProd():
 
     tv.pack()
     botao_fechar = tkinter.Button(
-        rootEdit, text="Voltar", bg="#6B58FF", fg="white", command=rootEdit.destroy)
-    botao_fechar.grid(row=1, column=0, padx=10, pady=10, sticky="ew")
+        rootSelect, text="Voltar", bg="#6B58FF", fg="white", command=rootSelect.destroy)
+    botao_fechar.grid(row=2, column=0, padx=10, pady=10, sticky="ew")
 
 
 telaInicial()
