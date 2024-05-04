@@ -32,7 +32,7 @@ def telaInicial():
     button.grid(row=2, column=1, padx=20, pady=10, sticky='ew')
 
     botao_prova = tkinter.Button(
-        telaInicio, text="Editar Produto", font="Consolas 10", bg="#3D8EF0", fg="white", command= telaEditProd)
+        telaInicio, text="Editar Produto", font="Consolas 10", bg="#3D8EF0", fg="white", command=telaEditProd)
     botao_prova.grid(row=3, column=1, padx=20, pady=10, sticky='ew')
 
     botao_tabela = tkinter.Button(
@@ -45,6 +45,7 @@ def telaInicial():
 
     telaInicio.mainloop()
 
+
 def telaAddProd():
     global janelaAdd
     janelaAdd = tkinter.Tk()
@@ -54,7 +55,7 @@ def telaAddProd():
 
     label = tkinter.Label(
         janelaAdd, text="Preencha os campos a seguir", font="Consolas 13 bold")
-    label.grid(row=0, column= 1, pady=10, sticky='ew')
+    label.grid(row=0, column=1, pady=10, sticky='ew')
 
     label_nome = tkinter.Label(janelaAdd, text="Nome:", font="Consolas 10")
     label_nome.grid(row=1, column=0, padx=10, pady=15, sticky='ew')
@@ -82,15 +83,16 @@ def telaAddProd():
                                   bg="#3D8EF0", fg="white", command=janelaAdd.destroy)
     botao_voltar.grid(row=5, column=1, padx=100, pady=10, sticky='ew')
 
+
 def telaEditProd():
     rootEdit = tkinter.Tk()
     rootEdit.resizable(False, False)
     rootEdit.title("Editar Produto")
-    rootEdit.geometry("622x400")
+    rootEdit.geometry("445x420")
 
     label = tkinter.Label(
         rootEdit, text="Selecione o Produto que deseja Editar", font="Consolas 13 bold")
-    label.grid(row=0, column= 0, pady=10, sticky='ew')
+    label.grid(row=0, column=0, pady=10, sticky='ew')
 
     cursor.execute("SELECT * FROM Produtos")
     dados = cursor.fetchall()
@@ -99,10 +101,14 @@ def telaEditProd():
     tabela.grid(row=1, column=0, padx=10, pady=10)
 
     tv = tkinter.ttk.Treeview(tabela, columns=(
-        'nome', 'preco', 'qtde'), show='headings')
+        'id', 'nome', 'preco', 'qtde'), show='headings')
+    tv.heading("id", text='ID')
+    tv.column("id", width=50)
     tv.heading("nome", text='Nome')
     tv.heading('preco', text='Preço')
-    tv.heading('qtde', text='Quantidade')
+    tv.column("preco", width=120)
+    tv.heading('qtde', text='Qtde')
+    tv.column("qtde", width=50)
 
     for linha in dados:
         preco = linha[3]
@@ -110,15 +116,76 @@ def telaEditProd():
             preco_formatado = 'R$ {:.2f}'.format(float(preco))
         else:
             preco_formatado = ''
-        tv.insert('', 'end', values=(linha[1], preco_formatado, linha[2]))
+        tv.insert('', 'end', values=(
+            linha[0], linha[1], preco_formatado, linha[2]))
 
     tv.pack()
+
+    def editarProduto():
+        item_selecionado = tv.selection()
+        if item_selecionado:
+            item = tv.item(item_selecionado)
+            id_produto = item['values'][0]
+            produto = cursor.execute(
+                "SELECT * FROM Produtos WHERE iD=?", (id_produto,)).fetchone()
+            if produto:
+                editar_janela = tkinter.Tk()
+                editar_janela.title("Editar Produto")
+                editar_janela.geometry("300x200")
+
+                label_nome = tkinter.Label(
+                    editar_janela, text="Nome:", font="Consolas 10")
+                label_nome.grid(row=0, column=0, padx=10, pady=15, sticky='w')
+                textoNome = tkinter.StringVar(value=produto[1])
+                nome = tkinter.Entry(editar_janela, textvariable=textoNome)
+                nome.grid(row=0, column=1, padx=8, pady=15, sticky='w')
+
+                label_qtde = tkinter.Label(
+                    editar_janela, text="Qtde:", font="Consolas 10")
+                label_qtde.grid(row=1, column=0, padx=10, pady=15, sticky='w')
+                textoQtde = tkinter.StringVar(value=produto[2])
+                qtde = tkinter.Entry(editar_janela, textvariable=textoQtde)
+                qtde.grid(row=1, column=1, padx=8, pady=15, sticky='w')
+
+                label_preco = tkinter.Label(
+                    editar_janela, text="Preço:", font="Consolas 10")
+                label_preco.grid(row=2, column=0, padx=10, pady=15, sticky='w')
+                textoPreco = tkinter.StringVar(value=produto[3])
+                preco = tkinter.Entry(editar_janela, textvariable=textoPreco)
+                preco.grid(row=2, column=1, padx=8, pady=15, sticky='w')
+
+                def salvar_edicao():
+                    novo_nome = nome.get()
+                    nova_qtde = qtde.get()
+                    novo_preco = preco.get()
+
+                    try:
+                        nova_qtde = int(nova_qtde)
+                        novo_preco = float(novo_preco.replace(
+                            ',', '.').replace('R$', ''))
+                        cursor.execute("UPDATE Produtos SET nome=?, qtde=?, preco=? WHERE iD=?",
+                                       (novo_nome, nova_qtde, novo_preco, id_produto))
+                        connection.commit()
+                        mb.showinfo(
+                            "Sucesso", "Produto atualizado com sucesso!")
+                        editar_janela.destroy()
+                        rootEdit.destroy()
+                    except ValueError:
+                        mb.showerror(
+                            "Erro", "Por favor, insira uma quantidade e preço válidos.")
+
+                botao_salvar = tkinter.Button(editar_janela, text="Salvar", bg="#6B58FF",
+                                              fg="white", command=salvar_edicao)
+                botao_salvar.grid(row=3, column=1, padx=10,
+                                  pady=10, sticky='ew')
+
     botao_editar = tkinter.Button(
-        rootEdit, text="Editar", bg="#6B58FF", fg="white", command=rootEdit.destroy)
+        rootEdit, text="Editar", bg="#6B58FF", fg="white", command=editarProduto)
     botao_editar.grid(row=2, column=0, padx=10, pady=10, sticky="ew")
+
     botao_fechar = tkinter.Button(
         rootEdit, text="Voltar", bg="#1CB9E4", fg="white", command=rootEdit.destroy)
-    botao_fechar.grid(row=3, column=0, padx=100, pady=10, sticky="ew")
+    botao_fechar.grid(row=3, column=0, padx=50, pady=10, sticky="ew")
 
 
 # Banco de Dados
@@ -135,7 +202,7 @@ def addProd(nome, qtde, preco):
         qtde = int(qtde)
         preco = float(preco.replace(',', '.').replace('R$', ''))
         cursor.execute(
-        "INSERT INTO Produtos (nome, qtde, preco) VALUES (?, ?, ?)", (nome, qtde, preco))
+            "INSERT INTO Produtos (nome, qtde, preco) VALUES (?, ?, ?)", (nome, qtde, preco))
         connection.commit()
     except ValueError:
         mb.showerror(
@@ -144,7 +211,7 @@ def addProd(nome, qtde, preco):
 
     mb.showinfo(
         "Sucesso", f"'{nome}'({qtde}) Adicionado ao Estoque .")
-    
+
     if mb.askyesno("Adicionar outro produto", "Deseja adicionar outro produto?"):
         telaAddProd()
 
@@ -157,7 +224,7 @@ def selectProd():
 
     label = tkinter.Label(
         rootSelect, text="Estoque dos Produtos", font="Consolas 13 bold")
-    label.grid(row=0, column= 0, pady=10, sticky='ew')
+    label.grid(row=0, column=0, pady=10, sticky='ew')
 
     cursor.execute("SELECT * FROM Produtos")
     dados = cursor.fetchall()
