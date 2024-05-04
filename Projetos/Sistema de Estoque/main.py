@@ -26,8 +26,7 @@ def telaInicial():
     label1.image = test
     label1.grid(row=1, column=1, pady=10, padx=47)
 
-    button = tkinter.Button(telaInicio, text="Adicionar ao Estoque", font="Consolas 10",
-                            bg="#6B58FF", fg="white", command=telaAddProd)
+    button = tkinter.Button(telaInicio, text="Adicionar ao Estoque", font="Consolas 10",bg="#6B58FF", fg="white", command=telaAddProd)
     button.grid(row=2, column=1, padx=20, pady=10, sticky='ew')
 
     botao_prova = tkinter.Button(
@@ -38,8 +37,7 @@ def telaInicial():
         telaInicio, text="Exibir Estoque", font="Consolas 10", bg="#1CB9E4", fg="white", command=selectProd)
     botao_tabela.grid(row=4, column=1, padx=20, pady=10, sticky='ew')
 
-    button = tkinter.Button(telaInicio, text="Sair do Programa", font="Consolas 10",
-                            bg="#4A2ED1", fg="white", command=telaInicio.destroy)
+    button = tkinter.Button(telaInicio, text="Sair do Programa", font="Consolas 10", bg="#4A2ED1", fg="white", command=telaInicio.destroy)
     button.grid(row=5, column=1, padx=160, pady=50)
 
     telaInicio.mainloop()
@@ -74,12 +72,10 @@ def telaAddProd():
     preco = tkinter.Entry(janelaAdd, textvariable=textopreco)
     preco.grid(row=3, column=1, padx=8, pady=15, sticky='ew')
 
-    botao_add = tkinter.Button(janelaAdd, text="Concluir", bg="#6B58FF",
-                               fg="white", command=lambda: addProd(nome.get(), qtde.get(), preco.get()))
+    botao_add = tkinter.Button(janelaAdd, text="Concluir", bg="#6B58FF", fg="white", command=lambda: addProd(nome.get(), qtde.get(), preco.get()))
     botao_add.grid(row=4, column=1, padx=10, pady=10, sticky='ew')
 
-    botao_voltar = tkinter.Button(janelaAdd, text="Voltar para Tela Inicial",
-                                  bg="#3D8EF0", fg="white", command=janelaAdd.destroy)
+    botao_voltar = tkinter.Button(janelaAdd, text="Voltar para Tela Inicial", bg="#3D8EF0", fg="white", command=janelaAdd.destroy)
     botao_voltar.grid(row=5, column=1, padx=100, pady=10, sticky='ew')
 
 
@@ -258,11 +254,3 @@ def selectProd():
 
 
 telaInicial()
-
-addProd("Samsung A12", 12, 789.90)
-addProd("Samsung A12", 8, 899.90)
-addProd("Samsung Galaxy S21", 12, 3451.00)
-addProd("Samsung Galaxy S23", 12,  2969.10)
-addProd("Mangá 'GoGo Monster'", 8,  85.50)
-addProd("Mangá 'Os Gatos do Louvre Vol. 01'", 12,  61.43)
-connection.commit()
