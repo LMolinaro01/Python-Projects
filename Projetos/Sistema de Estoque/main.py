@@ -50,6 +50,8 @@ def telaAddProd():
     global janelaAdd
     janelaAdd = tkinter.Tk()
     janelaAdd.resizable(False, False)
+    janelaAdd.geometry("435x320")
+
 
     janelaAdd.title("Cadastro de Produtos")
 
@@ -246,6 +248,5 @@ def selectProd():
     botao_fechar = tkinter.Button(
         rootSelect, text="Voltar", bg="#6B58FF", fg="white", command=rootSelect.destroy)
     botao_fechar.grid(row=2, column=0, padx=10, pady=10, sticky="ew")
-
 
 telaInicial()
