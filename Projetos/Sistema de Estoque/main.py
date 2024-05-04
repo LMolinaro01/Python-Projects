@@ -8,7 +8,6 @@ from PIL import Image, ImageTk
 
 # Janelas
 
-
 def telaInicial():
     global telaInicio
     telaInicio = tkinter.Tk()
@@ -131,28 +130,33 @@ def telaEditProd():
             if produto:
                 editar_janela = tkinter.Tk()
                 editar_janela.title("Editar Produto")
-                editar_janela.geometry("300x200")
+                editar_janela.resizable(False, False)
+                editar_janela.geometry("360x300")
+
+                label = tkinter.Label(
+                editar_janela, text="Preencha os campos a seguir", font="Consolas 13 bold")
+                label.grid(row=0, column=1, pady=10, sticky='ew')
 
                 label_nome = tkinter.Label(
                     editar_janela, text="Nome:", font="Consolas 10")
-                label_nome.grid(row=0, column=0, padx=10, pady=15, sticky='w')
+                label_nome.grid(row=1, column=0, padx=10, pady=15, sticky='ew')
                 textoNome = tkinter.StringVar(value=produto[1])
                 nome = tkinter.Entry(editar_janela, textvariable=textoNome)
-                nome.grid(row=0, column=1, padx=8, pady=15, sticky='w')
+                nome.grid(row=1, column=1, padx=8, pady=15, sticky='ew')
 
                 label_qtde = tkinter.Label(
                     editar_janela, text="Qtde:", font="Consolas 10")
-                label_qtde.grid(row=1, column=0, padx=10, pady=15, sticky='w')
+                label_qtde.grid(row=2, column=0, padx=10, pady=15, sticky='ew')
                 textoQtde = tkinter.StringVar(value=produto[2])
                 qtde = tkinter.Entry(editar_janela, textvariable=textoQtde)
-                qtde.grid(row=1, column=1, padx=8, pady=15, sticky='w')
+                qtde.grid(row=2, column=1, padx=8, pady=15, sticky='ew')
 
                 label_preco = tkinter.Label(
                     editar_janela, text="Preço:", font="Consolas 10")
-                label_preco.grid(row=2, column=0, padx=10, pady=15, sticky='w')
+                label_preco.grid(row=3, column=0, padx=10, pady=15, sticky='ew')
                 textoPreco = tkinter.StringVar(value=produto[3])
                 preco = tkinter.Entry(editar_janela, textvariable=textoPreco)
-                preco.grid(row=2, column=1, padx=8, pady=15, sticky='w')
+                preco.grid(row=3, column=1, padx=8, pady=15, sticky='ew')
 
                 def salvar_edicao():
                     novo_nome = nome.get()
@@ -174,10 +178,11 @@ def telaEditProd():
                         mb.showerror(
                             "Erro", "Por favor, insira uma quantidade e preço válidos.")
 
-                botao_salvar = tkinter.Button(editar_janela, text="Salvar", bg="#6B58FF",
-                                              fg="white", command=salvar_edicao)
-                botao_salvar.grid(row=3, column=1, padx=10,
-                                  pady=10, sticky='ew')
+                botao_salvar = tkinter.Button(editar_janela, text="Salvar", bg="#6B58FF", fg="white", command=salvar_edicao)
+                botao_salvar.grid(row=4, column=1, padx=5, pady=10, sticky='ew')
+
+                botao_voltar = tkinter.Button(editar_janela, text="Voltar", bg="#3D8EF0", fg="white", command=editar_janela.destroy)
+                botao_voltar.grid(row=5, column=1, padx=20, pady=10, sticky='ew')
 
     botao_editar = tkinter.Button(
         rootEdit, text="Editar", bg="#6B58FF", fg="white", command=editarProduto)
