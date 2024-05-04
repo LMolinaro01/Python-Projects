@@ -6,7 +6,10 @@ from tkinter import ttk
 from tkinter import messagebox as mb
 from PIL import Image, ImageTk
 
-# Janelas
+connection = sqlite3.connect("Database.db")
+cursor = connection.cursor()
+cursor.execute(
+    "CREATE TABLE IF NOT EXISTS Produtos (iD INTEGER PRIMARY KEY, nome TEXT, qtde INTEGER, preco REAL)")
 
 def telaInicial():
     global telaInicio
@@ -187,14 +190,6 @@ def telaEditProd():
     botao_fechar = tkinter.Button(
         rootEdit, text="Voltar", bg="#1CB9E4", fg="white", command=rootEdit.destroy)
     botao_fechar.grid(row=3, column=0, padx=50, pady=10, sticky="ew")
-
-
-# Banco de Dados
-connection = sqlite3.connect("Database.db")
-cursor = connection.cursor()
-cursor.execute(
-    "CREATE TABLE IF NOT EXISTS Produtos (iD INTEGER PRIMARY KEY, nome TEXT, qtde INTEGER, preco REAL)")
-
 
 def addProd(nome, qtde, preco):
     janelaAdd.destroy()
