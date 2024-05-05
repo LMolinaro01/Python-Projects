@@ -44,7 +44,7 @@ def telaInicial():
 
     if baixo_estoque_count > 0:
         botao_tabela = tkinter.Button(
-        telaInicio, text="Exibir Estoque ⚠️", font="Consolas 10", bg="#0AB4B5", fg="red", command=selectProd)
+        telaInicio, text="Exibir Estoque ⚠️", font="Consolas 10 bold", bg="#0AB4B5", fg="#75163F", command=selectProd)
     else:
         botao_tabela = tkinter.Button(
         telaInicio, text="Exibir Estoque", font="Consolas 10", bg="#0AB4B5", fg="white", command=selectProd)
@@ -151,7 +151,7 @@ def telaEditProd():
             tv.insert('', 'end', values=(
                 linha[0], linha[1], preco_formatado, linha[2]))
             
-    tv.tag_configure("baixo_estoque", foreground="red")
+    tv.tag_configure("baixo_estoque", foreground="#EB3324")
 
     tv.pack()
 
@@ -285,7 +285,7 @@ def selectProd():
         else:
             tv.insert('', 'end', values=(linha[1], preco_formatado, linha[2]))
 
-    tv.tag_configure("baixo_estoque", foreground="red")
+    tv.tag_configure("baixo_estoque", foreground="#EB3324")
 
     tv.pack()
     botao_fechar = tkinter.Button(
