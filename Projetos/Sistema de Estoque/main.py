@@ -3,6 +3,7 @@ import tkinter
 from tkinter import *
 from tkinter import Tk, font
 from tkinter import ttk
+from time import strftime
 from tkinter import messagebox as mb
 from PIL import Image, ImageTk
 
@@ -16,7 +17,7 @@ def telaInicial():
     telaInicio = tkinter.Tk()
     telaInicio.title("Inicio")
     telaInicio.resizable(False, False)
-
+    telaInicio.focus_force()     
     label = tkinter.Label(
         telaInicio, text="Bem vindo ao Sistema de Estoque!", font="Consolas 13 bold")
     label.grid(row=0, column=1, pady=10, sticky='ew')
@@ -54,6 +55,16 @@ def telaInicial():
     button = tkinter.Button(telaInicio, text="Sair do Programa", font="Consolas 10", bg="#4A2ED1", fg="white", command=telaInicio.destroy)
     button.grid(row=6, column=1, padx=170, pady=50)
 
+    label_hora = tkinter.Label(telaInicio, font="Consolas 10")
+    label_hora.grid(row=7, column=1, padx=10, sticky='e')
+
+    def atualizar_hora():
+        hora_atual = strftime("%H:%M:%S")  # Obtém a hora atual no formato HH:MM:SS
+        label_hora.config(text=hora_atual)  # Atualiza o texto da label com a hora atual
+        telaInicio.after(1000, atualizar_hora)  # Agenda a próxima atualização após 1000 milissegundos (1 segundo)
+
+    atualizar_hora()
+
     telaInicio.mainloop()
 
 def telaVendas():
@@ -76,6 +87,8 @@ def telaVendas():
     botao_voltar.grid(row=3, column=0, padx=100, pady=10, sticky='ew')
 
 def telaAddProd():
+    telaInicio.destroy()
+
     global janelaAdd
     janelaAdd = tkinter.Tk()
     janelaAdd.resizable(False, False)
@@ -106,11 +119,13 @@ def telaAddProd():
     botao_add = tkinter.Button(janelaAdd, text="Concluir", bg="#6B58FF", fg="white", command=lambda: addProd(nome.get(), qtde.get(), preco.get()))
     botao_add.grid(row=4, column=1, padx=10, pady=10, sticky='ew')
 
-    botao_voltar = tkinter.Button(janelaAdd, text="Voltar para Tela Inicial", bg="#3D8EF0", fg="white", command=janelaAdd.destroy)
+    botao_voltar = tkinter.Button(janelaAdd, text="Voltar para Tela Inicial", bg="#3D8EF0", fg="white", command=lambda: [janelaAdd.destroy(), telaInicial()])
     botao_voltar.grid(row=5, column=1, padx=100, pady=10, sticky='ew')
 
 
 def telaEditProd():
+    telaInicio.destroy()
+
     rootEdit = tkinter.Tk()
     rootEdit.resizable(False, False)
     rootEdit.title("Editar Produto")
@@ -209,6 +224,7 @@ def telaEditProd():
                             "Sucesso", "Produto atualizado com sucesso!")
                         editar_janela.destroy()
                         rootEdit.destroy()
+                        telaInicial()
                     except ValueError:
                         mb.showerror(
                             "Erro", "Por favor, insira uma quantidade e preço válidos.")
@@ -224,11 +240,13 @@ def telaEditProd():
         if item_selecionado:
             item = tv.item(item_selecionado)
             nome_produto = item['values'][1] 
-            if mb.askyesno("Deletar Produto", f"Deseja deletar o produto '{nome_produto}'?"):
+            if mb.askyesno("Deletar Produto", f"Deseja deletar o produto {nome_produto}?", icon='warning'):
                 id_produto = item['values'][0]
                 cursor.execute("DELETE FROM Produtos WHERE iD=?", (id_produto,))
                 connection.commit()
+                
                 rootEdit.destroy()
+                telaInicial()
 
     botao_editar = tkinter.Button(
         rootEdit, text="Editar", bg="#6B58FF", fg="white", command=editarProduto)
@@ -239,7 +257,7 @@ def telaEditProd():
     botao_deletar.grid(row=3, column=0, padx=10, pady=10, sticky="ew")
 
     botao_fechar = tkinter.Button(
-        rootEdit, text="Voltar", bg="#1CB9E4", fg="white", command=rootEdit.destroy)
+        rootEdit, text="Voltar", bg="#1CB9E4", fg="white", command=lambda: [rootEdit.destroy(), telaInicial()])
     botao_fechar.grid(row=4, column=0, padx=50, pady=10, sticky="ew")
 
 def addProd(nome, qtde, preco):
@@ -257,10 +275,12 @@ def addProd(nome, qtde, preco):
         return
 
     mb.showinfo(
-        "Sucesso", f"'{nome}'({qtde}) Adicionado ao Estoque .")
+        "Sucesso", f"{nome}({qtde}) Adicionado ao Estoque!")
 
     if mb.askyesno("Adicionar outro produto", "Deseja adicionar outro produto?"):
         telaAddProd()
+    else:
+        telaInicial()
 
 
 def selectProd():
