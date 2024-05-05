@@ -58,13 +58,13 @@ def telaVendas():
     label = tkinter.Label(janelaVendas, text="Espaço Financeiro", font="Consolas 13 bold")
     label.grid(row=0, column=0, pady=10, sticky='ew')
 
-    image2 = Image.open("Projetos\Sistema de Estoque\fin.png")
-    width, height = 200, 200
-    image2.thumbnail((width, height))
-    test = ImageTk.PhotoImage(image2)
-    label1 = tkinter.Label(janelaVendas, image=test)
-    label1.image = test
-    label1.grid(row=1, column=1, pady=10, padx=47)
+    '''imagem = Image.open("Projetos/Sistema de Estoque/Financeiro.png")
+    largura, altura = 200, 200
+    imagem.thumbnail((largura, altura))
+    imagem_tk = ImageTk.PhotoImage(imagem)
+    label_imagem = tkinter.Label(janelaVendas, image=imagem_tk)
+    label_imagem.grid(row=1, column=0, padx=10, pady=10, sticky='ew')
+    label_imagem.image = imagem_tk'''
 
     botao_vender = tkinter.Button(janelaVendas, text="Realizar uma Venda", bg="#6B58FF", fg="white")
     botao_vender.grid(row=1, column=0, padx=10, pady=10, sticky='ew')
