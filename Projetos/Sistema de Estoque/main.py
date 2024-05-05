@@ -87,8 +87,7 @@ def telaVendas():
     botao_voltar.grid(row=3, column=0, padx=100, pady=10, sticky='ew')
 
 def telaAddProd():
-    telaInicio.destroy()
-
+    
     global janelaAdd
     janelaAdd = tkinter.Tk()
     janelaAdd.resizable(False, False)
@@ -119,12 +118,11 @@ def telaAddProd():
     botao_add = tkinter.Button(janelaAdd, text="Concluir", bg="#6B58FF", fg="white", command=lambda: addProd(nome.get(), qtde.get(), preco.get()))
     botao_add.grid(row=4, column=1, padx=10, pady=10, sticky='ew')
 
-    botao_voltar = tkinter.Button(janelaAdd, text="Voltar para Tela Inicial", bg="#3D8EF0", fg="white", command=lambda: [janelaAdd.destroy(), telaInicial()])
+    botao_voltar = tkinter.Button(janelaAdd, text="Voltar para Tela Inicial", bg="#3D8EF0", fg="white", command=lambda: [janelaAdd.destroy(), telaInicio.destroy() ,telaInicial()])
     botao_voltar.grid(row=5, column=1, padx=100, pady=10, sticky='ew')
 
 
 def telaEditProd():
-    telaInicio.destroy()
 
     rootEdit = tkinter.Tk()
     rootEdit.resizable(False, False)
@@ -224,6 +222,8 @@ def telaEditProd():
                             "Sucesso", "Produto atualizado com sucesso!")
                         editar_janela.destroy()
                         rootEdit.destroy()
+
+                        telaInicio.destroy()
                         telaInicial()
                     except ValueError:
                         mb.showerror(
@@ -236,16 +236,20 @@ def telaEditProd():
                 botao_voltar.grid(row=5, column=1, padx=20, pady=10, sticky='ew')
 
     def deletarProd():
+
         item_selecionado = tv.selection()
         if item_selecionado:
             item = tv.item(item_selecionado)
             nome_produto = item['values'][1] 
+
             if mb.askyesno("Deletar Produto", f"Deseja deletar o produto {nome_produto}?", icon='warning'):
+
                 id_produto = item['values'][0]
                 cursor.execute("DELETE FROM Produtos WHERE iD=?", (id_produto,))
                 connection.commit()
-                
                 rootEdit.destroy()
+
+                telaInicio.destroy()
                 telaInicial()
 
     botao_editar = tkinter.Button(
@@ -257,7 +261,7 @@ def telaEditProd():
     botao_deletar.grid(row=3, column=0, padx=10, pady=10, sticky="ew")
 
     botao_fechar = tkinter.Button(
-        rootEdit, text="Voltar", bg="#1CB9E4", fg="white", command=lambda: [rootEdit.destroy(), telaInicial()])
+        rootEdit, text="Voltar", bg="#1CB9E4", fg="white", command=lambda: [rootEdit.destroy(), telaInicio.destroy() ,telaInicial()])
     botao_fechar.grid(row=4, column=0, padx=50, pady=10, sticky="ew")
 
 def addProd(nome, qtde, preco):
@@ -275,12 +279,10 @@ def addProd(nome, qtde, preco):
         return
 
     mb.showinfo(
-        "Sucesso", f"{nome}({qtde}) Adicionado ao Estoque!")
+        "Sucesso", f"'{nome}'({qtde}) Adicionado ao Estoque .")
 
     if mb.askyesno("Adicionar outro produto", "Deseja adicionar outro produto?"):
         telaAddProd()
-    else:
-        telaInicial()
 
 
 def selectProd():
