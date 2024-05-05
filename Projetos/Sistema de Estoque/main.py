@@ -29,34 +29,60 @@ def telaInicial():
     label1.image = test
     label1.grid(row=1, column=1, pady=10, padx=47)
 
-    button = tkinter.Button(telaInicio, text="Adicionar ao Estoque", font="Consolas 10",bg="#6B58FF", fg="white", command=telaAddProd)
-    button.grid(row=2, column=1, padx=20, pady=10, sticky='ew')
+    button_vender = tkinter.Button(telaInicio, text="Área de Vendas", font="Consolas 10",bg="#6B58FF", fg="white", command=telaVendas)
+    button_vender.grid(row=2, column=1, padx=20, pady=10, sticky='ew')
+
+    button = tkinter.Button(telaInicio, text="Adicionar ao Estoque", font="Consolas 10",bg="#3D8EF0", fg="white", command=telaAddProd)
+    button.grid(row=3, column=1, padx=20, pady=10, sticky='ew')
 
     botao_prova = tkinter.Button(
-        telaInicio, text="Editar Produto", font="Consolas 10", bg="#3D8EF0", fg="white", command=telaEditProd)
-    botao_prova.grid(row=3, column=1, padx=20, pady=10, sticky='ew')
+        telaInicio, text="Editar Produto", font="Consolas 10", bg="#1CB9E4", fg="white", command=telaEditProd)
+    botao_prova.grid(row=4, column=1, padx=20, pady=10, sticky='ew')
 
     botao_tabela = tkinter.Button(
-        telaInicio, text="Exibir Estoque", font="Consolas 10", bg="#1CB9E4", fg="white", command=selectProd)
-    botao_tabela.grid(row=4, column=1, padx=20, pady=10, sticky='ew')
+        telaInicio, text="Exibir Estoque", font="Consolas 10", bg="#0AB4B5", fg="white", command=selectProd)
+    botao_tabela.grid(row=5, column=1, padx=20, pady=10, sticky='ew')
 
     button = tkinter.Button(telaInicio, text="Sair do Programa", font="Consolas 10", bg="#4A2ED1", fg="white", command=telaInicio.destroy)
-    button.grid(row=5, column=1, padx=160, pady=50)
+    button.grid(row=6, column=1, padx=160, pady=50)
 
     telaInicio.mainloop()
 
+def telaVendas():
+    global janelaVendas
+    janelaVendas = tkinter.Tk()
+    janelaVendas.resizable(False, False)
+    janelaVendas.geometry("435x320")
+    janelaVendas.title("Área de Vendas")
+
+    label = tkinter.Label(janelaVendas, text="Espaço Financeiro", font="Consolas 13 bold")
+    label.grid(row=0, column=0, pady=10, sticky='ew')
+
+    image2 = Image.open("Projetos\Sistema de Estoque\fin.png")
+    width, height = 200, 200
+    image2.thumbnail((width, height))
+    test = ImageTk.PhotoImage(image2)
+    label1 = tkinter.Label(janelaVendas, image=test)
+    label1.image = test
+    label1.grid(row=1, column=1, pady=10, padx=47)
+
+    botao_vender = tkinter.Button(janelaVendas, text="Realizar uma Venda", bg="#6B58FF", fg="white")
+    botao_vender.grid(row=1, column=0, padx=10, pady=10, sticky='ew')
+
+    botao_vender = tkinter.Button(janelaVendas, text="Consultar Vendas", bg="#3D8EF0", fg="white")
+    botao_vender.grid(row=2, column=0, padx=10, pady=10, sticky='ew')
+
+    botao_voltar = tkinter.Button(janelaVendas, text="Voltar para Tela Inicial", bg="#1CB9E4", fg="white", command=janelaVendas.destroy)
+    botao_voltar.grid(row=3, column=0, padx=10, pady=10, sticky='ew')
 
 def telaAddProd():
     global janelaAdd
     janelaAdd = tkinter.Tk()
     janelaAdd.resizable(False, False)
     janelaAdd.geometry("435x320")
-
-
     janelaAdd.title("Cadastro de Produtos")
 
-    label = tkinter.Label(
-        janelaAdd, text="Preencha os campos a seguir", font="Consolas 13 bold")
+    label = tkinter.Label(janelaAdd, text="Preencha os campos a seguir", font="Consolas 13 bold")
     label.grid(row=0, column=1, pady=10, sticky='ew')
 
     label_nome = tkinter.Label(janelaAdd, text="Nome:", font="Consolas 10")
