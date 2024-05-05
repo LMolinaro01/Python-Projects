@@ -114,7 +114,7 @@ def telaEditProd():
     rootEdit = tkinter.Tk()
     rootEdit.resizable(False, False)
     rootEdit.title("Editar Produto")
-    rootEdit.geometry("445x420")
+    rootEdit.geometry("445x440")
 
     label = tkinter.Label(
         rootEdit, text="Selecione o Produto que deseja Editar", font="Consolas 13 bold")
@@ -219,13 +219,28 @@ def telaEditProd():
                 botao_voltar = tkinter.Button(editar_janela, text="Voltar", bg="#3D8EF0", fg="white", command=editar_janela.destroy)
                 botao_voltar.grid(row=5, column=1, padx=20, pady=10, sticky='ew')
 
+    def deletarProd():
+        item_selecionado = tv.selection()
+        if item_selecionado:
+            item = tv.item(item_selecionado)
+            nome_produto = item['values'][1] 
+            if mb.askyesno("Deletar Produto", f"Deseja deletar o produto '{nome_produto}'?"):
+                id_produto = item['values'][0]
+                cursor.execute("DELETE FROM Produtos WHERE iD=?", (id_produto,))
+                connection.commit()
+                rootEdit.destroy()
+
     botao_editar = tkinter.Button(
         rootEdit, text="Editar", bg="#6B58FF", fg="white", command=editarProduto)
     botao_editar.grid(row=2, column=0, padx=10, pady=10, sticky="ew")
 
+    botao_deletar = tkinter.Button(
+        rootEdit, text="Deletar", bg="#3D8EF0", fg="white", command=deletarProd)
+    botao_deletar.grid(row=3, column=0, padx=10, pady=10, sticky="ew")
+
     botao_fechar = tkinter.Button(
         rootEdit, text="Voltar", bg="#1CB9E4", fg="white", command=rootEdit.destroy)
-    botao_fechar.grid(row=3, column=0, padx=50, pady=10, sticky="ew")
+    botao_fechar.grid(row=4, column=0, padx=50, pady=10, sticky="ew")
 
 def addProd(nome, qtde, preco):
     janelaAdd.destroy()
