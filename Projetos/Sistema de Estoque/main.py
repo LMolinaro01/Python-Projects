@@ -137,7 +137,6 @@ def telaAddProd():
                                   janelaAdd.destroy(), telaInicio.destroy(), telaInicial()])
     botao_voltar.grid(row=5, column=1, padx=100, pady=10, sticky='ew')
 
-
 def telaEditProd():
 
     rootEdit = tkinter.Tk()
@@ -269,7 +268,9 @@ def telaEditProd():
                 nome_produto = item['values'][1]
                 itens_para_deletar.append((item['values'][0], nome_produto))
 
-            if mb.askyesno("Deletar Produtos", f"Deseja deletar os produtos selecionados?", icon='warning'):
+            #mostrar o nome dos produtos que serão deletados
+
+            if mb.askyesno("Deletar Produtos", f"""Deseja mesmo deletar os produtos selecionados?""", icon='warning'):
                 for id_produto, _ in itens_para_deletar:
                     cursor.execute(
                         "DELETE FROM Produtos WHERE iD=?", (id_produto,))
