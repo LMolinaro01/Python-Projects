@@ -63,11 +63,8 @@ def telaInicial():
     label_hora.grid(row=7, column=1, padx=10, sticky='e')
 
     def atualizar_hora():
-        # Obtém a hora atual no formato HH:MM:SS
         hora_atual = strftime("%H:%M:%S")
-        # Atualiza o texto da label com a hora atual
         label_hora.config(text=hora_atual)
-        # Agenda a próxima atualização após 1000 milissegundos (1 segundo)
         telaInicio.after(1000, atualizar_hora)
 
     atualizar_hora()
@@ -88,15 +85,15 @@ def telaVendas():
 
     botao_vender = tkinter.Button(
         janelaVendas, text="Realizar uma Venda", bg="#6B58FF", fg="white")
-    botao_vender.grid(row=1, column=0, padx=10, pady=10, sticky='ew')
+    botao_vender.grid(row=2, column=0, padx=10, pady=10, sticky='ew')
 
     botao_vender = tkinter.Button(
         janelaVendas, text="Consultar Vendas", bg="#3D8EF0", fg="white")
-    botao_vender.grid(row=2, column=0, padx=10, pady=10, sticky='ew')
+    botao_vender.grid(row=3, column=0, padx=10, pady=10, sticky='ew')
 
     botao_voltar = tkinter.Button(janelaVendas, text="Voltar para Tela Inicial",
-                                  bg="#1CB9E4", fg="white", command=janelaVendas.destroy)
-    botao_voltar.grid(row=3, column=0, padx=100, pady=10, sticky='ew')
+                              bg="#1CB9E4", fg="white", command=janelaVendas.destroy)
+    botao_voltar.grid(row=4, column=0, padx=100, pady=10, sticky='ew')
 
 
 def telaAddProd():
