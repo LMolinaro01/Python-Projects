@@ -163,15 +163,16 @@ def telaVenderProd():
                 textoNome = tkinter.StringVar(value=produto[1])
                 nome = tkinter.Entry(vender_janela, textvariable=textoNome)
                 nome.grid(row=1, column=1, padx=8, pady=15, sticky='ew')
-
-                label_qtde = tkinter.Label(
-                    vender_janela, text="Qtde:", font="Consolas 10")
+                label_qtde = tkinter.Label(vender_janela, text="Qtde:", font="Consolas 10")
                 label_qtde.grid(row=2, column=0, padx=10, pady=15, sticky='ew')
-                textoQtde = tkinter.StringVar(value=1)  # Alterado para valor padrão de 1
+                textoQtde = tkinter.StringVar(value=1)
                 qtde = tkinter.Entry(vender_janela, textvariable=textoQtde)
                 qtde.grid(row=2, column=1, padx=8, pady=15, sticky='ew')
 
-                # Botão para aumentar a quantidade
+                def calcular_preco_total():
+                    nova_qtde = int(qtde.get()) 
+                    preco_total.config(text="R$ {:.2f}".format(produto[3] * nova_qtde))
+
                 def aumentar_quantidade():
                     nova_quantidade = int(textoQtde.get()) + 1
                     textoQtde.set(nova_quantidade)
@@ -184,19 +185,16 @@ def telaVenderProd():
                 label_preco_total = tkinter.Label(
                     vender_janela, text="Preço Total:", font="Consolas 10")
                 label_preco_total.grid(row=3, column=0, padx=10, pady=15, sticky='ew')
-                
+
                 preco_total = tkinter.Label(vender_janela, text="", font="Consolas 10 bold")
                 preco_total.grid(row=3, column=1, padx=8, pady=15, sticky='ew')
 
-                
-                def calcular_preco_total():
-                    nova_qtde = int(qtde.get())  # Alterado para converter para int
-                    preco_total.config(text="R$ {:.2f}".format(produto[3] * nova_qtde))
+                calcular_preco_total()
 
                 def salvar_venda():
-                    nova_qtde = int(qtde.get())  # Alterado para converter para int
+                    nova_qtde = int(qtde.get())
 
-                    if nova_qtde <= produto[2]:  # Verificar se há estoque suficiente
+                    if nova_qtde <= produto[2]:
                         
                         calcular_preco_total()
 
@@ -224,9 +222,6 @@ def telaVenderProd():
 
     botao_voltar = tkinter.Button(rootVender, text="Voltar", bg="#3D8EF0", fg="white", command=rootVender.destroy)
     botao_voltar.grid(row=3, column=0, padx=20, pady=10, sticky='ew')
-
-
-
 
 def telaAddProd():
 
