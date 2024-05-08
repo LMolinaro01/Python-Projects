@@ -32,7 +32,7 @@ def telaInicial():
     label1.grid(row=1, column=1, pady=10, padx=47)
 
     button_vender = tkinter.Button(telaInicio, text="Área de Vendas",
-                                   font="Consolas 10", bg="#6B58FF", fg="white", command= telaVendas)
+                                   font="Consolas 10", bg="#6B58FF", fg="white", command= telaFinanceiro)
     button_vender.grid(row=2, column=1, padx=20, pady=10, sticky='ew')
 
     button = tkinter.Button(telaInicio, text="Adicionar ao Estoque",
@@ -71,7 +71,7 @@ def telaInicial():
 
     telaInicio.mainloop()
 
-def telaVendas():
+def telaFinanceiro():
     global janelaVendas
     janelaVendas = tkinter.Toplevel()
     janelaVendas.resizable(False, False)
