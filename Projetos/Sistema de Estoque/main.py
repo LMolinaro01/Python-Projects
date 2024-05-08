@@ -140,6 +140,94 @@ def telaVenderProd():
     tv.tag_configure("baixo_estoque", foreground="#EB3324")
     tv.pack()
 
+    def venderProduto():
+        item_selecionado = tv.selection()
+        if item_selecionado:
+            item = tv.item(item_selecionado)
+            id_produto = item['values'][0]
+            produto = cursor.execute(
+                "SELECT * FROM Produtos WHERE iD=?", (id_produto,)).fetchone()
+            if produto:
+                vender_janela = tkinter.Toplevel()  # Alterado para Toplevel
+                vender_janela.title("Vender Produto")
+                vender_janela.resizable(False, False)
+                vender_janela.geometry("400x300")
+
+                label = tkinter.Label(
+                    vender_janela, text="Preencha os campos a seguir", font="Consolas 13 bold")
+                label.grid(row=0, column=1, pady=10, sticky='ew')
+
+                label_nome = tkinter.Label(
+                    vender_janela, text="Nome:", font="Consolas 10")
+                label_nome.grid(row=1, column=0, padx=10, pady=15, sticky='ew')
+                textoNome = tkinter.StringVar(value=produto[1])
+                nome = tkinter.Entry(vender_janela, textvariable=textoNome)
+                nome.grid(row=1, column=1, padx=8, pady=15, sticky='ew')
+
+                label_qtde = tkinter.Label(
+                    vender_janela, text="Qtde:", font="Consolas 10")
+                label_qtde.grid(row=2, column=0, padx=10, pady=15, sticky='ew')
+                textoQtde = tkinter.StringVar(value=1)  # Alterado para valor padrão de 1
+                qtde = tkinter.Entry(vender_janela, textvariable=textoQtde)
+                qtde.grid(row=2, column=1, padx=8, pady=15, sticky='ew')
+
+                # Botão para aumentar a quantidade
+                def aumentar_quantidade():
+                    nova_quantidade = int(textoQtde.get()) + 1
+                    textoQtde.set(nova_quantidade)
+                    calcular_preco_total()
+
+                botao_aumentar = tkinter.Button(
+                    vender_janela, text="+", bg="#6B58FF", fg="white", command=aumentar_quantidade)
+                botao_aumentar.grid(row=2, column=2, padx=5, pady=15, sticky='w')
+
+                label_preco_total = tkinter.Label(
+                    vender_janela, text="Preço Total:", font="Consolas 10")
+                label_preco_total.grid(row=3, column=0, padx=10, pady=15, sticky='ew')
+                
+                preco_total = tkinter.Label(vender_janela, text="", font="Consolas 10 bold")
+                preco_total.grid(row=3, column=1, padx=8, pady=15, sticky='ew')
+
+                
+                def calcular_preco_total():
+                    nova_qtde = int(qtde.get())  # Alterado para converter para int
+                    preco_total.config(text="R$ {:.2f}".format(produto[3] * nova_qtde))
+
+                def salvar_venda():
+                    nova_qtde = int(qtde.get())  # Alterado para converter para int
+
+                    if nova_qtde <= produto[2]:  # Verificar se há estoque suficiente
+                        
+                        calcular_preco_total()
+
+                        if mb.askyesno("Vender Produto", f"Deseja vender o Produto '{produto[1]}' por '{preco_total.cget('text')}'?"):
+                            cursor.execute("UPDATE Produtos SET qtde=qtde-? WHERE iD=?", (nova_qtde, id_produto))
+                            connection.commit()
+                            mb.showinfo("Sucesso", f"Venda realizada com sucesso! Preço total: {preco_total.cget('text')}")
+                            vender_janela.destroy()
+                            rootVender.destroy()
+                            telaInicio.destroy()
+                            telaInicial()
+                    else:
+                        mb.showerror("Erro", "Quantidade insuficiente em estoque.")
+
+                botao_salvar = tkinter.Button(
+                    vender_janela, text="Salvar", bg="#6B58FF", fg="white", command=salvar_venda)
+                botao_salvar.grid(row=4, column=1, padx=5, pady=10, sticky='ew')
+
+                botao_voltar = tkinter.Button(
+                    vender_janela, text="Voltar", bg="#3D8EF0", fg="white", command=vender_janela.destroy)
+                botao_voltar.grid(row=5, column=1, padx=20, pady=10, sticky='ew')
+                
+    botao_vender = tkinter.Button(rootVender, text="Vender Produto", bg="#6B58FF", fg="white", command=venderProduto)
+    botao_vender.grid(row=2, column=0, padx=10, pady=10, sticky="ew")
+
+    botao_voltar = tkinter.Button(rootVender, text="Voltar", bg="#3D8EF0", fg="white", command=rootVender.destroy)
+    botao_voltar.grid(row=3, column=0, padx=20, pady=10, sticky='ew')
+
+
+
+
 def telaAddProd():
 
     global janelaAdd
