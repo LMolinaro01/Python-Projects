@@ -38,12 +38,12 @@ def telaInicial():
                                    font="Consolas 10", bg="#6B58FF", fg="white", command= telaFinanceiro)
     button_vender.grid(row=2, column=1, padx=20, pady=10, sticky='ew')
 
-    button = tkinter.Button(telaInicio, text="Adicionar ao Estoque",
+    button = tkinter.Button(telaInicio, text="Adicionar Novo Produto",
                             font="Consolas 10", bg="#3D8EF0", fg="white", command=telaAddProd)
     button.grid(row=3, column=1, padx=20, pady=10, sticky='ew')
 
     botao_prova = tkinter.Button(
-        telaInicio, text="Editar Produto", font="Consolas 10", bg="#1CB9E4", fg="white", command=telaEditProd)
+        telaInicio, text="Editar Produtos", font="Consolas 10", bg="#1CB9E4", fg="white", command=telaEditProd)
     botao_prova.grid(row=4, column=1, padx=20, pady=10, sticky='ew')
 
     cursor.execute("SELECT COUNT(*) FROM Produtos WHERE qtde < 5")
@@ -75,6 +75,8 @@ def telaInicial():
     telaInicio.mainloop()
 
 def telaFinanceiro():
+    telaInicio.withdraw()
+
     global janelaVendas
     janelaVendas = tkinter.Toplevel()
     janelaVendas.resizable(False, False)
