@@ -12,7 +12,6 @@ cursor = connection.cursor()
 cursor.execute(
     "CREATE TABLE IF NOT EXISTS Produtos (iD INTEGER PRIMARY KEY, nome TEXT, qtde INTEGER, preco REAL)")
 
-
 def telaInicial():
     global telaInicio
     telaInicio = tkinter.Tk()
@@ -391,9 +390,7 @@ def telaEditProd():
                 item = tv.item(item_selecionado)
                 nome_produto = item['values'][1]
                 itens_para_deletar.append((item['values'][0], nome_produto))
-
-            #mostrar o nome dos produtos que serão deletados
-
+                
             if mb.askyesno("Deletar Produtos", f"""Deseja mesmo deletar os produtos selecionados?""", icon='warning'):
                 for id_produto, _ in itens_para_deletar:
                     cursor.execute(
