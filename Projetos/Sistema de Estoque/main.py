@@ -12,6 +12,9 @@ cursor = connection.cursor()
 cursor.execute(
     "CREATE TABLE IF NOT EXISTS Produtos (iD INTEGER PRIMARY KEY, nome TEXT, qtde INTEGER, preco REAL)")
 
+cursor.execute(
+    "CREATE TABLE IF NOT EXISTS Vendas (iD INTEGER PRIMARY KEY, nomeVenda TEXT, qtde INTEGER, precoTotal REAL)")
+
 
 def telaInicial():
     global telaInicio
@@ -92,7 +95,7 @@ def telaFinanceiro():
     botao_vender = tkinter.Button(janelaVendas, text="Realizar uma Venda", bg="#6B58FF", fg="white", command= telaVenderProd)
     botao_vender.grid(row=2, column=0, padx=10, pady=10, sticky='ew')
 
-    botao_consulta = tkinter.Button(janelaVendas, text="Consultar Vendas", bg="#3D8EF0", fg="white")
+    botao_consulta = tkinter.Button(janelaVendas, text="Consultar Vendas", bg="#3D8EF0", fg="white", command= exibirVendas)
     botao_consulta.grid(row=3, column=0, padx=10, pady=10, sticky='ew')
 
     botao_voltar = tkinter.Button(janelaVendas, text="Voltar para Tela Inicial", bg="#1CB9E4", fg="white", command=janelaVendas.destroy)
@@ -200,7 +203,13 @@ def telaVenderProd():
 
                         if mb.askyesno("Vender Produto", f"Deseja vender o Produto '{produto[1]}' por '{preco_total.cget('text')}'?"):
                             cursor.execute("UPDATE Produtos SET qtde=qtde-? WHERE iD=?", (nova_qtde, id_produto))
+
+                            cursor.execute("INSERT INTO Vendas (nomeVenda, qtde, precoTotal) VALUES (?, ?, ?)", (produto[1], qtde.get(),  preco_total.cget('text')),)
+
+
                             connection.commit()
+
+
                             mb.showinfo("Sucesso", f"Venda realizada com sucesso! Preço total: {preco_total.cget('text')}")
                             vender_janela.destroy()
                             rootVender.destroy()
@@ -222,6 +231,40 @@ def telaVenderProd():
 
     botao_voltar = tkinter.Button(rootVender, text="Voltar", bg="#3D8EF0", fg="white", command=rootVender.destroy)
     botao_voltar.grid(row=3, column=0, padx=20, pady=10, sticky='ew')
+
+def exibirVendas():
+    rootConsulta = tkinter.Tk()
+    rootConsulta.resizable(False, False)
+    rootConsulta.title("Vendas")
+    rootConsulta.geometry("442x400")
+
+    label = tkinter.Label(
+        rootConsulta, text="Histórico de Vendas", font="Consolas 13 bold")
+    label.grid(row=0, column=0, pady=10, sticky='ew')
+
+    cursor.execute("SELECT * FROM Vendas") 
+    vendas_data = cursor.fetchall()
+
+    tabela = tkinter.Frame(rootConsulta)
+    tabela.grid(row=1, column=0, padx=10, pady=10)
+
+    tv = tkinter.ttk.Treeview(tabela, columns=(
+        'ID', 'Nome', 'Quantidade', 'Preço Total'), show='headings')
+    tv.heading("ID", text='ID')
+    tv.column("ID", width=50)
+    tv.heading('Nome', text='Nome do Produto')
+    tv.heading('Quantidade', text='Qtde')
+    tv.column("Quantidade", width=50)
+    tv.heading('Preço Total', text='Preço Total')
+    tv.column("Preço Total", width=120)
+
+    for venda in vendas_data:
+        tv.insert('', 'end', values=venda)
+
+    tv.pack()
+    botao_fechar = tkinter.Button(
+        rootConsulta, text="Voltar", bg="#6B58FF", fg="white", command=rootConsulta.destroy)
+    botao_fechar.grid(row=2, column=0, padx=10, pady=10, sticky="ew")
 
 def telaAddProd():
 
@@ -260,6 +303,26 @@ def telaAddProd():
     botao_voltar = tkinter.Button(janelaAdd, text="Voltar para Tela Inicial", bg="#3D8EF0", fg="white", command=lambda: [
                                   janelaAdd.destroy(), telaInicio.destroy(), telaInicial()])
     botao_voltar.grid(row=5, column=1, padx=100, pady=10, sticky='ew')
+
+    def addProd(nome, qtde, preco):
+        janelaAdd.destroy()
+
+        try:
+            qtde = int(qtde)
+            preco = float(preco.replace(',', '.').replace('R$', ''))
+            cursor.execute(
+                "INSERT INTO Produtos (nome, qtde, preco) VALUES (?, ?, ?)", (nome, qtde, preco))
+            connection.commit()
+        except ValueError:
+            mb.showerror(
+                "Erro", "Por favor, insira uma quantidade e preço válidos.")
+            return
+
+        mb.showinfo(
+            "Sucesso", f"'{nome}'({qtde}) Adicionado ao Estoque .")
+
+        if mb.askyesno("Adicionar outro produto", "Deseja adicionar outro produto?"):
+            telaAddProd()
 
 def telaEditProd():
 
@@ -416,28 +479,6 @@ def telaEditProd():
         rootEdit, text="Voltar", bg="#1CB9E4", fg="white", command= rootEdit.destroy)
     botao_fechar.grid(row=4, column=0, padx=50, pady=10, sticky="ew")
 
-
-def addProd(nome, qtde, preco):
-    janelaAdd.destroy()
-
-    try:
-        qtde = int(qtde)
-        preco = float(preco.replace(',', '.').replace('R$', ''))
-        cursor.execute(
-            "INSERT INTO Produtos (nome, qtde, preco) VALUES (?, ?, ?)", (nome, qtde, preco))
-        connection.commit()
-    except ValueError:
-        mb.showerror(
-            "Erro", "Por favor, insira uma quantidade e preço válidos.")
-        return
-
-    mb.showinfo(
-        "Sucesso", f"'{nome}'({qtde}) Adicionado ao Estoque .")
-
-    if mb.askyesno("Adicionar outro produto", "Deseja adicionar outro produto?"):
-        telaAddProd()
-
-
 def selectProd():
     rootSelect = tkinter.Tk()
     rootSelect.resizable(False, False)
@@ -483,5 +524,6 @@ def selectProd():
         rootSelect, text="Voltar", bg="#6B58FF", fg="white", command=rootSelect.destroy)
     botao_fechar.grid(row=2, column=0, padx=10, pady=10, sticky="ew")
 
-
 telaInicial()
+cursor.execute("SELECT * FROM Vendas")
+connection.commit()
