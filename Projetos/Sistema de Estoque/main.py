@@ -105,11 +105,13 @@ def telaFinanceiro():
     botao_consulta.grid(row=3, column=0, padx=10, pady=10, sticky='ew')
 
     botao_voltar = tkinter.Button(janelaVendas, text="Voltar para Tela Inicial",
-                                  bg="#1CB9E4", fg="white", command=janelaVendas.destroy)
+                                  bg="#1CB9E4", fg="white", command=lambda: [janelaVendas.destroy(), telaInicio.deiconify()])
     botao_voltar.grid(row=4, column=0, padx=100, pady=10, sticky='ew')
 
 
 def telaVenderProd():
+    janelaVendas.withdraw()
+
     rootVender = tkinter.Tk()
     rootVender.resizable(False, False)
     rootVender.title("Vender Produto")
@@ -250,7 +252,7 @@ def telaVenderProd():
     botao_vender.grid(row=2, column=0, padx=10, pady=10, sticky="ew")
 
     botao_voltar = tkinter.Button(
-        rootVender, text="Voltar", bg="#3D8EF0", fg="white", command=rootVender.destroy)
+        rootVender, text="Voltar", bg="#3D8EF0", fg="white", command=lambda: [rootVender.destroy(), janelaVendas.deiconify()])
     botao_voltar.grid(row=3, column=0, padx=20, pady=10, sticky='ew')
 
 
