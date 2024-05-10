@@ -4,6 +4,7 @@ from tkinter import *
 from tkinter import Tk, font
 from tkinter import ttk
 from time import strftime
+import datetime
 from tkinter import messagebox as mb
 from PIL import Image, ImageTk
 
@@ -13,7 +14,7 @@ cursor.execute(
     "CREATE TABLE IF NOT EXISTS Produtos (iD INTEGER PRIMARY KEY, nome TEXT, qtde INTEGER, preco REAL)")
 
 cursor.execute(
-    "CREATE TABLE IF NOT EXISTS Vendas (iD INTEGER PRIMARY KEY, nomeVenda TEXT, qtde INTEGER, precoTotal REAL)")
+    "CREATE TABLE IF NOT EXISTS Vendas (iD INTEGER PRIMARY KEY, nomeVenda TEXT, qtde INTEGER, precoTotal REAL, data TEXT)")
 
 
 def telaInicial():
@@ -22,6 +23,7 @@ def telaInicial():
     telaInicio.title("Inicio")
     telaInicio.resizable(False, False)
     telaInicio.focus_force()
+    
     label = tkinter.Label(
         telaInicio, text="Bem vindo ao Sistema de Estoque!", font="Consolas 13 bold")
     label.grid(row=0, column=1, pady=10, sticky='ew')
@@ -83,7 +85,7 @@ def telaFinanceiro():
     janelaVendas.resizable(False, False)
     janelaVendas.geometry("324x420")
     janelaVendas.title("Área de Vendas")
-
+    
     label = tkinter.Label(
         janelaVendas, text="Área Financeira", font="Consolas 13 bold")
     label.grid(row=0, column=0, pady=10, sticky='ew')
@@ -214,6 +216,10 @@ def telaVenderProd():
                 def salvar_venda():
                     nova_qtde = int(qtde.get())
 
+                    data_atual = datetime.datetime.now()
+
+                    data_formatada = data_atual.strftime('%H:%M:%S, %d-%m-%Y')
+
                     if nova_qtde <= produto[2]:
 
                         calcular_preco_total()
@@ -222,8 +228,8 @@ def telaVenderProd():
                             cursor.execute(
                                 "UPDATE Produtos SET qtde=qtde-? WHERE iD=?", (nova_qtde, id_produto))
 
-                            cursor.execute("INSERT INTO Vendas (nomeVenda, qtde, precoTotal) VALUES (?, ?, ?)", (
-                                produto[1], qtde.get(),  preco_total.cget('text')),)
+                            cursor.execute("INSERT INTO Vendas (nomeVenda, qtde, precoTotal, data) VALUES (?, ?, ?, ?)", (
+                produto[1], nova_qtde, preco_total.cget('text'), data_formatada))
 
                             connection.commit()
 
@@ -255,12 +261,11 @@ def telaVenderProd():
         rootVender, text="Voltar", bg="#3D8EF0", fg="white", command=lambda: [rootVender.destroy(), janelaVendas.deiconify()])
     botao_voltar.grid(row=3, column=0, padx=20, pady=10, sticky='ew')
 
-
 def exibirVendas():
     rootConsulta = tkinter.Tk()
     rootConsulta.resizable(False, False)
     rootConsulta.title("Vendas")
-    rootConsulta.geometry("442x400")
+    rootConsulta.geometry("562x400")
 
     label = tkinter.Label(
         rootConsulta, text="Histórico de Vendas", font="Consolas 13 bold")
@@ -273,7 +278,7 @@ def exibirVendas():
     tabela.grid(row=1, column=0, padx=10, pady=10)
 
     tv = tkinter.ttk.Treeview(tabela, columns=(
-        'ID', 'Nome', 'Quantidade', 'Preço Total'), show='headings')
+        'ID', 'Nome', 'Quantidade', 'Preço Total', 'Data'), show='headings')
     tv.heading("ID", text='ID')
     tv.column("ID", width=50)
     tv.heading('Nome', text='Nome do Produto')
@@ -281,6 +286,8 @@ def exibirVendas():
     tv.column("Quantidade", width=50)
     tv.heading('Preço Total', text='Preço Total')
     tv.column("Preço Total", width=120)
+    tv.heading('Data', text='Data')
+    tv.column("Data", width=120)
 
     for venda in vendas_data:
         tv.insert('', 'end', values=venda)
@@ -290,14 +297,15 @@ def exibirVendas():
         rootConsulta, text="Voltar", bg="#6B58FF", fg="white", command=rootConsulta.destroy)
     botao_fechar.grid(row=2, column=0, padx=10, pady=10, sticky="ew")
 
-
 def telaAddProd():
-
     global janelaAdd
+
     janelaAdd = tkinter.Tk()
     janelaAdd.resizable(False, False)
     janelaAdd.geometry("435x320")
     janelaAdd.title("Cadastro de Produtos")
+    
+    centralizar_janela(janelaAdd)
 
     label = tkinter.Label(
         janelaAdd, text="Preencha os campos a seguir", font="Consolas 13 bold")
@@ -341,6 +349,7 @@ def telaAddProd():
         except ValueError:
             mb.showerror(
                 "Erro", "Por favor, insira uma quantidade e preço válidos.")
+            telaAddProd()
             return
 
         mb.showinfo(
@@ -408,6 +417,8 @@ def telaEditProd():
                 editar_janela.title("Editar Produto")
                 editar_janela.resizable(False, False)
                 editar_janela.geometry("360x300")
+
+                centralizar_janela(editar_janela)
 
                 label = tkinter.Label(
                     editar_janela, text="Preencha os campos a seguir", font="Consolas 13 bold")
@@ -549,6 +560,17 @@ def selectProd():
         rootSelect, text="Voltar", bg="#6B58FF", fg="white", command=rootSelect.destroy)
     botao_fechar.grid(row=2, column=0, padx=10, pady=10, sticky="ew")
 
+def centralizar_janela(janela):
+    largura_janela = janela.winfo_reqwidth()
+    altura_janela = janela.winfo_reqheight()
+
+    largura_tela = janela.winfo_screenwidth()
+    altura_tela = janela.winfo_screenheight()
+
+    posicao_x = (largura_tela // 2) - (largura_janela // 2)
+    posicao_y = (altura_tela // 2) - (altura_janela // 2)
+
+    janela.geometry(f"+{posicao_x}+{posicao_y}")
 
 telaInicial()
 cursor.execute("SELECT * FROM Vendas")
