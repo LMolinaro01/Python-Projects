@@ -4,6 +4,7 @@ from tkinter import *
 from tkinter import Tk, font
 from tkinter import ttk
 from time import strftime
+import datetime
 from tkinter import messagebox as mb
 from PIL import Image, ImageTk
 
@@ -13,7 +14,7 @@ cursor.execute(
     "CREATE TABLE IF NOT EXISTS Produtos (iD INTEGER PRIMARY KEY, nome TEXT, qtde INTEGER, preco REAL)")
 
 cursor.execute(
-    "CREATE TABLE IF NOT EXISTS Vendas (iD INTEGER PRIMARY KEY, nomeVenda TEXT, qtde INTEGER, precoTotal REAL)")
+    "CREATE TABLE IF NOT EXISTS Vendas (iD INTEGER PRIMARY KEY, nomeVenda TEXT, qtde INTEGER, precoTotal REAL, data TEXT)")
 
 
 def telaInicial():
@@ -214,6 +215,10 @@ def telaVenderProd():
                 def salvar_venda():
                     nova_qtde = int(qtde.get())
 
+                    data_atual = datetime.datetime.now()
+
+                    data_formatada = data_atual.strftime('%Y-%m-%d %H:%M:%S')
+
                     if nova_qtde <= produto[2]:
 
                         calcular_preco_total()
@@ -222,8 +227,8 @@ def telaVenderProd():
                             cursor.execute(
                                 "UPDATE Produtos SET qtde=qtde-? WHERE iD=?", (nova_qtde, id_produto))
 
-                            cursor.execute("INSERT INTO Vendas (nomeVenda, qtde, precoTotal) VALUES (?, ?, ?)", (
-                                produto[1], qtde.get(),  preco_total.cget('text')),)
+                            cursor.execute("INSERT INTO Vendas (nomeVenda, qtde, precoTotal, data) VALUES (?, ?, ?, ?)", (
+                produto[1], nova_qtde, preco_total.cget('text'), data_formatada))
 
                             connection.commit()
 
@@ -260,7 +265,7 @@ def exibirVendas():
     rootConsulta = tkinter.Tk()
     rootConsulta.resizable(False, False)
     rootConsulta.title("Vendas")
-    rootConsulta.geometry("442x400")
+    rootConsulta.geometry("562x400")
 
     label = tkinter.Label(
         rootConsulta, text="Histórico de Vendas", font="Consolas 13 bold")
@@ -273,7 +278,7 @@ def exibirVendas():
     tabela.grid(row=1, column=0, padx=10, pady=10)
 
     tv = tkinter.ttk.Treeview(tabela, columns=(
-        'ID', 'Nome', 'Quantidade', 'Preço Total'), show='headings')
+        'ID', 'Nome', 'Quantidade', 'Preço Total', 'Data'), show='headings')
     tv.heading("ID", text='ID')
     tv.column("ID", width=50)
     tv.heading('Nome', text='Nome do Produto')
@@ -281,6 +286,8 @@ def exibirVendas():
     tv.column("Quantidade", width=50)
     tv.heading('Preço Total', text='Preço Total')
     tv.column("Preço Total", width=120)
+    tv.heading('Data', text='Data')
+    tv.column("Data", width=120)
 
     for venda in vendas_data:
         tv.insert('', 'end', values=venda)
