@@ -217,7 +217,7 @@ def telaVenderProd():
 
                     data_atual = datetime.datetime.now()
 
-                    data_formatada = data_atual.strftime('%Y-%m-%d %H:%M:%S')
+                    data_formatada = data_atual.strftime('%H:%M:%S, %d-%m-%Y')
 
                     if nova_qtde <= produto[2]:
 
