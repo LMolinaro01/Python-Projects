@@ -23,6 +23,7 @@ def telaInicial():
     telaInicio.title("Inicio")
     telaInicio.resizable(False, False)
     telaInicio.focus_force()
+    
     label = tkinter.Label(
         telaInicio, text="Bem vindo ao Sistema de Estoque!", font="Consolas 13 bold")
     label.grid(row=0, column=1, pady=10, sticky='ew')
@@ -84,7 +85,7 @@ def telaFinanceiro():
     janelaVendas.resizable(False, False)
     janelaVendas.geometry("324x420")
     janelaVendas.title("Área de Vendas")
-
+    
     label = tkinter.Label(
         janelaVendas, text="Área Financeira", font="Consolas 13 bold")
     label.grid(row=0, column=0, pady=10, sticky='ew')
@@ -260,7 +261,6 @@ def telaVenderProd():
         rootVender, text="Voltar", bg="#3D8EF0", fg="white", command=lambda: [rootVender.destroy(), janelaVendas.deiconify()])
     botao_voltar.grid(row=3, column=0, padx=20, pady=10, sticky='ew')
 
-
 def exibirVendas():
     rootConsulta = tkinter.Tk()
     rootConsulta.resizable(False, False)
@@ -297,14 +297,15 @@ def exibirVendas():
         rootConsulta, text="Voltar", bg="#6B58FF", fg="white", command=rootConsulta.destroy)
     botao_fechar.grid(row=2, column=0, padx=10, pady=10, sticky="ew")
 
-
 def telaAddProd():
-
     global janelaAdd
+
     janelaAdd = tkinter.Tk()
     janelaAdd.resizable(False, False)
     janelaAdd.geometry("435x320")
     janelaAdd.title("Cadastro de Produtos")
+    
+    centralizar_janela(janelaAdd)
 
     label = tkinter.Label(
         janelaAdd, text="Preencha os campos a seguir", font="Consolas 13 bold")
@@ -348,6 +349,7 @@ def telaAddProd():
         except ValueError:
             mb.showerror(
                 "Erro", "Por favor, insira uma quantidade e preço válidos.")
+            telaAddProd()
             return
 
         mb.showinfo(
@@ -415,6 +417,8 @@ def telaEditProd():
                 editar_janela.title("Editar Produto")
                 editar_janela.resizable(False, False)
                 editar_janela.geometry("360x300")
+
+                centralizar_janela(editar_janela)
 
                 label = tkinter.Label(
                     editar_janela, text="Preencha os campos a seguir", font="Consolas 13 bold")
@@ -556,6 +560,17 @@ def selectProd():
         rootSelect, text="Voltar", bg="#6B58FF", fg="white", command=rootSelect.destroy)
     botao_fechar.grid(row=2, column=0, padx=10, pady=10, sticky="ew")
 
+def centralizar_janela(janela):
+    largura_janela = janela.winfo_reqwidth()
+    altura_janela = janela.winfo_reqheight()
+
+    largura_tela = janela.winfo_screenwidth()
+    altura_tela = janela.winfo_screenheight()
+
+    posicao_x = (largura_tela // 2) - (largura_janela // 2)
+    posicao_y = (altura_tela // 2) - (altura_janela // 2)
+
+    janela.geometry(f"+{posicao_x}+{posicao_y}")
 
 telaInicial()
 cursor.execute("SELECT * FROM Vendas")
