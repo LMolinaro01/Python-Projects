@@ -45,7 +45,7 @@ Controle de estoque e venda desenvolvido em Python utilizando as bibliotecas Tki
   
 <p align="center">
   <a href="https://www.youtube.com/watch?v=2irwlujDGsA" target = "_blank">
-    <img src="https://img.youtube.com/vi/2irwlujDGsA/0.jpg" alt="Video no Youtube">
+    <img src="https://github.com/LMolinaro01/Projetos-e-Exercicios-em-Python/assets/126402616/43966a60-b0f7-42aa-9a4a-ab3ca139baf7", width= 720px>
   </a>
 </p>
 
