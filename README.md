@@ -1,7 +1,7 @@
 <h1 align = "center"> Projetos em Python </h1>
 
 * [Simulador de Avaliações (Outro Repositório)](https://github.com/LMolinaro01/Simulador-de-Avaliacoes-em-Python/tree/main)
-* [Sistema de Controle de Estoque](#Sistema-de-Estoque)
+* [Sistema de Venda e Controle de Estoque](#Sistema-de-Estoque)
 
 ## Sistema de Estoque e Venda (Interface Visual, Banco de Dados, CRUD, Relógio em Tempo Real) <a name="Sistema-de-Estoque"></a>
 
