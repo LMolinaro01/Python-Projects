@@ -3,7 +3,7 @@
 * [Simulador de Avaliações (Outro Repositório)](https://github.com/LMolinaro01/Simulador-de-Avaliacoes-em-Python/tree/main)
 * [Sistema de Venda e Controle de Estoque](#Sistema-de-Estoque)
 
-## Sistema de Estoque e Venda (Interface Visual, Banco de Dados, CRUD, Relógio em Tempo Real) <a name="Sistema-de-Estoque"></a>
+# Sistema de Venda e Controle de Estoque <a name="Sistema-de-Estoque"></a>
 
 Controle de estoque e venda desenvolvido em Python utilizando as bibliotecas Tkinter para a interface gráfica, SQLite para o armazenamento de dados, Datetime para registro das vendas (horário da venda), Time para um relógio funcional e Pillow (PIL) para a inserção de Imagens.
 
@@ -34,6 +34,43 @@ Controle de estoque e venda desenvolvido em Python utilizando as bibliotecas Tki
 - SQLite (para o armazenamento e gerenciamento dos dados do estoque)
 - Pillow (PIL) (para manipulação de imagens)
 - Time e Datetime (Registro de horário e Relógio funcional)
+
+---
+
+# Simulador de Avaliações em Python
+
+- Este projeto teve sua origem e grande parte de seu desenvolvimento concebidos em um repositório anterior, de minha autoria, intitulado [Exercicios e Projetos em Python](https://github.com/LMolinaro01/Exercicios-e-Projetos-em-Python). O histórico de commits permanecem registrada neste repositório precursor, fornecendo um contexto para o desenvolvimento subsequente. Portanto, os marcos iniciais e a essência fundacional do projeto residem nesse repositório anterior, refletindo o processo criativo e a evolução do conceito até sua atual forma refinada. Entretanto, também está disponível em um repositório próprio intitulado [Sistema de Avaliações em Python](https://github.com/LMolinaro01/Simulador-de-Avaliacoes-em-Python)
+
+## Execução do Programa:
+  
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=2irwlujDGsA" target = "_blank">
+    <img src="https://img.youtube.com/vi/2irwlujDGsA/0.jpg" alt="Video no Youtube">
+  </a>
+</p>
+
+---
+
+O código fonte em Python representa um sistema que simula avaliações, oferecendo uma gama de funcionalidades essenciais para uma experiência de usuário completa e segura. Vou detalhar suas principais características e destacar suas medidas de segurança e validação:
+
+1. **Banco de Dados SQLite com Prevenção contra SQL Injection**: Utilizando um banco de dados SQLite3, o programa armazena localmente informações, como dados dos alunos, senhas, questões da prova e pontuações. Além disso, implementa medidas eficazes para prevenir ataques de [*SQL Injection*](#sqlinjection), garantindo a integridade dos dados.
+
+2. **Interface Gráfica com Tkinter**: Desenvolvido com [Tkinter](#tkinter), o programa oferece uma interface gráfica intuitiva e agradável, facilitando a interação do usuário em todas as etapas do processo, desde o cadastro até a visualização das pontuações.
+
+3. **Cadastro Seguro com Validações**: A função de cadastro foi projetada com validações abrangentes para garantir a integridade dos dados. Além de evitar campos vazios, o sistema realiza verificações minuciosas para detectar e prevenir a inserção de caracteres especiais, protegendo contra possíveis vulnerabilidades como injeção de SQL.
+
+4. **Cálculo Automático de Pontuações**: Após a conclusão da prova, o programa realiza o cálculo automático da pontuação do aluno, baseando-se nas respostas fornecidas de forma precisa e confiável.
+
+5. **Exibição de Respostas e Gabaritos**: A exibição das respostas corretas e do gabarito é feita de maneira segura, garantindo que apenas os alunos autorizados tenham acesso a essas informações após a conclusão da prova. Além disso, há um passo a passo de como solucionar cada questão.
+
+6. **Manipulação de Imagens com PIL**: Para uma experiência visual aprimorada, o programa utiliza a biblioteca [PIL](#pil) para manipular e exibir imagens, como o logo da instituição, garantindo uma apresentação visual atraente e profissional.
+
+7. **Cadastro de Questões**: O código possui uma função que permite adicionar questões ao banco de dados.
+
+
+Em resumo, este código implementa um sistema completo de simulador de avaliações, desde o cadastro de alunos até a realização e correção de provas, utilizando uma interface gráfica simples e agradável.
+
+---
 
 <h1 align = "center">Exercícios em Python</h1>
 
