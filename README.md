@@ -3,15 +3,15 @@
 * [Simulador de Avaliações (Outro Repositório)](https://github.com/LMolinaro01/Simulador-de-Avaliacoes-em-Python/tree/main)
 * [Sistema de Controle de Estoque](#Sistema-de-Estoque)
 
-## Sistema de Estoque (Interface Visual, Banco de Dados, CRUD) <a name="Sistema-de-Estoque"></a>
+## Sistema de Estoque e Venda (Interface Visual, Banco de Dados, CRUD, Relógio em Tempo Real) <a name="Sistema-de-Estoque"></a>
 
-Controle de estoque desenvolvido em Python utilizando as bibliotecas Tkinter para a interface gráfica, SQLite para o armazenamento de dados e Pillow (PIL) para a inserção de Imagens.
+Controle de estoque e venda desenvolvido em Python utilizando as bibliotecas Tkinter para a interface gráfica, SQLite para o armazenamento de dados, Datetime para registro das vendas (horário da venda), Time para um relógio funcional e Pillow (PIL) para a inserção de Imagens.
 
 ## Execução do Programa:
   
 <p align="center">
   <a href="https://www.youtube.com/watch?v=ms-sq4UMDFw" target = "_blank">
-    <img src="https://github.com/LMolinaro01/Projetos-e-Exercicios-em-Python/assets/126402616/82bc751d-fdeb-4157-8e97-97b8c87e1030">
+    <img src="https://github.com/LMolinaro01/Projetos-e-Exercicios-em-Python/assets/126402616/a790994d-d796-422b-97f4-d078cfa32335">
   </a>
 </p>
 
@@ -24,6 +24,8 @@ Controle de estoque desenvolvido em Python utilizando as bibliotecas Tkinter par
 - Visualizar o estoque atual.
 - Alertas de estoque baixo.
 - Interface gráfica intuitiva para os funcionários das lojas.
+- Venda de Produtos
+- Consulta de vendas (com o horário da venda)
 
 ### Tecnologias Utilizadas:
 
@@ -31,7 +33,7 @@ Controle de estoque desenvolvido em Python utilizando as bibliotecas Tkinter par
 - Tkinter (para a interface gráfica)
 - SQLite (para o armazenamento e gerenciamento dos dados do estoque)
 - Pillow (PIL) (para manipulação de imagens)
-
+- Time e Datetime (Registro de horário e Relógio funcional)
 
 <h1 align = "center">Exercícios em Python</h1>
 
