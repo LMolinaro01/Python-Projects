@@ -6,9 +6,16 @@
 ## Sistema de Estoque (Interface Visual, Banco de Dados, CRUD) <a name="Sistema-de-Estoque"></a>
 
 Controle de estoque desenvolvido em Python utilizando as bibliotecas Tkinter para a interface gráfica, SQLite para o armazenamento de dados e Pillow (PIL) para a inserção de Imagens.
+
+## Execução do Programa:
+  
 <p align="center">
-    <img src="https://github.com/LMolinaro01/Projetos-e-Exercicios-em-Python/assets/126402616/ef97f8b5-85d2-41b8-99c2-39727633158e">
+  <a href="https://www.youtube.com/watch?v=ms-sq4UMDFw" target = "_blank">
+    <img src="https://github.com/LMolinaro01/Projetos-e-Exercicios-em-Python/assets/126402616/82bc751d-fdeb-4157-8e97-97b8c87e1030">
+  </a>
 </p>
+
+---
 
 ### Funcionalidades Principais:
 
