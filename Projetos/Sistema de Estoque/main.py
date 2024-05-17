@@ -24,8 +24,13 @@ def telaInicial():
     telaInicio.resizable(False, False)
     telaInicio.focus_force()
     
+    bg = PhotoImage(file = "Projetos\Sistema de Estoque\wallpaper.png") 
+    label1 = Label(telaInicio, image = bg) 
+    label1.place(x = 0,y = 0) 
+
+
     label = tkinter.Label(
-        telaInicio, text="Bem vindo ao Sistema de Estoque!", font="Consolas 13 bold")
+        telaInicio, text="Bem vindo ao Sistema de Estoque!", font="Consolas 13 bold", bg="#FFFFFF")
     label.grid(row=0, column=1, pady=10, sticky='ew')
 
     image1 = Image.open("Projetos\Sistema de Estoque\logo.png")
@@ -69,7 +74,7 @@ def telaInicial():
 
     def atualizar_hora():
         hora_atual = strftime("%H:%M:%S")
-        label_hora.config(text=hora_atual)
+        label_hora.config(text=hora_atual , bg="#FFFFFF")
         telaInicio.after(1000, atualizar_hora)
 
     atualizar_hora()
@@ -83,7 +88,7 @@ def telaFinanceiro():
     global janelaVendas
     janelaVendas = tkinter.Toplevel()
     janelaVendas.resizable(False, False)
-    janelaVendas.geometry("324x420")
+    janelaVendas.geometry("325x520")
     janelaVendas.title("Área de Vendas")
     
     label = tkinter.Label(
@@ -91,7 +96,7 @@ def telaFinanceiro():
     label.grid(row=0, column=0, pady=10, sticky='ew')
 
     imagem = Image.open("Projetos\Sistema de Estoque\logo2.png")
-    width, height = 200, 200
+    width, height = 400, 300
     imagem.thumbnail((width, height))
     imagem = ImageTk.PhotoImage(imagem)
     label_imagem = tkinter.Label(janelaVendas, image=imagem)
