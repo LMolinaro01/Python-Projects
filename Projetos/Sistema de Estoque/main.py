@@ -34,7 +34,7 @@ def telaInicial():
     label.grid(row=0, column=1, pady=10, sticky='ew')
 
     image1 = Image.open("Projetos\Sistema de Estoque\logo.png")
-    width, height = 200, 200
+    width, height = 400, 300
     image1.thumbnail((width, height))
     test = ImageTk.PhotoImage(image1)
     label1 = tkinter.Label(telaInicio, image=test)
