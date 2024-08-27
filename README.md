@@ -3,6 +3,7 @@
 * [Sistema de Venda e Controle de Estoque](#Sistema-de-Estoque)
 * [Simulador de Avaliações (Outro Repositório)](https://github.com/LMolinaro01/Simulador-de-Avaliacoes-em-Python/tree/main)
 * [Gerador de Polígonos (Outro Repositório)](https://github.com/LMolinaro01/Gerador-de-Poligonos)
+* [Youtube Downloader (Outro Repositório)](https://github.com/LMolinaro01/Youtube-Downloader)
 
 # Sistema de Venda e Controle de Estoque <a name="Sistema-de-Estoque"></a>
 
