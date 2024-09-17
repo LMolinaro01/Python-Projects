@@ -85,6 +85,12 @@ Em resumo, este código implementa um sistema completo de simulador de avaliaç�
 
 ---
 
+## **Contato**
+
+Se você tiver dúvidas ou precisar de mais informações, sinta-se a vontade para entrar em [Contato](https://linktr.ee/leomolinarodev01)!
+
+---
+
 <h1 align = "center">Exercícios em Python</h1>
 
 * [Biblioteca de Filmes](#biblioteca-de-filmes)
