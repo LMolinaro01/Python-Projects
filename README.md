@@ -1,10 +1,10 @@
 <h1 align = "center"> Projetos em Python </h1>
 
 * [Sistema de Venda e Controle de Estoque](#Sistema-de-Estoque)
-* [Simulador de Avaliações (Outro Repositório)](https://github.com/LMolinaro01/Simulador-de-Avaliacoes-em-Python/tree/main)
-* [Gerador de Polígonos (Outro Repositório)](https://github.com/LMolinaro01/Gerador-de-Poligonos)
-* [Youtube Downloader (Outro Repositório)](https://github.com/LMolinaro01/Youtube-Downloader)
-* [Snap Link (Outro Repositório)](https://github.com/LMolinaro01/SnapLink)
+* [Simulador de Avaliações)](https://github.com/LMolinaro01/Simulador-de-Avaliacoes-em-Python/tree/main)
+* [Gerador de Polígonos](https://github.com/LMolinaro01/Gerador-de-Poligonos)
+* [Youtube Downloader](https://github.com/LMolinaro01/Youtube-Downloader)
+* [Snap Link](https://github.com/LMolinaro01/SnapLink)
 
 # Sistema de Venda e Controle de Estoque <a name="Sistema-de-Estoque"></a>
 
