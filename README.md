@@ -1,7 +1,7 @@
 <h1 align = "center"> Projetos em Python </h1>
 
 * [Youtube Downloader](https://github.com/LMolinaro01/Youtube-Downloader)
-* [Snap Link (Security Cam](https://github.com/LMolinaro01/SnapLink)
+* [Snap Link (Security Cam)](https://github.com/LMolinaro01/SnapLink)
 * [Sistema de Venda e Controle de Estoque](#Sistema-de-Estoque)
 * [Simulador de Avaliações](https://github.com/LMolinaro01/Simulador-de-Avaliacoes-em-Python/tree/main)
 * [Gerador de Polígonos](https://github.com/LMolinaro01/Gerador-de-Poligonos)
