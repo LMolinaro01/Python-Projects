@@ -7,6 +7,8 @@
 
 import re
 
+#3 regex: 1 para data, um para valor e endereço
+
 # String contendo os dados das duas pessoas
 dados = """
 Nome: pedro dos santos             Data nascimento: 01/01/2000
