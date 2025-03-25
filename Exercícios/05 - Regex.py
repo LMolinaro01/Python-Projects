@@ -1,3 +1,9 @@
+#Regex:
+
+#Procurar alguma coisa
+#Definir a qtde de alguma coisa
+#Agrupar alguma coisa
+
 
 import re
 
