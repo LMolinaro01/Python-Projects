@@ -41,6 +41,9 @@ print("Datas de Nascimento:", datas_nascimento)
 enderecos = re.findall(r'Endereço: ([^\n]+)', dados)
 print("Endereços:", enderecos)
 
+#alternativa melhor: (?=Endereço:\s*(.+))
+#(.+) Captura qualquer sequência de caracteres após "Endereço:", garantindo que todo o endereço seja extraído.
+
 # Exibir os salários
 salarios = re.findall(r'Valor dos serviços: R\$ (\d{1,3}(?:[.,]\d{3})*(?:[.,]\d{2}))', dados)
 print("Salários:", salarios)
