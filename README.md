@@ -639,24 +639,36 @@ print("Salários:", salarios)
 
 #### Comandos para Procurar Algo:
 
-* a -> Procura a Letra A
-* . -> Procura qualquer coisa (menos pular linha)
-* \d -> Procura um digito (\D procura o que não for um digito)
-* \w -> alfanumérico (\W não alfanumérico)
-* [abc] -> Procura A, B ou C
-* \n -> Pular linha
-  
+* a -> Procura a Letra A  
+* . -> Procura qualquer coisa (menos pular linha)  
+* \d -> Procura um dígito (\D procura o que não for um dígito)  
+* \w -> Alfanumérico (\W não alfanumérico)  
+* [abc] -> Procura A, B ou C  
+* \n -> Pular linha  
+* \s -> Procura espaços (\S procura o que não for espaço)  
+* [^abc] -> Procura qualquer caractere **exceto** A, B ou C  
+* \b -> Delimita uma borda de palavra  
+* ^ -> Indica o início da linha  
+* $ -> Indica o final da linha  
+
 #### Comandos para Determinar a Quantidade:
 
-* "+" -> Pega o Máximo possível (1 a infinito)
-* "*" -> Pega o Máximo (zero a infinito)
-* {n} -> Pega N coisas
-* | -> Comando OU
+* "+" -> Pega o Máximo possível (1 a infinito)  
+* "*" -> Pega o Máximo (zero a infinito)  
+* "?" -> Pega **zero ou um** (torna algo opcional)  
+* {n} -> Pega N coisas  
+* {n,} -> Pega no mínimo **N** coisas  
+* {n,m} -> Pega **de N a M** coisas  
+* | -> Comando OU  
 
 #### Comandos de Agrupamento:
-* (?=...) -> Positive Lookahead
-* (?<=...) -> Positive Lookbehind
-* ( ) -> Agrupa
+
+* (?=...) -> Positive Lookahead  
+* (?!...) -> Negative Lookahead  
+* (?<=...) -> Positive Lookbehind  
+* (?<!...) -> Negative Lookbehind  
+* ( ) -> Agrupa  
+* (?:...) -> Agrupa **sem capturar**
 
 ### **Portifólio**
 
