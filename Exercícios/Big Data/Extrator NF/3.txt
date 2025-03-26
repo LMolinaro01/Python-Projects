@@ -1,0 +1,41 @@
+---------------------------------------------------------
+                      NOTA FISCAL
+---------------------------------------------------------
+Número da Nota: 456123789
+Data de Emissão: 26/03/2025
+Hora de Emissão: 16:30:00
+---------------------------------------------------------
+Emitente:
+Nome: Loja Eletrônica Fictícia
+CNPJ: 56.789.123/0001-22
+Endereço: Rua das Tecnologias, 45, Centro - Belo Horizonte, MG
+Telefone: (31) 6543-2100
+---------------------------------------------------------
+Destinatário:
+Nome: Carlos Santos
+CPF: 654.321.987-00
+Endereço: Rua Sem Nome, 102, Santa Luzia - Belo Horizonte, MG
+Telefone: (31) 9987-6543
+---------------------------------------------------------
+Descrição dos Produtos/Serviços:
+1. Smartphone XYZ
+   Quantidade: 1
+   Valor Unitário: R$ 1.500,00
+   Valor Total: R$ 1.500,00
+
+2. Capinha de Celular
+   Quantidade: 1
+   Valor Unitário: R$ 30,00
+   Valor Total: R$ 30,00
+
+---------------------------------------------------------
+Subtotal: R$ 1.530,00
+Desconto: R$ 30,00
+Valor Total: R$ 1.500,00
+---------------------------------------------------------
+Forma de Pagamento: Cartão de Crédito
+Parcelamento: 2x de R$ 750,00
+---------------------------------------------------------
+Observações:
+- Garantia de 1 ano inclusa.
+---------------------------------------------------------

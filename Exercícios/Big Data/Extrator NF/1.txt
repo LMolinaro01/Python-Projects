@@ -1,0 +1,41 @@
+---------------------------------------------------------
+                      NOTA FISCAL
+---------------------------------------------------------
+Número da Nota: 123456789
+Data de Emissão: 26/03/2025
+Hora de Emissão: 14:30:00
+---------------------------------------------------------
+Emitente:
+Nome: Loja Fictícia LTDA
+CNPJ: 12.345.678/0001-90
+Endereço: Rua das Fictícias, 100, Centro - São Paulo, SP
+Telefone: (11) 1234-5678
+---------------------------------------------------------
+Destinatário:
+Nome: João da Silva
+CPF: 123.456.789-00
+Endereço: Rua Exemplo, 200, Bairro do Meio - São Paulo, SP
+Telefone: (11) 9876-5432
+---------------------------------------------------------
+Descrição dos Produtos/Serviços:
+1. Produto A - Descrição do Produto A
+   Quantidade: 2
+   Valor Unitário: R$ 50,00
+   Valor Total: R$ 100,00
+
+2. Produto B - Descrição do Produto B
+   Quantidade: 1
+   Valor Unitário: R$ 120,00
+   Valor Total: R$ 120,00
+
+---------------------------------------------------------
+Subtotal: R$ 220,00
+Desconto: R$ 20,00
+Valor Total: R$ 200,00
+---------------------------------------------------------
+Forma de Pagamento: Cartão de Crédito
+Parcelamento: 3x de R$ 66,67
+---------------------------------------------------------
+Observações:
+- A nota fiscal é gerada eletronicamente e possui validade jurídica.
+---------------------------------------------------------
