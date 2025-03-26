@@ -594,44 +594,6 @@ Nome: Maria, IMC: 21.48
 ---------------------------------------------------
 ## Regex no Python <a name="regex"></a>
 
-``` py
-
-import re
-
-# String contendo os dados das duas pessoas
-dados = """
-Nome: pedro dos santos             Data nascimento: 01/01/2000
-cpf: 123.456.789-00       Endereço: rua exemplo
-                                loja 3
-Valor dos serviços: R$ 1.200,00
-Tipo de contrato: Mei
---------------------------------------------------------------
-Nome: ana             Data nascimento: 01-01-2010
-cpf: 123.456.789-00       Endereço: exemplo rua
-Valor dos serviços: R$ 1200
-Tipo de contrato: clt
-"""
-
-# Exibir todos os nomes
-nomes = re.findall(r'Nome: ([^\n]+)', dados)
-# Remover as informações depois do nome (data de nascimento)
-nomes = [nome.split()[0] for nome in nomes]
-print("Nomes:", nomes)
-
-# Exibir as datas de nascimento
-datas_nascimento = re.findall(r'Data nascimento: (\d{2}/\d{2}/\d{4}|\d{2}-\d{2}-\d{4})', dados)
-print("Datas de Nascimento:", datas_nascimento)
-
-# Exibir os endereços
-enderecos = re.findall(r'Endereço: ([^\n]+)', dados)
-print("Endereços:", enderecos)
-
-# Exibir os salários
-salarios = re.findall(r'Valor dos serviços: R\$ (\d{1,3}(?:[.,]\d{3})*(?:[.,]\d{2}))', dados)
-print("Salários:", salarios)
-
-
-```
 
 #### Comandos para Procurar Algo:
 
@@ -665,6 +627,92 @@ print("Salários:", salarios)
 * (?<!...) -> Negative Lookbehind  
 * ( ) -> Agrupa  
 * (?:...) -> Agrupa **sem capturar**
+
+### Código Exemplo:
+
+``` py
+
+import re
+
+"""
+Este script utiliza expressões regulares (Regex) para extrair informações específicas de um conjunto de dados.
+
+1. **Procurar alguma coisa**: Utilizamos padrões regex para localizar nomes, datas de nascimento, endereços e valores monetários.
+2. **Definir a quantidade de alguma coisa**: Empregamos quantificadores para definir a quantidade exata de caracteres que estamos buscando (ex: `\d{2}/\d{2}/\d{4}`).
+3. **Agrupar alguma coisa**: Usamos parênteses `()` para capturar grupos específicos dentro das expressões.
+"""
+
+dados = """
+Nome: pedro dos santos             Data nascimento: 01/01/2000
+cpf: 123.456.789-00       Endereço: rua exemplo
+                                loja 3
+Valor dos serviços: R$ 1.200,00
+Tipo de contrato: Mei
+--------------------------------------------------------------
+Nome: ana             Data nascimento: 01-01-2010
+cpf: 123.456.789-00       Endereço: exemplo rua
+Valor dos serviços: R$ 1200
+Tipo de contrato: clt
+"""
+
+# Exibir todos os nomes
+nomes = re.findall(r'(?<=Nome: )\s*([^\d\n]+?)\s*(?=Data nascimento|Data de nascimento|$)', dados)
+print("Nomes:", nomes)
+
+# Exibir as datas de nascimento
+datas_nascimento = re.findall(r'(?<=Data nascimento:|data nascimento:|data de nascimento:|Data de Nascimento:)\s*(\d{2}[/-]\d{2}[/-]\d{4}|\d{2}[/-]\d{2}[/-]\d{2})', dados)
+print("Datas de Nascimento:", datas_nascimento)
+
+# Exibir os endereços
+enderecos = re.findall(r'(?<=Endereço:\s*)(.+)', dados)
+print("Endereços:", enderecos)
+
+# Exibir os salários
+salarios = re.findall(r'Valor dos serviços: R\$ (\d{1,3}(?:[.,]\d{3})*(?:[.,]\d{2})?)', dados)
+print("Salários:", salarios)
+
+```
+
+### Extração de Dados com Regex
+
+Este script utiliza expressões regulares (regex) para extrair informações de uma string contendo dados, como nomes, datas de nascimento, endereços e valores de serviço.
+
+#### 1. Extração de Nomes
+```python
+nomes = re.findall(r'(?<=Nome:)\s*([^\d\n]+?)\s*(?=Data nascimento|Data de nascimento|$)', dados)
+```
+- **`(?<=Nome:)`**: Procura por "Nome:", sem incluí-lo na captura.
+- **`\s*`**: Ignora espaços após "Nome:".
+- **`([^\d\n]+?)`**: Captura o nome, evitando números e quebras de linha.
+- **`(?=Data nascimento|Data de nascimento|$)`**: Garante que a captura pare antes de "Data nascimento" ou o final da string.
+
+#### 2. Extração de Datas de Nascimento
+```python
+regex_datas = r'(?<=Data nascimento:|data nascimento:|data de nascimento:|Data de Nascimento:)\s*(\d{2}/\d{2}/\d{4}|\d{2}-\d{2}-\d{4}|\d{2}/\d{2}/\d{2}|\d{2}-\d{2}-\d{2})'
+datas_nascimento = re.findall(regex_datas, dados)
+```
+- **`(?<=Data nascimento:|data nascimento:|data de nascimento:|Data de Nascimento:)`**: Captura a data, considerando várias variações da frase "Data nascimento".
+- **`\s*`**: Ignora espaços após a frase "Data nascimento".
+- **`(\d{2}/\d{2}/\d{4}|\d{2}-\d{2}-\d{4}|\d{2}/\d{2}/\d{2}|\d{2}-\d{2}-\d{2})`**: Captura datas nos formatos `DD/MM/AAAA`, `DD-MM-AAAA`, `DD/MM/AA`, `DD-MM-AA`.
+
+#### 3. Extração de Endereços
+```python
+enderecos = re.findall(r'(?<=Endereço:\s*)(.+)', dados)
+```
+- **`(?<=Endereço:\s*)`**: Captura o endereço após "Endereço:", ignorando os espaços.
+- **`(.+)`**: Captura todo o conteúdo do endereço até o final da linha.
+
+#### 4. Extração de Valores de Serviço
+```python
+salarios = re.findall(r'Valor dos serviços: R\$ (\d{1,3}(?:[.,]\d{3})*(?:[.,]\d{2}))', dados)
+```
+- **`Valor dos serviços: R\$`**: Procura valores monetários na moeda brasileira (R$).
+- **`(\d{1,3}(?:[.,]\d{3})*(?:[.,]\d{2}))`**: Captura valores como `1.200,00` ou `1200.00`.
+
+---
+
+Este script permite extrair informações específicas de uma string estruturada, utilizando expressões regulares para identificar e isolar dados como nomes, datas, endereços e valores.
+
 
 ### **Portifólio**
 
