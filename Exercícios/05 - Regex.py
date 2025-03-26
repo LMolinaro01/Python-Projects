@@ -33,6 +33,8 @@ print("Nomes:", nomes)
 datas_nascimento = re.findall(r'Data nascimento: (\d{2}/\d{2}/\d{4}|\d{2}-\d{2}-\d{4})', dados)
 print("Datas de Nascimento:", datas_nascimento)
 
+#alternativa mais abrangente ((?<=Data nascimento:|data nascimento:|data de nascimento:|Data de Nascimento:|Data nascimento|data nascimento|data de nascimento|Data de Nascimento:) \d{2}\/\d{2}\/\d{4}|\d{2}-\d{2}-\d{4}|\d{2}\/\d{2}\/\d{2}|\d{2}-\d{2}-\d{2})
+
 # Exibir os endereços
 enderecos = re.findall(r'Endereço: ([^\n]+)', dados)
 print("Endereços:", enderecos)
