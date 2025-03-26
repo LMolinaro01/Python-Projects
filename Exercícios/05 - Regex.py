@@ -29,6 +29,8 @@ nomes = re.findall(r'Nome: ([^\n]+)', dados)
 nomes = [nome.split()[0] for nome in nomes]
 print("Nomes:", nomes)
 
+# nomes sem remover por código: (?<=Nome:)\s*([^\d\n]+?)\s*(?=Data nascimento|Data de nascimento|$)
+
 # Exibir as datas de nascimento
 datas_nascimento = re.findall(r'Data nascimento: (\d{2}/\d{2}/\d{4}|\d{2}-\d{2}-\d{4})', dados)
 print("Datas de Nascimento:", datas_nascimento)
