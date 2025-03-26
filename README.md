@@ -16,6 +16,7 @@
 * [Regex no Python](#regex)
 * [Interface Visual com TKinter](#tkinter1)
 * [Utilizando um Banco de Dados local com SQLite3](#sqlite)
+* [Extrator de Nota Fiscal com Regex e Pandas)(#nfpanda)
 
 
 # Sistema de Venda e Controle de Estoque <a name="Sistema-de-Estoque"></a>
@@ -712,6 +713,108 @@ salarios = re.findall(r'Valor dos serviços: R\$ (\d{1,3}(?:[.,]\d{3})*(?:[.,]\d
 ---
 
 Este script permite extrair informações específicas de uma string estruturada, utilizando expressões regulares para identificar e isolar dados como nomes, datas, endereços e valores.
+
+
+Aqui está um exemplo de README para o seu exercício de **Extrator de Nota Fiscal**, sendo bem didático para ajudar outros usuários a entender como utilizar o código:
+
+---
+
+### **Extrator de Nota Fiscal**(#nfpanda)
+
+#### **Objetivo**
+Este projeto tem como objetivo extrair e processar os valores de "Valor Total" de notas fiscais digitais (em formato `.txt`). O programa analisa os arquivos de texto, encontra os valores totais e os organiza em uma tabela utilizando a biblioteca `Pandas`, com o valor formatado corretamente no padrão brasileiro de moeda (R$ XXX.XXX,XX).
+
+Além disso, ele calcula o valor total somado de todas as notas fiscais e exibe essa soma de forma separada na tabela.
+
+#### **Como Funciona**
+
+##### **1. Estrutura dos Arquivos**
+
+Os arquivos `.txt` devem seguir um formato específico, onde o campo "Valor Total" está presente, como no exemplo abaixo:
+
+```
+Valor Total: R$ 200.000,00
+```
+
+O código irá procurar por esses valores dentro de cada arquivo, e formatar os valores de acordo com o padrão brasileiro.
+
+##### **2. O que o Código Faz**
+
+1. **Lê arquivos `.txt`**: O programa percorre todos os arquivos `.txt` na pasta onde o script está localizado.
+2. **Extrai o valor de "Valor Total"**: Utilizando expressões regulares, o código encontra o valor da nota fiscal (ex: `R$ 200.000,00`).
+3. **Formata os valores**: Converte os valores encontrados para o formato **R$ XXX.XXX,XX**.
+4. **Cria uma tabela**: Utiliza a biblioteca `Pandas` para organizar os dados em uma tabela (DataFrame), incluindo o valor de cada nota e a soma total dos valores.
+5. **Exibe e exporta**: Exibe a tabela no terminal e também a exporta para um arquivo CSV, se necessário.
+
+##### **3. Estrutura da Tabela**
+
+A tabela gerada será similar a esta:
+
+| Arquivo       | Valor Total   |
+|---------------|---------------|
+| nota1.txt     | R$ 200.000,00 |
+| nota2.txt     | R$ 150.000,00 |
+| nota3.txt     | R$ 50.000,00  |
+| **Total**     | **R$ 400.000,00** |
+
+##### **4. Requisitos**
+
+Antes de rodar o código, você precisa instalar as dependências necessárias:
+
+- **Python 3.x**: Este código foi desenvolvido utilizando Python 3.x.
+- **Pandas**: Biblioteca usada para manipulação de dados e geração da tabela.
+  
+Instale o **Pandas** com o seguinte comando:
+
+```bash
+pip install pandas
+```
+
+##### **5. Como Usar**
+
+1. **Prepare os Arquivos `.txt`**: Coloque todos os arquivos `.txt` com as notas fiscais na mesma pasta onde está o script.
+2. **Execute o Script**: Execute o script Python para processar as notas fiscais. O código vai procurar todos os arquivos `.txt`, extrair os valores de "Valor Total", formatá-los e gerar a tabela.
+
+Para rodar o código:
+
+```bash
+python extrator_nf.py
+```
+
+3. **Verifique a Saída**: O código irá exibir a tabela com os valores das notas fiscais no terminal. Ele também salvará a tabela em um arquivo CSV, caso você deseje salvar os dados em um arquivo.
+
+##### **6. Saída Esperada**
+
+Ao rodar o código, a tabela será exibida da seguinte maneira:
+
+```
+            Arquivo      Valor Total
+0       nota1.txt       R$ 200.000,00
+1       nota2.txt       R$ 100.000,00
+2       nota3.txt       R$ 50.000,00
+3           Total       R$ 350.000,00
+```
+
+A tabela também será salva no arquivo `nota_fiscal_valores.csv` na mesma pasta.
+
+##### **7. Personalização**
+
+- Você pode ajustar a expressão regular no código caso o formato dos arquivos `.txt` mude.
+- O script pode ser expandido para adicionar mais informações ou tratar mais dados conforme necessário.
+
+---
+
+#### **Conclusão**
+
+Este exercício é uma forma prática de trabalhar com:
+- **Expressões regulares** para extração de dados específicos de arquivos.
+- **Pandas** para organização e manipulação de dados.
+- **Manipulação de arquivos** (leitura e escrita de arquivos `.txt` e `.csv`).
+
+Agora você pode facilmente extrair valores de notas fiscais e calcular o total automaticamente! 🚀
+
+---
+
 
 
 ### **Portifólio**
