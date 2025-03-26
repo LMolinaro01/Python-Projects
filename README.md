@@ -16,7 +16,7 @@
 * [Regex no Python](#regex)
 * [Interface Visual com TKinter](#tkinter1)
 * [Utilizando um Banco de Dados local com SQLite3](#sqlite)
-* [Extrator de Nota Fiscal com Regex e Pandas)(#nfpanda)
+* [Extrator de Nota Fiscal com Regex e Pandas](#nfpanda)
 
 
 # Sistema de Venda e Controle de Estoque <a name="Sistema-de-Estoque"></a>
