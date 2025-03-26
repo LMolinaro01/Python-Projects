@@ -1,0 +1,36 @@
+---------------------------------------------------------
+                      NOTA FISCAL
+---------------------------------------------------------
+Número da Nota: 123987654
+Data de Emissão: 26/03/2025
+Hora de Emissão: 17:00:00
+---------------------------------------------------------
+Emitente:
+Nome: Livraria Fictícia
+CNPJ: 12.987.654/0001-30
+Endereço: Rua dos Livros, 200, Centro - Curitiba, PR
+Telefone: (41) 9876-5432
+---------------------------------------------------------
+Destinatário:
+Nome: Ana Paula Costa
+CPF: 432.109.876-00
+Endereço: Rua Sem Saída, 250, Bairro da Paz - Curitiba, PR
+Telefone: (41) 9654-3210
+---------------------------------------------------------
+Descrição dos Produtos/Serviços:
+1. Livro: A Jornada do Herói
+   Quantidade: 1
+   Valor Unitário: R$ 50,00
+   Valor Total: R$ 50,00
+
+2. Livro: O Código do Mago
+   Quantidade: 2
+   Valor Unitário: R$ 45,00
+   Valor Total: R$ 90,00
+
+---------------------------------------------------------
+Subtotal: R$ 140,00
+Desconto: R$ 10,00
+Valor Total: R$ 130,00
+---------------------------------------------------------
+Forma de Pagamento:

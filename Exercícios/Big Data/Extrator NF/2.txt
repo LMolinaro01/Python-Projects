@@ -1,0 +1,40 @@
+---------------------------------------------------------
+                      NOTA FISCAL
+---------------------------------------------------------
+Número da Nota: 987654321
+Data de Emissão: 26/03/2025
+Hora de Emissão: 15:00:00
+---------------------------------------------------------
+Emitente:
+Nome: Super Mercado Fictício
+CNPJ: 98.765.432/0001-10
+Endereço: Av. dos Exemplos, 1500, Zona Sul - Rio de Janeiro, RJ
+Telefone: (21) 9876-5432
+---------------------------------------------------------
+Destinatário:
+Nome: Maria Oliveira
+CPF: 321.654.987-00
+Endereço: Rua Aleatória, 350, Jardim das Flores - Rio de Janeiro, RJ
+Telefone: (21) 9123-4567
+---------------------------------------------------------
+Descrição dos Produtos/Serviços:
+1. Arroz 5kg
+   Quantidade: 3
+   Valor Unitário: R$ 20,00
+   Valor Total: R$ 60,00
+
+2. Feijão 1kg
+   Quantidade: 2
+   Valor Unitário: R$ 5,00
+   Valor Total: R$ 10,00
+
+---------------------------------------------------------
+Subtotal: R$ 70,00
+Desconto: R$ 5,00
+Valor Total: R$ 65,00
+---------------------------------------------------------
+Forma de Pagamento: Dinheiro
+---------------------------------------------------------
+Observações:
+- A nota fiscal foi emitida em conformidade com as regras fiscais.
+---------------------------------------------------------
