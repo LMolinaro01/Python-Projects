@@ -6,6 +6,18 @@
 * [Simulador de Avaliações](https://github.com/LMolinaro01/Simulador-de-Avaliacoes-em-Python/tree/main)
 * [Gerador de Polígonos](https://github.com/LMolinaro01/Gerador-de-Poligonos)
 
+
+<h1 align = "center">Exercícios em Python</h1>
+
+* [Biblioteca de Filmes](#biblioteca-de-filmes)
+* [Criação de Classe e Instanciação de Objetos](#criação-de-classe-e-instanciação-de-objetos)
+* [Calculadora utilizando Classe](#calculadora-utilizando-classe)
+* [Calculadora de IMC](#calculadora-de-imc)
+* [Regex no Python](#regex)
+* [Interface Visual com TKinter](#tkinter1)
+* [Utilizando um Banco de Dados local com SQLite3](#sqlite)
+
+
 # Sistema de Venda e Controle de Estoque <a name="Sistema-de-Estoque"></a>
 
 Controle de estoque e venda desenvolvido em Python utilizando as bibliotecas Tkinter para a interface gráfica, SQLite para o armazenamento de dados, Datetime para registro das vendas (horário da venda), Time para um relógio funcional e Pillow (PIL) para a inserção de Imagens.
@@ -85,22 +97,6 @@ Em resumo, este código implementa um sistema completo de simulador de avaliaç�
 - *Tkinter*<a name="tkinter"></a>: Tkinter é uma biblioteca padrão do Python usada para criar interfaces gráficas de usuário (GUI). Com Tkinter, os desenvolvedores podem criar janelas, botões, caixas de texto e outros elementos de interface de forma intuitiva. É uma ferramenta versátil que simplifica o desenvolvimento de aplicativos com uma interface de usuário interativa. Tkinter fornece uma maneira eficiente de criar aplicativos desktop com Python, permitindo aos desenvolvedores concentrarem-se na lógica do programa enquanto a biblioteca cuida da apresentação visual.
 
 ---
-
-## **Contato**
-
-Se você tiver dúvidas ou precisar de mais informações, sinta-se a vontade para entrar em [Contato](https://linktr.ee/leomolinarodev01)!
-
----
-
-<h1 align = "center">Exercícios em Python</h1>
-
-* [Biblioteca de Filmes](#biblioteca-de-filmes)
-* [Criação de Classe e Instanciação de Objetos](#criação-de-classe-e-instanciação-de-objetos)
-* [Calculadora utilizando Classe](#calculadora-utilizando-classe)
-* [Calculadora de IMC](#calculadora-de-imc)
-* [Regex no Python](#regex)
-* [Interface Visual com TKinter](#tkinter1)
-* [Utilizando um Banco de Dados local com SQLite3](#sqlite)
 
 
 ## Biblioteca de Filmes (Dicionário + CRUD) <a name="biblioteca-de-filmes"></a>
