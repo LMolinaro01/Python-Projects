@@ -719,7 +719,7 @@ Aqui está um exemplo de README para o seu exercício de **Extrator de Nota Fisc
 
 ---
 
-### **Extrator de Nota Fiscal(#nfpanda)**
+### **Extrator de Nota Fiscal<a name="nfpanda"></a>**
 
 #### **Objetivo**
 Este projeto tem como objetivo extrair e processar os valores de "Valor Total" de notas fiscais digitais (em formato `.txt`). O programa analisa os arquivos de texto, encontra os valores totais e os organiza em uma tabela utilizando a biblioteca `Pandas`, com o valor formatado corretamente no padrão brasileiro de moeda (R$ XXX.XXX,XX).
