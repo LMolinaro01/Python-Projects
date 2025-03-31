@@ -811,10 +811,131 @@ Este exercício é uma forma prática de trabalhar com:
 - **Pandas** para organização e manipulação de dados.
 - **Manipulação de arquivos** (leitura e escrita de arquivos `.txt` e `.csv`).
 
-Agora você pode facilmente extrair valores de notas fiscais e calcular o total automaticamente! 🚀
+Agora você pode facilmente extrair valores de notas fiscais e calcular o total automaticamente 
 
 ---
 
+# **Regex no Python: Guia Completo**  
+
+
+## **Sumário**  
+1. [Comandos de Busca](#comandos-de-busca)  
+2. [Quantificadores](#quantificadores)  
+3. [Agrupamento e Lookarounds](#agrupamento)  
+4. [Exemplos Práticos](#exemplos)  
+5. [Dicas para Uso no Python](#dicas)  
+
+---
+
+<a name="comandos-de-busca"></a>  
+## **1. Comandos de Busca**  
+Definem **o que** procurar em um texto.  
+
+| **Comando** | **Descrição**                                                                 | **Exemplo**                                   |  
+|-------------|-------------------------------------------------------------------------------|-----------------------------------------------|  
+| `a`         | <span style="color: #EA4335">**Letra "a"**</span> (case-sensitive).           | Texto: `"Python"` → Nenhum match.             |  
+| `.`         | <span style="color: #34A853">**Coringa**</span> (qualquer caractere exceto `\n`). | `r"P.th"` → Match em `"Pyth"` (`"y"` + `"th"`). |  
+| `\d`        | <span style="color: #FBBC05">**Dígito**</span> (0-9). `\D` = não dígito.     | `"Python 3.10"` → Encontra `"3"`, `"1"`, `"0"`. |  
+| `\w`        | <span style="color: #4285F4">**Alfanumérico**</span> (letras, números, `_`). | `"user_123"` → Match em `"user_123"`.         |  
+| `[abc]`     | <span style="color: #EA4335">**Lista**</span> (a, b ou c).                   | `"Python"` → `r"[yt]"` encontra `"y"` e `"t"`. |  
+| `\n`        | <span style="color: #34A853">**Quebra de linha**</span>.                     | Usado em textos multi-linha.                  |  
+| `\s`        | <span style="color: #FBBC05">**Espaço em branco**</span> (espaço, tab, `\n`). | `"Python 3.10"` → Encontra o espaço.          |  
+| `[^abc]`    | <span style="color: #4285F4">**Negação**</span> (exceto a, b, c).            | `"Python"` → `r"[^P]"` ignora `"P"`.          |  
+| `\b`        | <span style="color: #EA4335">**Borda de palavra**</span>.                    | `r"\bPy"` → Match em `"Py"` de `"Python"`.    |  
+| `^`         | <span style="color: #34A853">**Início da linha**</span>.                     | `r"^Py"` → Match se a linha começar com `"Py"`.|  
+| `$`         | <span style="color: #FBBC05">**Fim da linha**</span>.                        | `r"10$"` → Match se terminar com `"10"`.      |  
+
+---
+
+<a name="quantificadores"></a>  
+## **2. Quantificadores**  
+Controlam **quantas vezes** um padrão aparece.  
+
+| **Comando** | **Descrição**                                                                 | **Exemplo** (Texto: `"123 4567"`)             |  
+|-------------|-------------------------------------------------------------------------------|-----------------------------------------------|  
+| `+`         | <span style="color: #EA4335">**1 ou mais**</span> (greedy).                  | `r"\d+"` → `"123"` e `"4567"`.               |  
+| `*`         | <span style="color: #34A853">**0 ou mais**</span> (greedy).                  | `r"Py*"` → `"P"`, `"Py"`, `"Pyy"`.           |  
+| `?`         | <span style="color: #FBBC05">**0 ou 1**</span> (opcional).                   | `r"Py?thon"` → `"Python"` ou `"Pthon"`.       |  
+| `{n}`       | <span style="color: #4285F4">**Exatamente `n`**</span> ocorrências.          | `r"\d{3}"` → `"123"`.                        |  
+| `{n,}`      | <span style="color: #EA4335">**No mínimo `n`**</span>.                       | `r"\d{4,}"` → `"4567"`.                      |  
+| `{n,m}`     | <span style="color: #34A853">**Entre `n` e `m`**</span>.                     | `r"\d{2,4}"` → `"123"` e `"4567"`.           |  
+| `|`         | <span style="color: #FBBC05">**OU lógico**</span>.                           | `r"cat|dog"` → `"cat"` ou `"dog"`.            |  
+
+---
+
+<a name="agrupamento"></a>  
+## **3. Agrupamento e Lookarounds**  
+Agrupam padrões e adicionam lógica condicional.  
+
+| **Comando**       | **Descrição**                                                                 | **Exemplo**                                   |  
+|-------------------|-------------------------------------------------------------------------------|-----------------------------------------------|  
+| `(?=...)`         | <span style="color: #4285F4">**Positive Lookahead**</span>: Padrão à frente.  | `r"\w+(?=@)"` → `"user"` em `"user@email.com"`. |  
+| `(?!...)`         | <span style="color: #EA4335">**Negative Lookahead**</span>: Não deve existir. | `r"\d{3}(?!-)"` → Ignora `"123-"`.            |  
+| `(?<=...)`        | <span style="color: #34A853">**Positive Lookbehind**</span>: Padrão antes.   | `r"(?<=\$)\d+"` → `"100"` em `"$100"`.        |  
+| `(?<!...)`        | <span style="color: #FBBC05">**Negative Lookbehind**</span>: Não deve existir. | `r"(?<!-)\d+"` → Ignora `"-100"`.             |  
+| `( )`             | <span style="color: #4285F4">**Grupo de captura**</span>.                    | `r"(\d{3})-(\d{4})"` → Grupos `"123"` e `"4567"`. |  
+| `(?:...)`         | <span style="color: #EA4335">**Grupo não capturador**</span>.                | `r"(?:www\.)?(\w+)"` → Ignora `"www."`.       |  
+
+---
+
+<a name="exemplos"></a>  
+## **4. Exemplos Práticos**  
+
+### **Exemplo 1: Validar E-mail**  
+```python  
+import re  
+email = "user_123@domain.com"  
+padrao = r"^[\w\.-]+@[\w\.-]+\.\w+$"  
+if re.match(padrao, email):  
+    print("Válido!")  
+```  
+**Funcionamento**:  
+1. `^[\w\.-]+`: Nome do usuário (permite letras, números, `.`, `-`, `_`).  
+2. `@[\w\.-]+`: Domínio (ex: `gmail`, `hotmail`).  
+3. `\.\w+$`: Extensão (ex: `.com`, `.org`).  
+
+---
+
+### **Exemplo 2: Extrair Datas**  
+```python  
+texto = "Data: 25/12/2023"  
+padrao = r"\b(\d{2})/(\d{2})/(\d{4})\b"  
+match = re.search(padrao, texto)  
+if match:  
+    dia, mes, ano = match.groups()  # ("25", "12", "2023")  
+```  
+
+---
+
+### **Exemplo 3: Senha Forte**  
+```python  
+senha = "Senha@123"  
+padrao = r"^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"  
+if re.match(padrao, senha):  
+    print("Senha segura!")  
+```  
+**Regras**:  
+- Mínimo 8 caracteres.  
+- Pelo menos uma letra maiúscula, um número e um caractere especial.  
+
+---
+
+<a name="dicas"></a>  
+## **5. Dicas para Uso no Python**  
+
+**Use raw strings**: Evite conflitos com `\` usando `r"..."`.  
+```python  
+re.search(r"\d+", texto)  # Correto  
+re.search("\d+", texto)   # Erro (use raw string)!  
+```  
+
+ **Funções úteis**:  
+- `re.findall()`: Retorna todas as ocorrências.  
+- `re.sub()`: Substitui partes do texto.  
+
+ **Teste online**: Use ferramentas como [Regex101](https://regex101.com/) para validar padrões.  
+
+---
 
 
 ### **Portifólio**
