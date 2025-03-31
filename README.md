@@ -17,6 +17,7 @@
 * [Interface Visual com TKinter](#tkinter1)
 * [Utilizando um Banco de Dados local com SQLite3](#sqlite)
 * [Extrator de Nota Fiscal com Regex e Pandas](#nfpanda)
+* [Guia Completo de Regex](#guiaregex)
 
 
 # Sistema de Venda e Controle de Estoque <a name="Sistema-de-Estoque"></a>
@@ -814,7 +815,7 @@ Este exercício é uma forma prática de trabalhar com:
 Agora você pode facilmente extrair valores de notas fiscais e calcular o total automaticamente 
 
 ---
-
+<a name="guiaregex"></a>
 # **Regex no Python: Guia Completo**  
 
 
