@@ -852,7 +852,8 @@ Definem **o que** procurar em um texto.
 ## **2. Quantificadores**  
 Controlam **quantas vezes** um padrão aparece.  
 
-| **Comando** | **Descrição**                                                                 | **Exemplo** (Texto: `"123 4567"`)             |  
+
+| **Comando**  | **Descrição**                                                                 | **Exemplo** (Texto: `"123 4567"`)             |  
 |-------------|-------------------------------------------------------------------------------|-----------------------------------------------|  
 | `+`         | <span style="color: #EA4335">**1 ou mais**</span> (greedy).                  | `r"\d+"` → `"123"` e `"4567"`.               |  
 | `*`         | <span style="color: #34A853">**0 ou mais**</span> (greedy).                  | `r"Py*"` → `"P"`, `"Py"`, `"Pyy"`.           |  
@@ -861,6 +862,7 @@ Controlam **quantas vezes** um padrão aparece.
 | `{n,}`      | <span style="color: #EA4335">**No mínimo `n`**</span>.                       | `r"\d{4,}"` → `"4567"`.                      |  
 | `{n,m}`     | <span style="color: #34A853">**Entre `n` e `m`**</span>.                     | `r"\d{2,4}"` → `"123"` e `"4567"`.           |  
 | `|`         | <span style="color: #FBBC05">**OU lógico**</span>.                           | `r"cat|dog"` → `"cat"` ou `"dog"`.            |  
+| `*?` / `+?` / `??` | <span style="color: #4285F4">**Quantificadores "lazy"**</span> (mínimo possível). | `r"\d+?"` → Match em `"1"`, `"2"`, `"3"`, `"4"`, `"5"`, `"6"`, `"7"` (um por vez, não "123" nem "4567"). |  
 
 ---
 
