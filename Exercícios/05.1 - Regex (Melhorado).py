@@ -30,7 +30,7 @@ datas_nascimento = re.findall(r'(?<=Data nascimento:|data nascimento:|data de na
 print("Datas de Nascimento:", datas_nascimento)
 
 # Exibir os endereços
-enderecos = re.findall(r'(?<=Endereço:\s*)(.+)', dados)
+enderecos = re.findall(r'(?<=Endereço: )(.+\s)+?(?=Valor dos serviços)', dados)
 print("Endereços:", enderecos)
 
 # Exibir os salários
