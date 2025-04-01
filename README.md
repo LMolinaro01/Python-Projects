@@ -881,6 +881,106 @@ Agrupam padrões e adicionam lógica condicional.
 
 ---
 
+## **Extra: Flags**
+
+A seguir, um guia completo e didático sobre os principais flags (modificadores) utilizados em expressões regulares, com exemplos e explicações detalhadas.
+
+---
+
+### 1. Introdução
+
+Os flags são parâmetros que alteram o comportamento padrão das expressões regulares. Eles são adicionados logo após a barra final da regex (por exemplo, `/padrão/flags`) e permitem controlar como as buscas são realizadas, como a sensibilidade a maiúsculas/minúsculas, a forma de tratar quebras de linha e se a busca deve ser feita em toda a string.
+
+---
+
+### 2. Principais Flags e Seus Efeitos
+
+| **Flag** | **Nome**              | **Descrição**                                                                                                                                                     | **Exemplo**                                             |
+|----------|-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------|
+| `g`      | Global                | Procura por **todas** as ocorrências do padrão na string, em vez de parar no primeiro match encontrado.                                                           | `/a/g` em `"banana"` encontra todas as ocorrências de `"a"`. |
+| `i`      | Case-insensitive      | Torna a busca **insensível a maiúsculas e minúsculas**. Por exemplo, `a` encontrará tanto `"a"` quanto `"A"`.                                                       | `/abc/i` em `"ABC"` encontra `"ABC"`.                   |
+| `m`      | Multiline             | Modifica o comportamento de `^` (início da linha) e `$` (fim da linha) para que correspondam, respectivamente, ao início e fim de **cada linha** da string.   | `/^a/m` em `"abc\nabc"` encontra o `"a"` no início de cada linha. |
+| `s`      | Dotall (Single-line)  | Faz com que o ponto (`.`) **corresponda a todos os caracteres**, incluindo quebras de linha (`\n`). Sem esse flag, o `.` não captura `\n`.                     | `/a.*b/s` em `"a\nb"` encontra o padrão mesmo com a quebra de linha. |
+| `u`      | Unicode               | Permite que a expressão regular interprete corretamente **caracteres Unicode**. É importante para lidar com símbolos, acentos e emojis.                            | `/\u{1F600}/u` corresponde ao emoji 😀.                 |
+| `y`      | Sticky                | Realiza a busca de forma **aderente** à posição indicada pela propriedade `lastIndex`. O regex só encontrará um match se este começar exatamente na posição indicada. | Em `"abca"`, usando `/a/y` com `lastIndex` definido em `0`, encontrará `"a"` somente se estiver na posição exata. |
+
+---
+
+### 3. Exemplos Práticos
+
+#### 3.1. Flag `g` (Global)
+
+Sem o flag `g`, a função de busca (como `match` em JavaScript) retorna apenas o primeiro match.  
+```javascript
+const texto = "banana";
+console.log(texto.match(/a/));   // Resultado: ["a"]
+console.log(texto.match(/a/g));  // Resultado: ["a", "a", "a"]
+```
+
+#### 3.2. Flag `i` (Case-insensitive)
+
+Essa flag ignora as diferenças entre letras maiúsculas e minúsculas.  
+```javascript
+const texto = "Banana";
+console.log(texto.match(/banana/));   // Resultado: null (não encontrou)
+console.log(texto.match(/banana/i));  // Resultado: ["Banana"]
+```
+
+#### 3.3. Flag `m` (Multiline)
+
+Quando uma string contém quebras de linha, `^` e `$` passam a funcionar em cada linha.  
+```javascript
+const texto = "primeira linha\nsegunda linha";
+console.log(texto.match(/^segunda/m));  // Resultado: ["segunda"] (encontra "segunda" no início da segunda linha)
+```
+
+#### 3.4. Flag `s` (Dotall)
+
+O ponto (`.`) passa a incluir as quebras de linha na captura.  
+```javascript
+const texto = "linha1\nlinha2";
+console.log(texto.match(/linha.*linha/));   // Sem o flag `s`: null
+console.log(texto.match(/linha.*linha/s));  // Com o flag `s`: ["linha1\nlinha2"]
+```
+
+#### 3.5. Flag `u` (Unicode)
+
+Garante o tratamento correto de caracteres Unicode.  
+```javascript
+const texto = "😀";
+console.log(texto.match(/\u{1F600}/));    // Sem `u`: pode não funcionar corretamente
+console.log(texto.match(/\u{1F600}/u));   // Com `u`: ["😀"]
+```
+
+#### 3.6. Flag `y` (Sticky)
+
+A busca "sticky" só considera matches que começam exatamente na posição definida por `lastIndex`.  
+```javascript
+const regex = /a/y;
+const texto = "baaa";
+
+// Tentativa sem ajustar lastIndex:
+console.log(regex.exec(texto));   // Resultado: null, pois "a" não está na posição 0
+
+// Ajustando lastIndex para 1:
+regex.lastIndex = 1;
+console.log(regex.exec(texto));   // Resultado: ["a"]
+```
+
+---
+
+### 4. Conclusão
+
+Cada flag tem um papel específico na forma como a expressão regular interpreta e pesquisa um texto:
+
+- **`g`**: Encontra todas as ocorrências.
+- **`i`**: Ignora diferenças entre maiúsculas e minúsculas.
+- **`m`**: Permite que `^` e `$` atuem em cada linha, não apenas na string completa.
+- **`s`**: Permite que o ponto (`.`) capture quebras de linha.
+- **`u`**: Ativa o suporte a caracteres Unicode, essencial para textos com acentos, emojis e símbolos especiais.
+- **`y`**: Realiza a busca de forma estrita a partir da posição atual.
+
+
 <a name="exemplos"></a>  
 ## **4. Exemplos Práticos**  
 
