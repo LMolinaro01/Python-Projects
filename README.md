@@ -881,7 +881,7 @@ Agrupam padrões e adicionam lógica condicional.
 
 ---
 
-## **Extra: Flags**
+## **Extra. Flags em Expressões Regulares**
 
 A seguir, um guia completo e didático sobre os principais flags (modificadores) utilizados em expressões regulares, com exemplos e explicações detalhadas.
 
