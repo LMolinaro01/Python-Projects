@@ -34,5 +34,5 @@ enderecos = re.findall(r'(?<=Endereço:\s*)(.+)', dados)
 print("Endereços:", enderecos)
 
 # Exibir os salários
-salarios = re.findall(r'Valor dos serviços: R\$ (\d{1,3}(?:[.,]\d{3})*(?:[.,]\d{2})?)', dados)
+salarios = re.findall(r'(?<=Valor dos Serviços: R\$ )(\d.,)+', dados)
 print("Salários:", salarios)
