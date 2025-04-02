@@ -1044,7 +1044,9 @@ re.search("\d+", texto)   # Erro (use raw string)!
 <a name="gatofato"></a>
 ## CatFactApp - Aplicativo de Fatos sobre Gatos
 
-Este repositório contém um aplicativo simples desenvolvido com `customtkinter` para exibir fatos sobre gatos. Ele faz chamadas para APIs externas para obter um fato aleatório sobre gatos e traduzi-lo para português.
+Simples aplicativo desenvolvido com `customtkinter` para exibir fatos sobre gatos. Ele faz chamadas para APIs externas para obter um fato aleatório sobre gatos e traduzi-lo para português.
+
+https://github.com/user-attachments/assets/3a32be2d-8ac2-4a66-94a4-99499c8e1b63
 
 ### Tecnologias Utilizadas
 - `customtkinter`: Para criar a interface gráfica moderna em Python.
