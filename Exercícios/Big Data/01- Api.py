@@ -1,4 +1,5 @@
 import requests
+import re
 
 url = "https://catfact.ninja/fact"
 
@@ -10,5 +11,9 @@ headers = {
 }
 
 response = requests.request("GET", url, headers=headers, data=payload)
+match = re.search(r'"fact":"(.*?)"', response.text)
+ 
+if match:
+    fact = match.group(1)
+    print(fact)
 
-print(response.text)
