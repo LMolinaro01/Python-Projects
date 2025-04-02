@@ -13,11 +13,12 @@
 * [Criação de Classe e Instanciação de Objetos](#criação-de-classe-e-instanciação-de-objetos)
 * [Calculadora utilizando Classe](#calculadora-utilizando-classe)
 * [Calculadora de IMC](#calculadora-de-imc)
-* [Regex no Python](#regex)
 * [Interface Visual com TKinter](#tkinter1)
 * [Utilizando um Banco de Dados local com SQLite3](#sqlite)
-* [Extrator de Nota Fiscal com Regex e Pandas](#nfpanda)
+* [Regex no Python](#regex)
 * [Guia Completo de Regex](#guiaregex)
+* [Extrator de Nota Fiscal com Regex e Pandas](#nfpanda)
+* [Fatos de Gatos + Tradução (API) com Regex e CustomTkinter](#gatofato)
 
 
 # Sistema de Venda e Controle de Estoque <a name="Sistema-de-Estoque"></a>
@@ -1039,6 +1040,47 @@ re.search("\d+", texto)   # Erro (use raw string)!
  **Teste online**: Use ferramentas como [Regex101](https://regex101.com/) para validar padrões.  
 
 ---
+
+<a name="gatofato"></a>
+## CatFactApp - Aplicativo de Fatos sobre Gatos
+
+Este repositório contém um aplicativo simples desenvolvido com `customtkinter` para exibir fatos sobre gatos. Ele faz chamadas para APIs externas para obter um fato aleatório sobre gatos e traduzi-lo para português.
+
+### Tecnologias Utilizadas
+- `customtkinter`: Para criar a interface gráfica moderna em Python.
+- `requests`: Para fazer requisições HTTP e buscar os dados das APIs.
+- `re` (expressões regulares): Para extrair os fatos da resposta da API.
+- `API catfact.ninja`: Fornece fatos aleatórios sobre gatos.
+- `API MyMemory`: Traduz textos automaticamente.
+
+### Como Funciona
+1. O aplicativo inicia com um botão que, quando pressionado, busca um fato aleatório sobre gatos da API `catfact.ninja`.
+2. O fato retornado está em inglês e é extraído do JSON usando expressões regulares (`re.search`).
+3. O texto é enviado para a API de tradução `MyMemory` para ser convertido para português.
+4. O fato traduzido é exibido na interface do aplicativo.
+
+### O que é uma API?
+API (“Application Programming Interface”) é um conjunto de regras que permite que um software interaja com outro. No nosso caso:
+- **API catfact.ninja** retorna um fato sobre gatos em inglês.
+- **API MyMemory** recebe um texto e devolve a tradução para português.
+
+### O que é uma Expressão Regular (Regex)?
+Regex (“expressões regulares”) é uma forma de buscar padrões em textos. No nosso código, usamos `re.search(r'"fact":"(.*?)"', response.text)` para encontrar o fato retornado pela API.
+
+### Testando com Postman
+[Postman](https://www.postman.com/) é uma ferramenta para testar APIs. Para testar a API manualmente:
+1. Abra o Postman.
+2. Insira `https://catfact.ninja/fact` no campo de URL.
+3. Clique em "Send" e veja a resposta JSON com um fato sobre gatos.
+
+Se quiser testar a tradução:
+1. Use a URL `https://api.mymemory.translated.net/get`.
+2. Configure o parâmetro `q` com o texto e `langpair` com `en|pt`.
+3. Envie a requisição e verifique a tradução na resposta.
+
+
+---
+
 
 
 ### **Portifólio**
