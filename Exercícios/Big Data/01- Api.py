@@ -6,7 +6,10 @@ class CatFactApp(customtkinter.CTk):
     def __init__(self):
         super().__init__()
         self.title("Fato sobre Gatos")
-        self.geometry("400x200")
+        self.label = customtkinter.CTkLabel(self, text="Fatos Sobre Gatos", font=("Consolas bold", 17))
+        self.label.pack(padx=10, pady=10)
+        
+        self.geometry("400x300")
 
         self.label_fact = customtkinter.CTkLabel(self, text="Clique no botão para ver um fato!", wraplength=380)
         self.label_fact.pack(pady=20)
@@ -16,20 +19,26 @@ class CatFactApp(customtkinter.CTk):
     
     def fetch_cat_fact(self):
         url = "https://catfact.ninja/fact"
-        payload = {}
-        headers = {
-        'accept': 'application/json',
-        'X-CSRF-TOKEN': 'T2LLl57yrMTiuxrgT8AOraPWQ04vspL37TQuxsLJ',
-        'Cookie': 'XSRF-TOKEN=eyJpdiI6InNnUHc3WndNK3Z1V09FcTBuWHZ2dGc9PSIsInZhbHVlIjoidVRGV3huZWtNMUFMamJiV3ZrVjYwSkd4QXJxVk94OFZmNW1kcnVmWU9VTzE4RzVZdllUM2p1dlJYd1ZZYkpodldRbHE0aC9nRDR5d2xRTnNMUWhzWlRYL2ZRLy9kdEdSWkZoQnUzVE4rKzI3OHgvVDJPdS9GSmNWTjN3ekNqMDIiLCJtYWMiOiI1M2EwMWVjODMwNWMyYWIzNzRiNTQ5ZTBhNGFiMDc3ZGU1NDJkYWMyMDdkMTBlMDc2MThiYzBiZTk1MDRhNTZhIiwidGFnIjoiIn0%3D; catfacts_session=eyJpdiI6IjFHc1JIMjJSM3NiMFZZRnF0eWtxVlE9PSIsInZhbHVlIjoiaWMwemg4MlZLcmg3aSttYlBoRUltSUJtUnhBTTNmUjV5N1g4VzloaFpOT2xDR3FEN2FldTRGKzRkOThPaytPTDRHZzl3Q3pTWnc2ZDVBRHVVa0NwZ0pSR1RKemJ4UWFTV1RqVm1hVG5KY3pESTk1RGtYVllEZmdoUUZRb3pBKzkiLCJtYWMiOiIwZDU1YjI0OTQ0NWJjNzM1NDFjYmM0MTExODNlZDQ2YjJmOTZjMzZmZmY2YzU4NmEyYTljNThiMWQ0YjI2OGE2IiwidGFnIjoiIn0%3D; cw7uQ5jXpHmePfotcjZIXSWwxFbTEyxKnqJFMteI=eyJpdiI6Ijc2aE5Ec0JsYWM0QWhra1hvZnhabHc9PSIsInZhbHVlIjoiYnMzVTZ3SlJJTDVLdUR2M3cxMENxaUJ4UE5EYzlRY1MrR0xId0dVeFBYcGxoNkxnMFI5SnNES25Da0cvNnhtSlV3OE9QS25iQWxSMVpOaUx6SU9ZcW9UbUR5d3lBSnJ0Tngvblp6VXAwbml5N0xsV0xTa2JERG9SZGVKZDdUeWlvZ0JEb0grdkFTSU5qV2NKUldNbmZYWk9TVTZOZzZuRUhVWUFiTnRUMWZYMFpoUlQ1bjNRYjNOblhhWU05NHU5dmU1RzMvckxja1EwbUR5WEJTVjlEcFBrdkF5OFJSU2FHZlgvSzlDNVdZanExUlB1V3BrdUFSSzhOVTJ5YlkxSkhrYkhURnQ2bFlOejJDRmxlZ0haSVZrZTdEQWMrVVBMUXdxeDNLckVCV2NYd2RSSHowZVJpYzZ3K2daUnVtT1FuVHNHZ3hVVWtDNkdpNloxdlNuZFpoNjRaTllGZ0ZkVkpoMjJUUXB6QVJ2NlZVbkljOGFxMkNWSitGU3hROW1zIiwibWFjIjoiYjc5OTJiODk5MGYxYzEzOWE1N2NjYzNhZDE3NmFjODc4MGQ0YWVkZDIwMWI1N2MxMzgxZmRkOWYzMDUxYjY0ZiIsInRhZyI6IiJ9'
-        }
         try:
-            response = requests.request("GET", url, headers=headers, data=payload)
-            match = re.search(r'"fact":"(.*?)"', response.text)
-            if match:
-                fact = match.group(1)
-                self.label_fact.configure(text=fact)
+            response = requests.get(url)
+            response.raise_for_status()
+            data = response.json()
+            fact = data.get("fact", "Nenhum fato encontrado.")
+            translated_fact = self.translate_text(fact)
+            self.label_fact.configure(text=translated_fact)
         except requests.exceptions.RequestException:
             self.label_fact.configure(text="Erro ao buscar fato sobre gatos")
+    
+    def translate_text(self, text, source="en", target="pt"):
+        translate_url = "https://api.mymemory.translated.net/get"
+        params = {"q": text, "langpair": f"{source}|{target}"}
+        
+        try:
+            response = requests.get(translate_url, params=params)
+            response.raise_for_status()
+            return response.json().get("responseData", {}).get("translatedText", text)
+        except requests.exceptions.RequestException:
+            return "Erro na tradução"
 
 if __name__ == "__main__":
     app = CatFactApp()
