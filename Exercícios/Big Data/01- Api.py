@@ -14,7 +14,7 @@ class CatFactApp(customtkinter.CTk):
         self.label_fact = customtkinter.CTkLabel(self, text="Clique no botão para ver um fato!", wraplength=380)
         self.label_fact.pack(pady=20)
         
-        self.button = customtkinter.CTkButton(self, text="Mostrar Fato Sobre Gatos", command=self.fetch_cat_fact)
+        self.button = customtkinter.CTkButton(self, text="Mostrar Fato", command=self.fetch_cat_fact)
         self.button.pack(pady=10)
     
     def fetch_cat_fact(self):
@@ -22,10 +22,13 @@ class CatFactApp(customtkinter.CTk):
         try:
             response = requests.get(url)
             response.raise_for_status()
-            data = response.json()
-            fact = data.get("fact", "Nenhum fato encontrado.")
-            translated_fact = self.translate_text(fact)
-            self.label_fact.configure(text=translated_fact)
+            match = re.search(r'"fact":"(.*?)"', response.text)
+            if match:
+                fact = match.group(1)
+                translated_fact = self.translate_text(fact)
+                self.label_fact.configure(text=translated_fact)
+            else:
+                self.label_fact.configure(text="Nenhum fato encontrado.")
         except requests.exceptions.RequestException:
             self.label_fact.configure(text="Erro ao buscar fato sobre gatos")
     
