@@ -13,17 +13,30 @@
 
 <h1 align = "center">Exercícios em Python</h1>
 
+### Exercícios Introdutórios (POO/CRUD/GUI/SQLite)
+
 * [Biblioteca de Filmes](#biblioteca-de-filmes)
 * [Criação de Classe e Instanciação de Objetos](#criação-de-classe-e-instanciação-de-objetos)
 * [Calculadora utilizando Classe](#calculadora-utilizando-classe)
 * [Calculadora de IMC](#calculadora-de-imc)
 * [Interface Visual com TKinter](#tkinter1)
 * [Utilizando um Banco de Dados local com SQLite3](#sqlite)
+
+### Manipulação de String
+
 * [Regex no Python](#regex)
 * [Guia Completo de Regex](#guiaregex)
+
+### Big Data
+
 * [Extrator de Nota Fiscal com Regex e Pandas](#nfpanda)
 * [Fatos de Gatos + Tradução (API) com Regex e CustomTkinter](#gatofato)
 
+### Manipulação de Arquivos
+
+* [UnifyFiles](#)
+* [PDF Merger](#)
+* [MKV Subtitle Picker](#)
 
 # Sistema de Venda e Controle de Estoque <a name="Sistema-de-Estoque"></a>
 
