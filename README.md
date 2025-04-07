@@ -1,9 +1,13 @@
 <h1 align = "center"> Projetos em Python </h1>
 
 * [Snap Link (Security Cam)](https://github.com/LMolinaro01/SnapLink) - (Arduino, ESP-32, C++, GUI, UnitTest)
+  
 * [Gerador de Polígonos](https://github.com/LMolinaro01/Gerador-de-Poligonos) - (matplotlib, Tkinter, numpy)
+  
 * [Sistema de Venda e Controle de Estoque](#Sistema-de-Estoque) - (SQLite, Tkinter, PIL, Time e Datetime)
+  
 * [Youtube Downloader](https://github.com/LMolinaro01/Youtube-Downloader) - (Tkinter e CustomTkinter, API - GPT)
+  
 * [Simulador de Avaliações](https://github.com/LMolinaro01/Simulador-de-Avaliacoes-em-Python/tree/main) - (Tkinter, SQLite, SQL Injection Prevention, PIL)
 
 
