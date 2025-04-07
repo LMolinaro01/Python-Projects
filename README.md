@@ -34,9 +34,9 @@
 
 ### Manipulação de Arquivos
 
-* [UnifyFiles](#)
-* [PDF Merger](#)
-* [MKV Subtitle Picker](#)
+* [UnifyFiles - Organizador de Arquivos em Pasta Principal](#)
+* [PDF Merger - Unificador de Arquivos PDF](#)
+* [MKV Subtitle Picker - Extrator de Legendas de Arquivos MKV](#)
 
 # Sistema de Venda e Controle de Estoque <a name="Sistema-de-Estoque"></a>
 
