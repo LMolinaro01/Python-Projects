@@ -3,6 +3,7 @@
 * [Snap Link (Security Cam)](https://github.com/LMolinaro01/SnapLink)
 * [Gerador de Polígonos](https://github.com/LMolinaro01/Gerador-de-Poligonos) 
 * [Sistema de Venda e Controle de Estoque](#Sistema-de-Estoque)
+* [Sistema de Controle de Estoque (PostgreSQL)](#Sistema-de-EstoquePSQL)
 * [Youtube Downloader](https://github.com/LMolinaro01/Youtube-Downloader) 
 * [Simulador de Avaliações](https://github.com/LMolinaro01/Simulador-de-Avaliacoes-em-Python/tree/main)
 
@@ -67,6 +68,62 @@ Controle de estoque e venda desenvolvido em Python utilizando as bibliotecas Tki
 - Time e Datetime (Registro de horário e Relógio funcional)
 
 ---
+
+# Sistema de Venda e Controle de Estoque <a name="Sistema-de-EstoquePSQL"></a>
+
+Este projeto é um sistema de gerenciamento de estoque desenvolvido em Python, utilizando o banco de dados PostgreSQL para armazenar as informações dos produtos. O sistema permite realizar operações básicas de CRUD (Create, Read, Update, Delete) em um ambiente de linha de comando.
+
+![image](https://github.com/user-attachments/assets/d6b10ac0-734b-438f-af66-dee24327fc4f) (imagem meramente ilustrativa)
+
+
+## Funcionalidades
+
+- **Adicionar Produto**: Permite inserir um novo produto no estoque, solicitando informações como nome, quantidade e preço.
+- **Visualizar Produtos**: Exibe uma lista de todos os produtos cadastrados no sistema, incluindo seus detalhes.
+- **Atualizar Produto**: Possibilita a atualização das informações de um produto existente, como alteração de quantidade ou preço.
+- **Deletar Produto**: Permite remover um produto do estoque com base em seu identificador único.
+
+## Tecnologias Utilizadas
+
+- **Python**: Linguagem de programação principal utilizada para desenvolver a lógica do sistema.
+- **PostgreSQL**: Banco de dados relacional utilizado para armazenar as informações dos produtos.
+- **psycopg2**: Biblioteca Python que facilita a conexão e interação com o banco de dados PostgreSQL.
+
+## Estrutura do Código
+
+O código é estruturado em funções que correspondem às operações de CRUD mencionadas. Cada função estabelece uma conexão com o banco de dados, executa a operação desejada e, em seguida, fecha a conexão. O fluxo principal do programa apresenta um menu interativo que permite ao usuário selecionar a operação que deseja realizar.
+
+## Configuração e Execução
+
+1. **Instalação das Dependências**: Certifique-se de que o Python e o PostgreSQL estão instalados em seu sistema. Instale a biblioteca `psycopg2` utilizando o pip:
+
+   ```bash
+   pip install psycopg2
+   ```
+
+
+2. **Configuração do Banco de Dados**: Crie um banco de dados no PostgreSQL e uma tabela chamada `produtos` com a seguinte estrutura:
+
+   ```sql
+   CREATE TABLE produtos (
+       id SERIAL PRIMARY KEY,
+       nome VARCHAR(100),
+       quantidade INTEGER,
+       preco NUMERIC
+   );
+   ```
+
+
+3. **Configuração das Credenciais**: No código, ajuste as variáveis `dbname`, `user` e `password` para corresponder às credenciais do seu banco de dados PostgreSQL.
+
+4. **Execução do Programa**: Execute o script `main.py` para iniciar o sistema de gerenciamento de estoque.
+
+## Observações
+
+- Este projeto foi desenvolvido para fins educacionais e pode ser expandido com funcionalidades adicionais, como interface gráfica, autenticação de usuários e relatórios de vendas.
+- Certifique-se de que o servidor PostgreSQL está em execução antes de iniciar o programa.
+- Para ambientes de produção, considere implementar medidas de segurança, como a utilização de variáveis de ambiente para armazenar credenciais do banco de dados.
+
 
 # Simulador de Avaliações em Python
 
