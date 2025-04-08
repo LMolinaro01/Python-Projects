@@ -1,0 +1,25 @@
+# Importando as bibliotecas necessárias
+from pyspark.sql import SparkSession
+import pandas as pd
+
+# Criando a sessão do Spark
+spark = SparkSession.builder.master("local").appName("MySparkApp").getOrCreate()
+
+# Exibindo a versão do Spark
+print(spark.version)
+
+# Carregando o dataset (ajuste o caminho conforme necessário)
+dataset = spark.read.csv('/content/sample_data/california_housing_test.csv', header=True, inferSchema=True)
+
+# Criando uma tabela temporária
+dataset.createOrReplaceTempView('tabela_temporaria')
+
+# Consultando o maior número de quartos
+query1 = 'SELECT MAX(total_rooms) as maximo_quartos FROM tabela_temporaria'
+q_maximo_quartos = spark.sql(query1)
+
+# Convertendo para DataFrame Pandas
+pd_maximo_quartos = q_maximo_quartos.toPandas()
+
+# Exibindo o resultado
+print("A quantidade máxima de quartos é:", pd_maximo_quartos.loc[0, 'maximo_quartos'])
