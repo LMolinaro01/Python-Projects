@@ -28,6 +28,7 @@
 
 * [Extrator de Nota Fiscal com Regex e Pandas](#nfpanda)
 * [Fatos de Gatos + Tradução (API) com Regex e CustomTkinter](#gatofato)
+* [Spark - Processamento e Análise de Dados com Distribuição Normal](#sparknormal)
 
 ### Manipulação de Arquivos
 
@@ -1153,6 +1154,62 @@ Se quiser testar a tradução:
 
 ---
 
+<a name="sparknormal"></a>
+
+## Spark - Processamento e Análise de Dados com Distribuição Normal
+
+Exemplo prático de configuração do Apache Spark para análise de dados gerados a partir de uma distribuição normal. Este projeto demonstra como integrar `numpy`, `pandas` e `pyspark` para gerar, processar e consultar grandes volumes de dados de maneira eficiente.
+
+
+### Tecnologias Utilizadas
+- **openjdk-8-jdk-headless**: Necessário para executar o Apache Spark.
+- **Apache Spark**: Framework de processamento distribuído para análise de big data.
+- **findspark**: Permite que o Python encontre e configure a instalação do Spark.
+- **pyspark**: API do Spark para Python, utilizada para criar sessões e DataFrames.
+- **numpy**: Para gerar dados com distribuição normal.
+- **pandas**: Para manipulação e conversão de dados entre DataFrames.
+
+### Como Funciona
+1. **Instalação e Configuração**:
+   - Instala o Java 8, essencial para a execução do Spark.
+   - Baixa e descompacta o Apache Spark (versão 3.5.5 com suporte Hadoop3).
+   - Instala as bibliotecas `findspark` e `pyspark`, preparando o ambiente Python para trabalhar com Spark.
+   - Define as variáveis de ambiente `JAVA_HOME` e `SPARK_HOME` para que o Spark seja corretamente localizado pelo sistema.
+
+2. **Geração de Dados**:
+   - Utiliza o `numpy` para gerar 10.000 amostras de uma distribuição normal com média 0 e desvio padrão 0.1.
+   - Cria um DataFrame do `pandas` com esses dados, facilitando a manipulação inicial.
+
+3. **Integração com Spark**:
+   - Converte o DataFrame do `pandas` para um DataFrame do Spark.
+   - Registra o DataFrame como uma tabela temporária no Spark, permitindo consultas SQL.
+
+4. **Consulta e Validação**:
+   - Executa uma consulta SQL para contar quantos valores da coluna estão no intervalo entre -0.1 e 0.1.
+   - Este intervalo corresponde a aproximadamente 68% dos dados, validando uma propriedade fundamental da distribuição normal.
+   - Converte o resultado da consulta para um DataFrame do `pandas` para visualização e análise.
+
+### O que é Apache Spark?
+O Apache Spark é um poderoso framework de computação distribuída que facilita o processamento de grandes volumes de dados com alta performance. Ele é amplamente utilizado em ambientes de big data para tarefas como processamento em lote, streaming, machine learning e análise interativa.
+
+### O que é Distribuição Normal?
+A Distribuição Normal é uma das distribuições estatísticas mais importantes, caracterizada por uma curva em forma de sino. Ela é definida por dois parâmetros:
+- **Média (μ)**: Centraliza os dados.
+- **Desvio Padrão (σ)**: Determina a dispersão dos dados.
+No contexto deste projeto, aproximadamente 68% dos valores gerados estão dentro de 1 desvio padrão da média (entre -0.1 e 0.1), o que é verificado pela consulta SQL.
+
+![image](https://github.com/user-attachments/assets/a7bbe2cc-f70a-4a47-abc7-16435cecf2e6)
+
+### Testando o Código
+Para testar o funcionamento:
+1. Execute os comandos para instalar o Java, baixar e configurar o Spark, e instalar as dependências necessárias.
+2. Configure as variáveis de ambiente para `JAVA_HOME` e `SPARK_HOME`.
+3. Execute o script Python que gera os dados, converte para Spark DataFrame, cria a tabela temporária e realiza a consulta SQL.
+4. Verifique o resultado: a contagem dos valores no intervalo deve ser próxima de 6800, confirmando a propriedade da distribuição normal.
+
+---
+
+Este projeto demonstra uma abordagem eficiente para integração entre bibliotecas de manipulação de dados e ferramentas de processamento distribuído, facilitando a análise estatística em escala.
 
 
 ### **Portifólio**
