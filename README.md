@@ -1200,6 +1200,20 @@ No contexto deste projeto, aproximadamente 68% dos valores gerados estão dentro
 
 ![image](https://github.com/user-attachments/assets/a7bbe2cc-f70a-4a47-abc7-16435cecf2e6)
 
+### Considerações sobre o Comportamento dos Dados
+Caso os dados não se comportem como esperado para uma distribuição normal — por exemplo, se a contagem dos valores no intervalo entre -0.1 e 0.1 não estiver próxima de 68% dos dados totais — pode indicar que há algo errado com o conjunto de dados.
+Possíveis causas para esse comportamento atípico incluem:
+
+- Fraude: Manipulação intencional dos dados para distorcer a análise.
+
+- Omissão de Dados: Dados importantes podem ter sido ignorados ou não coletados corretamente.
+
+- Perda de Dados: Problemas no processo de coleta ou armazenamento podem ter levado à perda de registros.
+
+- Erros de Processamento: Inconsistências durante a conversão ou manipulação dos dados entre pandas e Spark.
+
+Esses sinais podem levar a conclusões estatísticas incorretas e impactar a qualidade da análise, sendo fundamental identificar e corrigir esses problemas para garantir a integridade dos resultados.
+
 ### Testando o Código
 Para testar o funcionamento:
 1. Execute os comandos para instalar o Java, baixar e configurar o Spark, e instalar as dependências necessárias.
