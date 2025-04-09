@@ -30,11 +30,12 @@
 * [Fatos de Gatos + Tradução (API) com Regex e CustomTkinter](#gatofato)
 * [Spark - Processamento e Análise de Dados com Distribuição Normal](#sparknormal)
 
-### Manipulação de Arquivos
+### Automação Manipulação de Arquivos
 
 * [UnifyFiles - Organizador de Arquivos em Pasta Principal](#)
 * [PDF Merger - Unificador de Arquivos PDF](#)
 * [MKV Subtitle Picker - Extrator de Legendas de Arquivos MKV](#)
+* [Selenium - Pesquisa na Wikipédia](#seleinumwiki)
 
 # Sistema de Venda e Controle de Estoque <a name="Sistema-de-Estoque"></a>
 
@@ -1224,6 +1225,72 @@ Para testar o funcionamento:
 ---
 
 Este projeto demonstra uma abordagem eficiente para integração entre bibliotecas de manipulação de dados e ferramentas de processamento distribuído, facilitando a análise estatística em escala.
+
+<a name="seleniumwiki"></a>
+
+# Automação com Selenium - Pesquisa na Wikipédia
+
+Exemplo prático de automação utilizando o **Selenium** para realizar uma pesquisa automatizada na **Wikipédia**. O projeto mostra como controlar o navegador de forma programática para simular uma pesquisa do termo **"Engenharia de Software"** na Wikipédia, utilizando a biblioteca **Selenium** com Python.
+
+## Tecnologias Utilizadas
+
+- **Python 3.x**: Linguagem de programação utilizada para o script de automação.
+- **Selenium**: Biblioteca de automação de navegadores que permite controlar um navegador da web, como o Google Chrome, para simular interações de um usuário real.
+- **Google Chrome**: Navegador utilizado no projeto.
+- **ChromeDriver**: Driver necessário para o Selenium interagir com o navegador Google Chrome.
+
+## Como Funciona
+
+1. **Instalação e Configuração**:
+   - Instale o Python 3.x em sua máquina, caso ainda não tenha.
+   - Instale o Selenium, que é a biblioteca principal utilizada para controlar o navegador. Você pode instalá-la com o seguinte comando:
+
+     ```bash
+     pip install selenium
+     ```
+
+   - Baixe o **ChromeDriver** (versão correspondente ao seu navegador Chrome) em [ChromeDriver Downloads](https://sites.google.com/chromium.org/driver/). Após o download, extraia o arquivo e adicione o caminho ao `PATH`, ou forneça o caminho completo no código.
+
+2. **O Script**:
+   - O código abre o navegador Google Chrome e acessa a página inicial da Wikipédia.
+   - Em seguida, localiza o campo de pesquisa da Wikipédia e insere o termo **"Engenharia de Software"**.
+   - O script pressiona **ENTER** para realizar a pesquisa.
+   - Após carregar a página de resultados, o script salva uma captura de tela com o nome `screenshot.png`.
+   - Por fim, o navegador é fechado.
+
+3. **Executando o Script**:
+   - Após configurar o ambiente, salve o código em um arquivo `pesquisa_wikipedia.py`.
+   - Execute o script no terminal:
+
+     ```bash
+     python pesquisa_wikipedia.py
+     ```
+
+   - O navegador será aberto automaticamente, realizará a pesquisa e salvará a captura de tela.
+
+https://github.com/user-attachments/assets/90541ea8-e1ca-4773-ba1d-d89bc95a046e
+
+## O que é Selenium?
+
+O **Selenium** é uma biblioteca de automação de testes de código aberto que permite controlar navegadores da web. Ele é amplamente utilizado para testar interfaces de usuário de aplicações web, mas também pode ser usado para automação de tarefas repetitivas como preencher formulários, fazer buscas em sites e navegar entre páginas, exatamente como um usuário faria manualmente.
+
+No contexto deste projeto, o Selenium é utilizado para simular a pesquisa na Wikipédia, o que facilita a interação com páginas web sem a necessidade de um usuário manual.
+
+## Testando o Código
+
+1. **Instalar as Dependências**: Instale o Python e o Selenium, e faça o download do **ChromeDriver** para a versão do seu Google Chrome.
+2. **Executar o Script**: Execute o script Python com o comando mencionado anteriormente. O navegador será aberto, o termo "Engenharia de Software" será pesquisado na Wikipédia e uma captura de tela da página de resultados será salva como `screenshot.png`.
+3. **Verifique o Resultado**: Após a execução, verifique o arquivo `screenshot.png` para confirmar que a pesquisa foi realizada corretamente.
+
+## Considerações Finais
+
+Este projeto mostra como utilizar o Selenium para automatizar a interação com uma página web, neste caso, realizando uma pesquisa na Wikipédia. A capacidade de automatizar interações com páginas web pode ser útil para diversas finalidades, como testes de software, scraping de dados e automação de tarefas repetitivas.
+
+Com o Selenium, é possível simular quase qualquer ação de um usuário, o que torna essa ferramenta muito poderosa para automação de navegadores.
+
+---
+
+Este projeto é uma introdução simples ao uso do Selenium com Python para automação de tarefas em páginas web.
 
 
 ### **Portifólio**
