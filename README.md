@@ -30,12 +30,13 @@
 * [Fatos de Gatos + Tradução (API) com Regex e CustomTkinter](#gatofato)
 * [Spark - Processamento e Análise de Dados com Distribuição Normal](#sparknormal)
 
-### Automação Manipulação de Arquivos
+### Automação e Manipulação de Arquivos
 
 * [UnifyFiles - Organizador de Arquivos em Pasta Principal](#)
 * [PDF Merger - Unificador de Arquivos PDF](#)
 * [MKV Subtitle Picker - Extrator de Legendas de Arquivos MKV](#)
 * [Selenium - Pesquisa na Wikipédia](#seleniumwiki)
+* [Sensor de LDR integrado com Python](https://github.com/LMolinaro01/Arduino-Projects)
 
 # Sistema de Venda e Controle de Estoque <a name="Sistema-de-Estoque"></a>
 
