@@ -38,6 +38,10 @@
 * [Selenium - Pesquisa na Wikipédia](#seleniumwiki)
 * [Sensor de LDR integrado com Python](https://github.com/LMolinaro01/Arduino-Projects)
 
+### A.I
+
+* [UV - Package Manager + ChatGPT com Langchain](#uv)
+
 # Sistema de Venda e Controle de Estoque <a name="Sistema-de-Estoque"></a>
 
 Controle de estoque e venda desenvolvido em Python utilizando as bibliotecas Tkinter para a interface gráfica, SQLite para o armazenamento de dados, Datetime para registro das vendas (horário da venda), Time para um relógio funcional e Pillow (PIL) para a inserção de Imagens.
@@ -1291,7 +1295,237 @@ Com o Selenium, é possível simular quase qualquer ação de um usuário, o que
 
 ---
 
-Este projeto é uma introdução simples ao uso do Selenium com Python para automação de tarefas em páginas web.
+# ChatGPT com LangChain e `uv` 
+<a name="uv"> </a>
+
+Este é um projeto simples que utiliza o modelo `gpt-4o` da OpenAI via `LangChain`, com gerenciamento de dependências feito pelo poderoso gerenciador de pacotes [`uv`](https://docs.astral.sh/uv/).
+
+---
+
+## Sobre o Projeto
+
+O script realiza uma pergunta via terminal ao usuário e envia essa entrada para o modelo `gpt-4o`, retornando uma resposta gerada por IA.
+
+```python
+from langchain_openai import ChatOpenAI
+from dotenv import load_dotenv
+
+load_dotenv()
+
+llm = ChatOpenAI(model="gpt-4o")
+
+pergunta = input("O Que deseja saber?: ")
+resposta = llm.invoke(str(pergunta))
+
+print(resposta.content)
+````
+
+---
+
+## Requisitos
+
+* Python 3.8+
+* Git Bash (ou outro terminal compatível no Windows)
+* Conexão com a internet
+* Uma chave de API da OpenAI (armazenada em um arquivo `.env`)
+
+---
+
+## Instalação do `uv`
+
+[`uv`](https://docs.astral.sh/uv/) é um gerenciador de pacotes moderno, rápido e eficiente criado pela [Astral](https://astral.sh). Ele substitui `pip`, `virtualenv` e `pip-tools` com uma única ferramenta.
+
+### 1. Instalar o `uv`
+
+No terminal (ex: Git Bash), execute:
+
+```bash
+curl -Ls https://astral.sh/uv/install.sh | bash
+```
+
+Se necessário, adicione `uv` ao seu PATH:
+
+```bash
+export PATH="$HOME/.local/bin:$PATH"
+```
+
+Verifique se funcionou:
+
+```bash
+uv --version
+```
+
+---
+
+### 2. Inicializar o projeto com `uv`
+
+Crie o ambiente virtual e configure o projeto:
+
+```bash
+uv init .
+```
+
+---
+
+### 3. Adicionar as dependências
+
+Adicione os pacotes necessários:
+
+```bash
+uv add python-dotenv
+uv add langchain-openai
+```
+
+> Obs: `python-dotenv` carrega variáveis do `.env`; `langchain-openai` integra com a API da OpenAI.
+
+---
+
+### 4. Criar o arquivo `.env`
+
+Crie um arquivo `.env` com sua chave da OpenAI:
+
+```
+OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+---
+
+### 5. Rodar o projeto
+
+Execute o script com:
+
+```bash
+uv run main.py
+```
+
+---
+
+## Documentação oficial do `uv`
+
+Acesse a documentação completa aqui:
+🔗 [https://docs.astral.sh/uv/](https://docs.astral.sh/uv/)
+
+---
+
+## Exemplos de uso
+
+```bash
+$ uv add requests
+$ uv remove numpy
+$ uv sync
+$ uv pip freeze
+```
+
+---
+
+## Benefícios de usar `uv`
+
+* Ultra-rápido (usa Rust)
+* Substitui `pip`, `venv` e `pip-tools`
+* Sincronização automática de ambientes
+* Cache inteligente de pacotes
+
+# UV — Novo Gerenciador de Pacotes Python
+
+![image](https://github.com/user-attachments/assets/ecb08e2d-b7b7-4b06-8e66-984f07b4202d)
+
+`uv` é um gerenciador de pacotes e ambientes para Python, desenvolvido em Rust pela Astral, que unifica e substitui `pip`, `venv`, `pip-tools` e arquivos de lock fragmentados. Ele oferece instalação rápida, lock determinístico e workflow simplificado.
+
+---
+
+## Instalação
+
+1. Baixe e execute o instalador:
+   ```bash
+   curl -Ls https://astral.sh/uv/install.sh | bash
+
+
+2. (Opcional) Adicione ao seu PATH, se o comando não for reconhecido:
+
+   ```bash
+   export PATH="$HOME/.local/bin:$PATH"
+   ```
+
+3. Verifique a instalação:
+
+   ```bash
+   uv --version
+   # Exemplo de saída: uv 0.7.4 (6fbcd09b5 2025-05-15)
+   ```
+
+---
+
+## Fluxo Básico de Uso
+
+1. **Inicializar projeto**
+
+   ```bash
+   cd meu-projeto
+   uv init .
+   ```
+
+   * Cria um ambiente virtual em `./.venv/`
+   * Gera `uv.lock` com todas as dependências atuais
+
+2. **Adicionar dependências**
+
+   ```bash
+   uv add <pacote>[@<versão>]
+   ```
+
+   * Exemplo: `uv add requests`
+   * Resolve versões, instala no venv e atualiza `uv.lock`
+
+3. **Remover pacotes**
+
+   ```bash
+   uv remove <pacote>
+   ```
+
+   * Remove do venv e atualiza `uv.lock`
+
+4. **Sincronizar ambiente**
+
+   ```bash
+   uv sync
+   ```
+
+   * Garante que o venv reflita exatamente o conteúdo de `uv.lock`
+
+5. **Executar scripts**
+
+   ```bash
+   uv run python main.py
+   ```
+
+   * Executa o script dentro do ambiente isolado
+   * Também funciona com shebang: `uv run ./script.py`
+
+---
+
+## Lock Determinístico
+
+* Todas as dependências diretas e transitivas são travadas em `uv.lock`.
+* Ambientes reprodutíveis em diferentes máquinas com o mesmo arquivo de lock.
+
+---
+
+## Benefícios
+
+| Característica        | Descrição                                             |
+| --------------------- | ----------------------------------------------------- |
+| Performance em Rust   | Instalações e resolução de dependências muito rápidas |
+| Tudo em um            | Substitui diversas ferramentas em uma única CLI       |
+| Standalone            | Não exige `pip install uv` em um ambiente Python      |
+| Lock completo         | Trava tanto dependências diretas quanto indiretas     |
+| Workflow simplificado | Comandos `init`, `add`, `remove`, `sync`, `run`       |
+
+---
+
+## Documentação Oficial
+
+Consulte o guia completo em:
+[https://docs.astral.sh/uv/](https://docs.astral.sh/uv/)
 
 
 ### **Portifólio**
