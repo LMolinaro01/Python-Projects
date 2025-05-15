@@ -38,9 +38,10 @@
 * [Selenium - Pesquisa na Wikipédia](#seleniumwiki)
 * [Sensor de LDR integrado com Python](https://github.com/LMolinaro01/Arduino-Projects)
 
-### A.I
+### Outros
 
 * [UV - Package Manager + ChatGPT com Langchain](#uv)
+* [UV - Package Manager Explicação](#uv2)
 
 # Sistema de Venda e Controle de Estoque <a name="Sistema-de-Estoque"></a>
 
@@ -1425,7 +1426,11 @@ $ uv pip freeze
 * Sincronização automática de ambientes
 * Cache inteligente de pacotes
 
+---
+
 # UV — Novo Gerenciador de Pacotes Python
+
+<a name="uv2"> </a>
 
 ![image](https://github.com/user-attachments/assets/ecb08e2d-b7b7-4b06-8e66-984f07b4202d)
 
