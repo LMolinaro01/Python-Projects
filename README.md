@@ -42,6 +42,7 @@
 
 * [UV - Package Manager + ChatGPT com Langchain](#uv)
 * [UV - Package Manager Explicação](#uv2)
+* [Design Patterns em Python](#desgin-pattern)
 
 # Sistema de Venda e Controle de Estoque <a name="Sistema-de-Estoque"></a>
 
@@ -1531,6 +1532,989 @@ $ uv pip freeze
 
 Consulte o guia completo em:
 [https://docs.astral.sh/uv/](https://docs.astral.sh/uv/)
+
+<a name = "design-pattern"> </a>
+# Design Patterns (Padrões de Projetos) 
+
+## Criação
+
+### 1. **Abstract Factory**
+
+O padrão **Abstract Factory** fornece uma interface para criar famílias de objetos relacionados, sem especificar suas classes concretas. Ou seja, ele permite criar diferentes tipos de objetos (produtos) relacionados de uma maneira independente da implementação concreta desses objetos.
+
+#### Exemplo em Python:
+
+```python
+# Produtos concretos
+class ProdutoA1:
+    def operacao(self):
+        return "ProdutoA1 operando"
+
+class ProdutoA2:
+    def operacao(self):
+        return "ProdutoA2 operando"
+
+class ProdutoB1:
+    def operacao(self):
+        return "ProdutoB1 operando"
+
+class ProdutoB2:
+    def operacao(self):
+        return "ProdutoB2 operando"
+
+# Fábrica abstrata
+class FábricaAbstrata:
+    def criar_produto_a(self):
+        raise NotImplementedError
+    
+    def criar_produto_b(self):
+        raise NotImplementedError
+
+# Fábricas concretas
+class FábricaConcreta1(FábricaAbstrata):
+    def criar_produto_a(self):
+        return ProdutoA1()
+    
+    def criar_produto_b(self):
+        return ProdutoB1()
+
+class FábricaConcreta2(FábricaAbstrata):
+    def criar_produto_a(self):
+        return ProdutoA2()
+    
+    def criar_produto_b(self):
+        return ProdutoB2()
+
+# Cliente
+def cliente(fábrica: FábricaAbstrata):
+    produto_a = fábrica.criar_produto_a()
+    produto_b = fábrica.criar_produto_b()
+    print(produto_a.operacao())
+    print(produto_b.operacao())
+
+# Testando
+fábrica1 = FábricaConcreta1()
+cliente(fábrica1)
+
+fábrica2 = FábricaConcreta2()
+cliente(fábrica2)
+```
+
+### 2. **Builder**
+
+O **Builder** separa a construção de um objeto complexo da sua representação, permitindo criar diferentes representações do mesmo tipo de objeto. Ele é usado quando você precisa construir um objeto com várias partes, mas não quer que o cliente tenha que lidar com a complexidade de montar o objeto por si só.
+
+#### Exemplo em Python:
+
+```python
+class Produto:
+    def __init__(self):
+        self.partes = []
+    
+    def adicionar_parte(self, parte):
+        self.partes.append(parte)
+
+    def __str__(self):
+        return "Produto com partes: " + ", ".join(self.partes)
+
+# Builder
+class Construtor:
+    def __init__(self):
+        self.produto = Produto()
+
+    def construir_parte_1(self):
+        self.produto.adicionar_parte("Parte 1")
+
+    def construir_parte_2(self):
+        self.produto.adicionar_parte("Parte 2")
+
+    def construir_parte_3(self):
+        self.produto.adicionar_parte("Parte 3")
+
+    def get_produto(self):
+        return self.produto
+
+# Diretor
+class Diretor:
+    def __init__(self, construtor):
+        self.construtor = construtor
+
+    def construir(self):
+        self.construtor.construir_parte_1()
+        self.construtor.construir_parte_2()
+
+# Testando
+construtor = Construtor()
+diretor = Diretor(construtor)
+diretor.construir()
+produto = construtor.get_produto()
+print(produto)
+```
+
+### 3. **Factory Method**
+
+O **Factory Method** define um método que cria objetos em uma superclasse, mas permite que subclasses alterem o tipo de objetos que serão criados. Ele delega a responsabilidade de instanciar as classes concretas para as subclasses, sem que o cliente precise saber qual é a classe exata.
+
+#### Exemplo em Python:
+
+```python
+from abc import ABC, abstractmethod
+
+# Produto
+class Produto(ABC):
+    @abstractmethod
+    def operacao(self):
+        pass
+
+class ProdutoConcretoA(Produto):
+    def operacao(self):
+        return "Operação A"
+
+class ProdutoConcretoB(Produto):
+    def operacao(self):
+        return "Operação B"
+
+# Criador
+class Criador(ABC):
+    @abstractmethod
+    def criar_produto(self):
+        pass
+
+# Criadores concretos
+class CriadorConcretoA(Criador):
+    def criar_produto(self):
+        return ProdutoConcretoA()
+
+class CriadorConcretoB(Criador):
+    def criar_produto(self):
+        return ProdutoConcretoB()
+
+# Cliente
+def cliente(criador: Criador):
+    produto = criador.criar_produto()
+    print(produto.operacao())
+
+# Testando
+criador_a = CriadorConcretoA()
+cliente(criador_a)
+
+criador_b = CriadorConcretoB()
+cliente(criador_b)
+```
+
+### 4. **Prototype**
+
+O **Prototype** permite a criação de novos objetos copiando um objeto existente, ao invés de criar novos objetos do zero. Ele é útil quando a criação de um novo objeto é cara, então, ao invés de criar um novo, você clona um objeto existente.
+
+#### Exemplo em Python:
+
+```python
+import copy
+
+class Produto:
+    def __init__(self, nome, valor):
+        self.nome = nome
+        self.valor = valor
+
+    def __str__(self):
+        return f"Produto {self.nome} - {self.valor}"
+
+    # Método de clonagem (Prototype)
+    def clonar(self):
+        return copy.deepcopy(self)
+
+# Criando o protótipo
+produto_original = Produto("Produto1", 100)
+
+# Clonando o produto
+produto_clone = produto_original.clonar()
+produto_clone.nome = "Produto Clonado"
+produto_clone.valor = 150
+
+print(produto_original)
+print(produto_clone)
+```
+
+### 5. **Singleton**
+
+O **Singleton** garante que uma classe tenha apenas uma instância e fornece um ponto global de acesso a essa instância. Isso é útil quando você precisa garantir que exista apenas uma instância de uma classe, como no caso de um gerenciador de configuração global.
+
+#### Exemplo em Python:
+
+```python
+class Singleton:
+    _instancia = None
+    
+    def __new__(cls):
+        if cls._instancia is None:
+            cls._instancia = super(Singleton, cls).__new__(cls)
+        return cls._instancia
+
+# Testando o Singleton
+objeto1 = Singleton()
+objeto2 = Singleton()
+
+print(objeto1 is objeto2)  # True, ambas as instâncias são a mesma
+```
+
+### Resumo dos Padrões:
+
+* **Abstract Factory**: Cria famílias de objetos relacionados sem especificar suas classes concretas.
+* **Builder**: Separa a construção de um objeto complexo da sua representação.
+* **Factory Method**: Cria objetos em uma superclasse, mas permite que subclasses alterem o tipo de objeto.
+* **Prototype**: Cria novos objetos clonando objetos existentes.
+* **Singleton**: Garante que uma classe tenha apenas uma instância.
+
+---
+
+## Estrutura
+
+Claro! Vou explicar agora os padrões de **estrutura** e dar exemplos em Python para cada um deles.
+
+### 1. **Adapter**
+
+O padrão **Adapter** é usado para adaptar uma interface de uma classe para que ela possa ser utilizada em uma outra classe. Em outras palavras, ele permite que classes com interfaces incompatíveis possam trabalhar juntas.
+
+#### Exemplo em Python:
+
+```python
+# Classe que precisa ser adaptada
+class SistemaAntigo:
+    def operar_antigo(self):
+        return "Operação do Sistema Antigo"
+
+# Classe que espera a interface nova
+class SistemaNovo:
+    def operar_novo(self):
+        return "Operação do Sistema Novo"
+
+# Adapter que adapta a interface
+class Adapter(SistemaNovo):
+    def __init__(self, sistema_antigo):
+        self.sistema_antigo = sistema_antigo
+
+    def operar_novo(self):
+        return self.sistema_antigo.operar_antigo()
+
+# Cliente
+sistema_antigo = SistemaAntigo()
+adapter = Adapter(sistema_antigo)
+print(adapter.operar_novo())  # Adaptando para a interface nova
+```
+
+### 2. **Bridge**
+
+O padrão **Bridge** desacopla uma abstração de sua implementação, permitindo que ambas possam variar independentemente. Ele é útil quando você tem várias implementações de uma abstração e quer desacoplar as mudanças nas implementações das mudanças nas abstrações.
+
+#### Exemplo em Python:
+
+```python
+# Abstração
+class Abstracao:
+    def __init__(self, implementacao):
+        self.implementacao = implementacao
+
+    def operacao(self):
+        raise NotImplementedError
+
+# Implementação
+class Implementacao:
+    def operacao_impl(self):
+        raise NotImplementedError
+
+# Implementação Concreta A
+class ImplementacaoA(Implementacao):
+    def operacao_impl(self):
+        return "Implementação A"
+
+# Implementação Concreta B
+class ImplementacaoB(Implementacao):
+    def operacao_impl(self):
+        return "Implementação B"
+
+# Abstração Concreta
+class AbstracaoConcreta(Abstracao):
+    def operacao(self):
+        return f"Operação com {self.implementacao.operacao_impl()}"
+
+# Testando
+implementacao_a = ImplementacaoA()
+abstracao_a = AbstracaoConcreta(implementacao_a)
+print(abstracao_a.operacao())  # "Operação com Implementação A"
+
+implementacao_b = ImplementacaoB()
+abstracao_b = AbstracaoConcreta(implementacao_b)
+print(abstracao_b.operacao())  # "Operação com Implementação B"
+```
+
+### 3. **Composite**
+
+O padrão **Composite** permite que objetos individuais e compostos sejam tratados de forma uniforme. Ele cria uma árvore de objetos em que cada nó pode ser um objeto simples ou composto. Isso é útil quando você tem hierarquias de objetos.
+
+#### Exemplo em Python:
+
+```python
+from abc import ABC, abstractmethod
+
+# Componente
+class Componente(ABC):
+    @abstractmethod
+    def operação(self):
+        pass
+
+# Folha
+class Folha(Componente):
+    def operação(self):
+        return "Folha"
+
+# Composto
+class Composto(Componente):
+    def __init__(self):
+        self.componentes = []
+
+    def adicionar(self, componente: Componente):
+        self.componentes.append(componente)
+
+    def operação(self):
+        return ", ".join([componente.operação() for componente in self.componentes])
+
+# Testando
+folha1 = Folha()
+folha2 = Folha()
+composto = Composto()
+composto.adicionar(folha1)
+composto.adicionar(folha2)
+
+print(composto.operação())  # "Folha, Folha"
+```
+
+### 4. **Decorator**
+
+O padrão **Decorator** permite adicionar funcionalidades a um objeto de forma dinâmica, sem alterar a classe original. Ele é útil quando você quer adicionar comportamentos extras a objetos em tempo de execução.
+
+#### Exemplo em Python:
+
+```python
+class Produto:
+    def custo(self):
+        return 10
+
+class Decorador(Produto):
+    def __init__(self, produto):
+        self.produto = produto
+
+class DecoradorComDesconto(Decorador):
+    def custo(self):
+        return self.produto.custo() * 0.9  # Aplica desconto de 10%
+
+class DecoradorComImposto(Decorador):
+    def custo(self):
+        return self.produto.custo() * 1.2  # Aplica imposto de 20%
+
+# Testando
+produto = Produto()
+produto_com_desconto = DecoradorComDesconto(produto)
+produto_com_imposto = DecoradorComImposto(produto_com_desconto)
+
+print(produto_com_imposto.custo())  # Produto com 10% de desconto e 20% de imposto
+```
+
+### 5. **Facade**
+
+O padrão **Facade** fornece uma interface unificada e simplificada para um conjunto de interfaces em um subsistema, facilitando o uso complexo dessas interfaces. Ele oculta as complexidades do subsistema para o cliente.
+
+#### Exemplo em Python:
+
+```python
+class SubSistemaA:
+    def operação_a(self):
+        return "Operação A"
+
+class SubSistemaB:
+    def operação_b(self):
+        return "Operação B"
+
+class SubSistemaC:
+    def operação_c(self):
+        return "Operação C"
+
+# Facade
+class Facade:
+    def __init__(self):
+        self.a = SubSistemaA()
+        self.b = SubSistemaB()
+        self.c = SubSistemaC()
+
+    def operação_facade(self):
+        return f"{self.a.operação_a()}, {self.b.operação_b()}, {self.c.operação_c()}"
+
+# Testando
+facade = Facade()
+print(facade.operação_facade())  # Chama o sistema de maneira simplificada
+```
+
+### 6. **Flyweight**
+
+O padrão **Flyweight** permite compartilhar objetos para suportar grandes quantidades de objetos de forma eficiente, economizando memória. Ele é útil quando você tem muitas instâncias de um objeto que possuem partes de seu estado em comum.
+
+#### Exemplo em Python:
+
+```python
+class Carro:
+    def __init__(self, modelo, cor):
+        self.modelo = modelo
+        self.cor = cor
+
+# Flyweight Factory
+class CarroFactory:
+    _carros = {}
+
+    @staticmethod
+    def get_carro(modelo):
+        if modelo not in CarroFactory._carros:
+            CarroFactory._carros[modelo] = Carro(modelo, "Branco")
+        return CarroFactory._carros[modelo]
+
+# Testando
+carro1 = CarroFactory.get_carro("Fusca")
+carro2 = CarroFactory.get_carro("Fusca")
+
+print(carro1 is carro2)  # True, ambos são a mesma instância
+```
+
+### 7. **Proxy**
+
+O padrão **Proxy** fornece um substituto ou representante de um objeto real. Ele pode ser utilizado para controlar o acesso a um objeto, por exemplo, para adicionar segurança, controle de acesso, ou até mesmo para carregar objetos pesados de forma preguiçosa.
+
+#### Exemplo em Python:
+
+```python
+class RealSubject:
+    def request(self):
+        return "Pedido real feito"
+
+# Proxy
+class Proxy:
+    def __init__(self, real_subject):
+        self.real_subject = real_subject
+
+    def request(self):
+        print("Verificando permissão para fazer o pedido...")
+        return self.real_subject.request()
+
+# Testando
+real_subject = RealSubject()
+proxy = Proxy(real_subject)
+print(proxy.request())  # Proxy verifica antes de fazer o pedido real
+```
+
+---
+
+### Resumo dos Padrões Estruturais:
+
+* **Adapter**: Converte a interface de uma classe para outra, permitindo que interfaces incompatíveis trabalhem juntas.
+* **Bridge**: Desacopla a abstração da implementação, permitindo variações independentes de ambos.
+* **Composite**: Permite tratar objetos compostos e objetos simples de forma uniforme, formando uma estrutura hierárquica.
+* **Decorator**: Adiciona funcionalidades adicionais a um objeto sem modificar sua estrutura.
+* **Facade**: Simplifica o uso de um subsistema complexo fornecendo uma interface única.
+* **Flyweight**: Compartilha objetos comuns para economizar memória quando você tem muitas instâncias similares.
+* **Proxy**: Fornece um substituto ou representante de outro objeto, controlando o acesso ao objeto real.
+
+## Comportamento
+
+Claro! Vou explicar os padrões de **comportamento** e dar exemplos em Python para cada um deles. Esses padrões são fundamentais para definir como objetos interagem uns com os outros e gerenciam suas responsabilidades. Vamos a eles:
+
+### 1. **Chain of Responsibility**
+
+O padrão **Chain of Responsibility** permite que múltiplos objetos tratem uma solicitação, sem que o remetente saiba qual objeto irá tratar a solicitação. A solicitação é passada ao longo de uma cadeia de objetos, até que um deles consiga tratá-la.
+
+#### Exemplo em Python:
+
+```python
+class Requisicao:
+    def __init__(self, valor):
+        self.valor = valor
+
+class Manipulador:
+    def __init__(self, proximo=None):
+        self.proximo = proximo
+
+    def manipular(self, requisicao):
+        if self.proximo:
+            return self.proximo.manipular(requisicao)
+        return None
+
+class ManipuladorA(Manipulador):
+    def manipular(self, requisicao):
+        if requisicao.valor <= 10:
+            return f"Manipulado por A: {requisicao.valor}"
+        return super().manipular(requisicao)
+
+class ManipuladorB(Manipulador):
+    def manipular(self, requisicao):
+        if requisicao.valor <= 20:
+            return f"Manipulado por B: {requisicao.valor}"
+        return super().manipular(requisicao)
+
+# Testando
+requisicao = Requisicao(15)
+manipulador = ManipuladorA(ManipuladorB())
+print(manipulador.manipular(requisicao))  # Manipulado por B: 15
+```
+
+### 2. **Command**
+
+O padrão **Command** encapsula uma solicitação como um objeto, permitindo parametrizar clientes com diferentes solicitações, enfileirar ou registrar solicitações, e suportar a execução de operações de forma remota.
+
+#### Exemplo em Python:
+
+```python
+class Comando:
+    def executar(self):
+        pass
+
+class ComandoConcretoA(Comando):
+    def __init__(self, receptor):
+        self.receptor = receptor
+
+    def executar(self):
+        return self.receptor.acao_a()
+
+class ComandoConcretoB(Comando):
+    def __init__(self, receptor):
+        self.receptor = receptor
+
+    def executar(self):
+        return self.receptor.acao_b()
+
+class Receptor:
+    def acao_a(self):
+        return "Ação A executada"
+
+    def acao_b(self):
+        return "Ação B executada"
+
+class Invocador:
+    def __init__(self):
+        self.comandos = []
+
+    def adicionar_comando(self, comando):
+        self.comandos.append(comando)
+
+    def executar_comandos(self):
+        for comando in self.comandos:
+            print(comando.executar())
+
+# Testando
+receptor = Receptor()
+comando_a = ComandoConcretoA(receptor)
+comando_b = ComandoConcretoB(receptor)
+
+invocador = Invocador()
+invocador.adicionar_comando(comando_a)
+invocador.adicionar_comando(comando_b)
+
+invocador.executar_comandos()
+```
+
+### 3. **Interpreter**
+
+O padrão **Interpreter** fornece uma maneira de avaliar a gramática ou expressão de uma linguagem. Ele é útil quando você precisa interpretar ou compilar expressões dentro de uma linguagem específica.
+
+#### Exemplo em Python:
+
+```python
+class Expressao:
+    def interpretar(self):
+        pass
+
+class Numero(Expressao):
+    def __init__(self, numero):
+        self.numero = numero
+
+    def interpretar(self):
+        return self.numero
+
+class Soma(Expressao):
+    def __init__(self, esquerda, direita):
+        self.esquerda = esquerda
+        self.direita = direita
+
+    def interpretar(self):
+        return self.esquerda.interpretar() + self.direita.interpretar()
+
+# Testando
+num1 = Numero(5)
+num2 = Numero(10)
+soma = Soma(num1, num2)
+print(soma.interpretar())  # 15
+```
+
+### 4. **Iterator**
+
+O padrão **Iterator** fornece uma maneira de acessar elementos de uma coleção sequencialmente, sem expor a estrutura interna da coleção. Ele separa a responsabilidade de percorrer a coleção da própria coleção.
+
+#### Exemplo em Python:
+
+```python
+class Colecao:
+    def __init__(self):
+        self.itens = []
+    
+    def adicionar(self, item):
+        self.itens.append(item)
+    
+    def __iter__(self):
+        return Iterador(self.itens)
+
+class Iterador:
+    def __init__(self, itens):
+        self.itens = itens
+        self.index = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.index < len(self.itens):
+            item = self.itens[self.index]
+            self.index += 1
+            return item
+        else:
+            raise StopIteration
+
+# Testando
+colecao = Colecao()
+colecao.adicionar("Item 1")
+colecao.adicionar("Item 2")
+colecao.adicionar("Item 3")
+
+for item in colecao:
+    print(item)
+```
+
+### 5. **Mediator**
+
+O padrão **Mediator** facilita a comunicação entre objetos, permitindo que eles se comuniquem de forma centralizada e evitando que fiquem diretamente dependentes uns dos outros.
+
+#### Exemplo em Python:
+
+```python
+class Mediador:
+    def __init__(self):
+        self.componentes = []
+    
+    def registrar(self, componente):
+        self.componentes.append(componente)
+    
+    def notificar(self, origem, mensagem):
+        for componente in self.componentes:
+            if componente != origem:
+                componente.receber(mensagem)
+
+class Componente:
+    def __init__(self, nome, mediador):
+        self.nome = nome
+        self.mediador = mediador
+        self.mediador.registrar(self)
+
+    def enviar(self, mensagem):
+        print(f"{self.nome} envia: {mensagem}")
+        self.mediador.notificar(self, mensagem)
+
+    def receber(self, mensagem):
+        print(f"{self.nome} recebeu: {mensagem}")
+
+# Testando
+mediador = Mediador()
+
+componente1 = Componente("Componente 1", mediador)
+componente2 = Componente("Componente 2", mediador)
+
+componente1.enviar("Oi, Componente 2!")
+```
+
+### 6. **Observer**
+
+O padrão **Observer** define uma dependência de um-para-muitos entre objetos, de modo que quando um objeto muda de estado, todos os seus dependentes são notificados e atualizados automaticamente.
+
+#### Exemplo em Python:
+
+```python
+class Observador:
+    def atualizar(self, mensagem):
+        pass
+
+class ObservadorConcretoA(Observador):
+    def atualizar(self, mensagem):
+        print(f"Observador A recebeu: {mensagem}")
+
+class ObservadorConcretoB(Observador):
+    def atualizar(self, mensagem):
+        print(f"Observador B recebeu: {mensagem}")
+
+class Sujeito:
+    def __init__(self):
+        self.observadores = []
+    
+    def adicionar_observador(self, observador):
+        self.observadores.append(observador)
+    
+    def notificar_observadores(self, mensagem):
+        for observador in self.observadores:
+            observador.atualizar(mensagem)
+
+# Testando
+sujeito = Sujeito()
+observador_a = ObservadorConcretoA()
+observador_b = ObservadorConcretoB()
+
+sujeito.adicionar_observador(observador_a)
+sujeito.adicionar_observador(observador_b)
+
+sujeito.notificar_observadores("Estado alterado!")
+```
+
+### 7. **State**
+
+O padrão **State** permite que um objeto altere seu comportamento quando seu estado interno muda. O objeto parecerá mudar sua classe.
+
+#### Exemplo em Python:
+
+```python
+class Estado:
+    def fazer_algo(self):
+        pass
+
+class EstadoConcretoA(Estado):
+    def fazer_algo(self):
+        return "Estado A está fazendo algo"
+
+class EstadoConcretoB(Estado):
+    def fazer_algo(self):
+        return "Estado B está fazendo algo"
+
+class Contexto:
+    def __init__(self):
+        self.estado = EstadoConcretoA()
+
+    def alterar_estado(self, novo_estado):
+        self.estado = novo_estado
+
+    def executar(self):
+        print(self.estado.fazer_algo())
+
+# Testando
+contexto = Contexto()
+contexto.executar()  # Estado A está fazendo algo
+
+contexto.alterar_estado(EstadoConcretoB())
+contexto.executar()  # Estado B está fazendo algo
+```
+
+### 8. **Strategy**
+
+O padrão **Strategy** define uma família de algoritmos, encapsula cada um deles e os torna intercambiáveis. O algoritmo pode ser selecionado em tempo de execução.
+
+#### Exemplo em Python:
+
+```python
+class Estrategia:
+    def executar(self):
+        pass
+
+class EstrategiaA(Estrategia):
+    def executar(self):
+        return "Executando Estratégia A"
+
+class EstrategiaB(Estrategia):
+    def executar(self):
+        return "Executando Estratégia B"
+
+class Contexto:
+    def __init__(self, estrategia):
+        self.estrategia = estrategia
+    
+    def executar_estrategia(self):
+        print(self.estrategia.executar())
+
+# Testando
+contexto = Contexto(EstrategiaA())
+contexto.executar_estrategia()  # Executando Estratégia A
+
+contexto.estrategia = EstrategiaB()
+contexto.executar_estrategia()  #
+```
+
+
+Executando Estratégia B
+
+````
+
+### 9. **Template Method**
+
+O padrão **Template Method** define o esqueleto de um algoritmo em um método, deixando alguns passos para que as subclasses os implementem. Ele permite que a estrutura do algoritmo seja preservada, mas permite a personalização dos passos.
+
+#### Exemplo em Python:
+
+```python
+class Algoritmo:
+    def template_method(self):
+        self.passo1()
+        self.passo2()
+        self.passo3()
+
+    def passo1(self):
+        pass
+    
+    def passo2(self):
+        pass
+    
+    def passo3(self):
+        pass
+
+class AlgoritmoConcreto(Algoritmo):
+    def passo1(self):
+        print("Passo 1 do algoritmo concreto")
+
+    def passo2(self):
+        print("Passo 2 do algoritmo concreto")
+
+    def passo3(self):
+        print("Passo 3 do algoritmo concreto")
+
+# Testando
+algoritmo = AlgoritmoConcreto()
+algoritmo.template_method()
+````
+
+### 10. **Visitor**
+
+O padrão **Visitor** permite adicionar novas operações a uma estrutura de objetos sem alterar as classes dessas estruturas. O visitante "visita" os elementos e executa operações específicas para cada tipo de elemento.
+
+#### Exemplo em Python:
+
+```python
+class Elemento:
+    def aceitar(self, visitante):
+        pass
+
+class ElementoConcretoA(Elemento):
+    def aceitar(self, visitante):
+        visitante.visitar_elemento_a(self)
+
+class ElementoConcretoB(Elemento):
+    def aceitar(self, visitante):
+        visitante.visitar_elemento_b(self)
+
+class Visitante:
+    def visitar_elemento_a(self, elemento):
+        pass
+
+    def visitar_elemento_b(self, elemento):
+        pass
+
+class VisitanteConcreto(Visitante):
+    def visitar_elemento_a(self, elemento):
+        print("Visitando Elemento A")
+
+    def visitar_elemento_b(self, elemento):
+        print("Visitando Elemento B")
+
+# Testando
+elemento_a = ElementoConcretoA()
+elemento_b = ElementoConcretoB()
+
+visitante = VisitanteConcreto()
+elemento_a.aceitar(visitante)
+elemento_b.aceitar(visitante)
+```
+
+---
+
+### Resumo dos Padrões Comportamentais:
+
+* **Chain of Responsibility**: Passa uma solicitação através de uma cadeia de objetos até que um deles a trate.
+* **Command**: Encapsula uma solicitação como um objeto, permitindo sua execução em diferentes contextos.
+* **Interpreter**: Define uma maneira de interpretar uma linguagem ou expressão.
+* **Iterator**: Permite iterar sobre elementos de uma coleção sem expor sua estrutura interna.
+* **Mediator**: Centraliza a comunicação entre objetos para reduzir dependências diretas.
+* **Observer**: Notifica múltiplos objetos sobre mudanças em um sujeito.
+* **State**: Permite que um objeto altere seu comportamento dependendo do seu estado interno.
+* **Strategy**: Define uma família de algoritmos e permite que eles sejam selecionados em tempo de execução.
+* **Template Method**: Define a estrutura de um algoritmo, permitindo que os detalhes sejam implementados por subclasses.
+* **Visitor**: Adiciona novas operações a objetos sem modificar suas classes.
+
+
+## Resumo Geral
+
+### Design Patterns (Padrões de Projetos)
+
+Design Patterns são soluções reutilizáveis para problemas comuns que surgem no design de software. Eles oferecem uma forma padronizada e comprovada de construir sistemas mais flexíveis, compreensíveis e robustos. São divididos em três categorias principais: Criação, Estrutura e Comportamento.
+
+---
+
+## Criação
+
+Os padrões de criação lidam com a criação de objetos, abstraindo o processo de instanciação. Isso ajuda a tornar um sistema independente de como seus objetos são criados, compostos e representados.
+
+* **Abstract Factory**: Imagina que você tem uma linha de montagem de carros e precisa produzir diferentes tipos de carros (sedãs, SUVs) e cada tipo tem diferentes componentes (motor, pneus) que devem ser compatíveis. A Abstract Factory é como ter um "super gerente de fábrica" que sabe como criar todas as peças para um tipo específico de carro (ex: peças de sedã ou peças de SUV), sem que você precise saber os detalhes de cada peça.
+
+* **Builder**: Pensa em construir um sanduíche. Você pode ter vários ingredientes e a ordem em que você os adiciona pode mudar o sanduíche final. O Builder é como um "chef" que recebe suas instruções (adicione pão, depois queijo, depois presunto) e monta o sanduíche para você, peça por peça, garantindo que o resultado final seja complexo, mas a sua forma de pedir é simples.
+
+* **Factory Method**: Você é dono de uma loja de brinquedos e seus clientes querem diferentes tipos de brinquedos (carros, bonecas). O Factory Method é como ter um "balcão de fabricação" onde o cliente pede um brinquedo e, dependendo do que ele pede, a fábrica de carros ou a fábrica de bonecas é acionada para produzir o item, sem que o cliente precise saber qual fábrica específica está fazendo o trabalho.
+
+* **Prototype**: Imagine que você tem uma receita de bolo que adora e quer fazer várias cópias idênticas. Em vez de escrever a receita do zero toda vez, o Prototype é como ter um "carimbo" da receita original. Você apenas "carimba" e faz uma cópia, podendo fazer pequenas alterações se quiser, sem ter que refazer todo o trabalho.
+
+* **Singleton**: Pense no presidente de um país. Há apenas um presidente em um determinado momento e todos os assuntos importantes passam por ele. O Singleton garante que uma classe tenha apenas uma instância e que todos acessem a mesma instância, como ter um único ponto de controle global para algo importante.
+
+---
+
+## Estrutura
+
+Os padrões de estrutura descrevem como classes e objetos são compostos para formar estruturas maiores, tornando as estruturas mais flexíveis e eficientes.
+
+* **Adapter**: Você tem um plug de tomada novo que não se encaixa na sua tomada antiga. O Adapter é como um "adaptador de tomada" que permite que o plug novo funcione na tomada antiga, convertendo a interface de um para o outro.
+
+* **Bridge**: Imagine que você está projetando um controle remoto (abstração) para diferentes TVs (implementação). A Bridge permite que você projete o controle remoto independentemente do tipo de TV, e você pode facilmente usar o mesmo controle para TVs de marcas diferentes. Ou seja, você não precisa criar um controle para cada marca de TV.
+
+* **Composite**: Pense em um organograma de uma empresa. Você pode ter um gerente (objeto composto) que tem vários funcionários (objetos simples) e outros gerentes (objetos compostos) sob sua supervisão. O Composite permite que você trate tanto um funcionário individual quanto um departamento inteiro (composto por funcionários e gerentes) da mesma forma.
+
+* **Decorator**: Você tem um café simples, mas quer adicionar chantilly, calda e chocolate. O Decorator é como adicionar "extras" ao seu café sem mudar o café em si. Cada extra é um decorador que adiciona uma nova funcionalidade (e talvez um custo) ao seu café original.
+
+* **Facade**: Pensa em um complexo sistema de som de um carro. Para tocar música, você precisaria ligar o rádio, sintonizar a estação, ajustar o volume, etc. A Facade é como um "painel de controle" simplificado que tem apenas um botão "Ligar/Desligar Música". Ele esconde toda a complexidade por trás de uma interface simples.
+
+* **Flyweight**: Imagine que você está criando um jogo com milhares de árvores na tela. Em vez de criar um objeto de árvore para cada uma, o Flyweight é como ter um "molde" de árvore que é compartilhado por todas as árvores iguais. Apenas as características únicas de cada árvore (sua posição, por exemplo) são armazenadas separadamente, economizando muita memória.
+
+* **Proxy**: Você tem um documento confidencial em um cofre e precisa de permissão para acessá-lo. O Proxy é como um "assistente" que você pede o documento. O assistente verifica suas credenciais antes de ir até o cofre e pegar o documento real. Ele atua como um intermediário, controlando o acesso ao objeto real.
+
+---
+
+## Comportamento
+
+Os padrões de comportamento lidam com a comunicação entre objetos e a atribuição de responsabilidades. Eles se concentram nos algoritmos e na forma como as interações são gerenciadas.
+
+* **Chain of Responsibility**: Pensa em uma fila de atendimento ao cliente. Se um atendente não conseguir resolver seu problema, ele passa para o próximo atendente mais especializado, e assim por diante, até que alguém resolva. A solicitação (seu problema) percorre a "cadeia de responsabilidade" até ser tratada.
+
+* **Command**: Imagina um controle remoto de TV. Cada botão (ligar, mudar canal, aumentar volume) é um "comando". O Command encapsula a ação que deve ser executada em um objeto, permitindo que você enfileire comandos, desfaça operações ou até mesmo envie comandos para serem executados por outro dispositivo.
+
+* **Interpreter**: Você está usando uma calculadora que entende a sintaxe "2 + 3". O Interpreter é como o "cérebro" da calculadora que entende essa linguagem específica e sabe como realizar a operação de soma.
+
+* **Iterator**: Pensa em folhear um livro. Você não precisa saber como o livro é encadernado ou quantas páginas ele tem para lê-lo página por página. O Iterator é como o "ato de folhear" que permite que você acesse os elementos de uma coleção (como as páginas de um livro) um por um, sem se preocupar com a estrutura interna da coleção.
+
+* **Mediator**: Imagine uma torre de controle de aeroporto. Em vez de cada avião se comunicar diretamente com todos os outros aviões no espaço aéreo, a torre de controle (o mediador) coordena todas as comunicações, evitando colisões e simplificando o tráfego.
+
+* **Observer**: Você se inscreve para receber notificações de um canal de notícias. Sempre que há uma notícia nova (o estado do objeto "canal de notícias" muda), você (o observador) e todos os outros inscritos são automaticamente notificados.
+
+* **State**: Pensa em um semáforo. Ele pode estar no estado "vermelho", "amarelo" ou "verde". O comportamento do semáforo (o que ele faz) muda dependendo do seu estado atual. O padrão State permite que o objeto mude seu comportamento quando seu estado interno muda.
+
+* **Strategy**: Você está planejando uma viagem e pode escolher diferentes formas de transporte: carro, ônibus ou avião. Cada forma de transporte é uma "estratégia" para chegar ao seu destino. O padrão Strategy permite que você escolha qual estratégia usar em tempo de execução, dependendo da situação.
+
+* **Template Method**: Imagina uma receita de bolo que tem passos fixos (misturar ingredientes, assar), mas alguns passos (decoração) podem ser personalizados por quem faz o bolo. O Template Method define o esqueleto do algoritmo, mas permite que subclasses implementem os detalhes específicos de certos passos.
+
+* **Visitor**: Você tem uma coleção de figuras geométricas (círculos, quadrados, triângulos) e quer calcular a área de cada uma. Em vez de adicionar um método `calcular_area()` em cada classe de figura, o Visitor é como um "inspetor" que visita cada figura e sabe como calcular a área para cada tipo específico de figura, sem modificar as classes das figuras.
+
+
 
 
 ### **Portifólio**
