@@ -42,7 +42,7 @@
 
 * [UV - Package Manager + ChatGPT com Langchain](#uv)
 * [UV - Package Manager Explicação](#uv2)
-* [Design Patterns em Python](#desgin-pattern)
+* [Design Patterns em Python](#design-pattern)
 
 # Sistema de Venda e Controle de Estoque <a name="Sistema-de-Estoque"></a>
 
