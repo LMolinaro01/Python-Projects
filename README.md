@@ -2458,15 +2458,25 @@ Design Patterns são soluções reutilizáveis para problemas comuns que surgem 
 
 Os padrões de criação lidam com a criação de objetos, abstraindo o processo de instanciação. Isso ajuda a tornar um sistema independente de como seus objetos são criados, compostos e representados.
 
-* **Abstract Factory**: Imagina que você tem uma linha de montagem de carros e precisa produzir diferentes tipos de carros (sedãs, SUVs) e cada tipo tem diferentes componentes (motor, pneus) que devem ser compatíveis. A Abstract Factory é como ter um "super gerente de fábrica" que sabe como criar todas as peças para um tipo específico de carro (ex: peças de sedã ou peças de SUV), sem que você precise saber os detalhes de cada peça.
+* **Abstract Factory**: Cria famílias de objetos relacionados sem especificar suas classes concretas.
 
-* **Builder**: Pensa em construir um sanduíche. Você pode ter vários ingredientes e a ordem em que você os adiciona pode mudar o sanduíche final. O Builder é como um "chef" que recebe suas instruções (adicione pão, depois queijo, depois presunto) e monta o sanduíche para você, peça por peça, garantindo que o resultado final seja complexo, mas a sua forma de pedir é simples.
+Imagina que você tem uma linha de montagem de carros e precisa produzir diferentes tipos de carros (sedãs, SUVs) e cada tipo tem diferentes componentes (motor, pneus) que devem ser compatíveis. A Abstract Factory é como ter um "super gerente de fábrica" que sabe como criar todas as peças para um tipo específico de carro (ex: peças de sedã ou peças de SUV), sem que você precise saber os detalhes de cada peça.
 
-* **Factory Method**: Você é dono de uma loja de brinquedos e seus clientes querem diferentes tipos de brinquedos (carros, bonecas). O Factory Method é como ter um "balcão de fabricação" onde o cliente pede um brinquedo e, dependendo do que ele pede, a fábrica de carros ou a fábrica de bonecas é acionada para produzir o item, sem que o cliente precise saber qual fábrica específica está fazendo o trabalho.
+* **Builder**: Separa a construção de um objeto complexo da sua representação.
 
-* **Prototype**: Imagine que você tem uma receita de bolo que adora e quer fazer várias cópias idênticas. Em vez de escrever a receita do zero toda vez, o Prototype é como ter um "carimbo" da receita original. Você apenas "carimba" e faz uma cópia, podendo fazer pequenas alterações se quiser, sem ter que refazer todo o trabalho.
+Pensa em construir um sanduíche. Você pode ter vários ingredientes e a ordem em que você os adiciona pode mudar o sanduíche final. O Builder é como um "chef" que recebe suas instruções (adicione pão, depois queijo, depois presunto) e monta o sanduíche para você, peça por peça, garantindo que o resultado final seja complexo, mas a sua forma de pedir é simples.
 
-* **Singleton**: Pense no presidente de um país. Há apenas um presidente em um determinado momento e todos os assuntos importantes passam por ele. O Singleton garante que uma classe tenha apenas uma instância e que todos acessem a mesma instância, como ter um único ponto de controle global para algo importante.
+* **Factory Method**: Cria objetos em uma superclasse, mas permite que subclasses alterem o tipo de objeto.
+
+Você é dono de uma loja de brinquedos e seus clientes querem diferentes tipos de brinquedos (carros, bonecas). O Factory Method é como ter um "balcão de fabricação" onde o cliente pede um brinquedo e, dependendo do que ele pede, a fábrica de carros ou a fábrica de bonecas é acionada para produzir o item, sem que o cliente precise saber qual fábrica específica está fazendo o trabalho.
+
+* **Prototype**: Cria novos objetos clonando objetos existentes.
+
+Imagine que você tem uma receita de bolo que adora e quer fazer várias cópias idênticas. Em vez de escrever a receita do zero toda vez, o Prototype é como ter um "carimbo" da receita original. Você apenas "carimba" e faz uma cópia, podendo fazer pequenas alterações se quiser, sem ter que refazer todo o trabalho.
+
+* **Singleton**: Garante que uma classe tenha apenas uma instância.
+
+Pense no presidente de um país. Há apenas um presidente em um determinado momento e todos os assuntos importantes passam por ele. O Singleton garante que uma classe tenha apenas uma instância e que todos acessem a mesma instância, como ter um único ponto de controle global para algo importante.
 
 ---
 
@@ -2474,19 +2484,33 @@ Os padrões de criação lidam com a criação de objetos, abstraindo o processo
 
 Os padrões de estrutura descrevem como classes e objetos são compostos para formar estruturas maiores, tornando as estruturas mais flexíveis e eficientes.
 
-* **Adapter**: Você tem um plug de tomada novo que não se encaixa na sua tomada antiga. O Adapter é como um "adaptador de tomada" que permite que o plug novo funcione na tomada antiga, convertendo a interface de um para o outro.
+* **Adapter**: Converte a interface de uma classe para outra, permitindo que interfaces incompatíveis trabalhem juntas.
 
-* **Bridge**: Imagine que você está projetando um controle remoto (abstração) para diferentes TVs (implementação). A Bridge permite que você projete o controle remoto independentemente do tipo de TV, e você pode facilmente usar o mesmo controle para TVs de marcas diferentes. Ou seja, você não precisa criar um controle para cada marca de TV.
+Você tem um plug de tomada novo que não se encaixa na sua tomada antiga. O Adapter é como um "adaptador de tomada" que permite que o plug novo funcione na tomada antiga, convertendo a interface de um para o outro.
 
-* **Composite**: Pense em um organograma de uma empresa. Você pode ter um gerente (objeto composto) que tem vários funcionários (objetos simples) e outros gerentes (objetos compostos) sob sua supervisão. O Composite permite que você trate tanto um funcionário individual quanto um departamento inteiro (composto por funcionários e gerentes) da mesma forma.
+* **Bridge**: Desacopla a abstração da implementação, permitindo variações independentes de ambos.
 
-* **Decorator**: Você tem um café simples, mas quer adicionar chantilly, calda e chocolate. O Decorator é como adicionar "extras" ao seu café sem mudar o café em si. Cada extra é um decorador que adiciona uma nova funcionalidade (e talvez um custo) ao seu café original.
+Imagine que você está projetando um controle remoto (abstração) para diferentes TVs (implementação). A Bridge permite que você projete o controle remoto independentemente do tipo de TV, e você pode facilmente usar o mesmo controle para TVs de marcas diferentes. Ou seja, você não precisa criar um controle para cada marca de TV.
 
-* **Facade**: Pensa em um complexo sistema de som de um carro. Para tocar música, você precisaria ligar o rádio, sintonizar a estação, ajustar o volume, etc. A Facade é como um "painel de controle" simplificado que tem apenas um botão "Ligar/Desligar Música". Ele esconde toda a complexidade por trás de uma interface simples.
+* **Composite**: Permite tratar objetos compostos e objetos simples de forma uniforme, formando uma estrutura hierárquica.
 
-* **Flyweight**: Imagine que você está criando um jogo com milhares de árvores na tela. Em vez de criar um objeto de árvore para cada uma, o Flyweight é como ter um "molde" de árvore que é compartilhado por todas as árvores iguais. Apenas as características únicas de cada árvore (sua posição, por exemplo) são armazenadas separadamente, economizando muita memória.
+Pense em um organograma de uma empresa. Você pode ter um gerente (objeto composto) que tem vários funcionários (objetos simples) e outros gerentes (objetos compostos) sob sua supervisão. O Composite permite que você trate tanto um funcionário individual quanto um departamento inteiro (composto por funcionários e gerentes) da mesma forma.
 
-* **Proxy**: Você tem um documento confidencial em um cofre e precisa de permissão para acessá-lo. O Proxy é como um "assistente" que você pede o documento. O assistente verifica suas credenciais antes de ir até o cofre e pegar o documento real. Ele atua como um intermediário, controlando o acesso ao objeto real.
+* **Decorator**: Adiciona funcionalidades adicionais a um objeto sem modificar sua estrutura.
+
+Você tem um café simples, mas quer adicionar chantilly, calda e chocolate. O Decorator é como adicionar "extras" ao seu café sem mudar o café em si. Cada extra é um decorador que adiciona uma nova funcionalidade (e talvez um custo) ao seu café original.
+
+* **Facade**: Simplifica o uso de um subsistema complexo fornecendo uma interface única.
+
+Pensa em um complexo sistema de som de um carro. Para tocar música, você precisaria ligar o rádio, sintonizar a estação, ajustar o volume, etc. A Facade é como um "painel de controle" simplificado que tem apenas um botão "Ligar/Desligar Música". Ele esconde toda a complexidade por trás de uma interface simples.
+
+* **Flyweight**: Compartilha objetos comuns para economizar memória quando você tem muitas instâncias similares.
+
+Imagine que você está criando um jogo com milhares de árvores na tela. Em vez de criar um objeto de árvore para cada uma, o Flyweight é como ter um "molde" de árvore que é compartilhado por todas as árvores iguais. Apenas as características únicas de cada árvore (sua posição, por exemplo) são armazenadas separadamente, economizando muita memória.
+
+* **Proxy**: Fornece um substituto ou representante de outro objeto, controlando o acesso ao objeto real.
+
+Você tem um documento confidencial em um cofre e precisa de permissão para acessá-lo. O Proxy é como um "assistente" que você pede o documento. O assistente verifica suas credenciais antes de ir até o cofre e pegar o documento real. Ele atua como um intermediário, controlando o acesso ao objeto real.
 
 ---
 
@@ -2494,25 +2518,45 @@ Os padrões de estrutura descrevem como classes e objetos são compostos para fo
 
 Os padrões de comportamento lidam com a comunicação entre objetos e a atribuição de responsabilidades. Eles se concentram nos algoritmos e na forma como as interações são gerenciadas.
 
-* **Chain of Responsibility**: Pensa em uma fila de atendimento ao cliente. Se um atendente não conseguir resolver seu problema, ele passa para o próximo atendente mais especializado, e assim por diante, até que alguém resolva. A solicitação (seu problema) percorre a "cadeia de responsabilidade" até ser tratada.
+* **Chain of Responsibility**: Passa uma solicitação através de uma cadeia de objetos até que um deles a trate.
 
-* **Command**: Imagina um controle remoto de TV. Cada botão (ligar, mudar canal, aumentar volume) é um "comando". O Command encapsula a ação que deve ser executada em um objeto, permitindo que você enfileire comandos, desfaça operações ou até mesmo envie comandos para serem executados por outro dispositivo.
+Pensa em uma fila de atendimento ao cliente. Se um atendente não conseguir resolver seu problema, ele passa para o próximo atendente mais especializado, e assim por diante, até que alguém resolva. A solicitação (seu problema) percorre a "cadeia de responsabilidade" até ser tratada.
 
-* **Interpreter**: Você está usando uma calculadora que entende a sintaxe "2 + 3". O Interpreter é como o "cérebro" da calculadora que entende essa linguagem específica e sabe como realizar a operação de soma.
+* **Command**: Encapsula uma solicitação como um objeto, permitindo sua execução em diferentes contextos.
 
-* **Iterator**: Pensa em folhear um livro. Você não precisa saber como o livro é encadernado ou quantas páginas ele tem para lê-lo página por página. O Iterator é como o "ato de folhear" que permite que você acesse os elementos de uma coleção (como as páginas de um livro) um por um, sem se preocupar com a estrutura interna da coleção.
+Imagina um controle remoto de TV. Cada botão (ligar, mudar canal, aumentar volume) é um "comando". O Command encapsula a ação que deve ser executada em um objeto, permitindo que você enfileire comandos, desfaça operações ou até mesmo envie comandos para serem executados por outro dispositivo.
 
-* **Mediator**: Imagine uma torre de controle de aeroporto. Em vez de cada avião se comunicar diretamente com todos os outros aviões no espaço aéreo, a torre de controle (o mediador) coordena todas as comunicações, evitando colisões e simplificando o tráfego.
+* **Interpreter**: Define uma maneira de interpretar uma linguagem ou expressão.
 
-* **Observer**: Você se inscreve para receber notificações de um canal de notícias. Sempre que há uma notícia nova (o estado do objeto "canal de notícias" muda), você (o observador) e todos os outros inscritos são automaticamente notificados.
+Você está usando uma calculadora que entende a sintaxe "2 + 3". O Interpreter é como o "cérebro" da calculadora que entende essa linguagem específica e sabe como realizar a operação de soma.
 
-* **State**: Pensa em um semáforo. Ele pode estar no estado "vermelho", "amarelo" ou "verde". O comportamento do semáforo (o que ele faz) muda dependendo do seu estado atual. O padrão State permite que o objeto mude seu comportamento quando seu estado interno muda.
+* **Iterator**: Permite iterar sobre elementos de uma coleção sem expor sua estrutura interna
 
-* **Strategy**: Você está planejando uma viagem e pode escolher diferentes formas de transporte: carro, ônibus ou avião. Cada forma de transporte é uma "estratégia" para chegar ao seu destino. O padrão Strategy permite que você escolha qual estratégia usar em tempo de execução, dependendo da situação.
+Pensa em folhear um livro. Você não precisa saber como o livro é encadernado ou quantas páginas ele tem para lê-lo página por página. O Iterator é como o "ato de folhear" que permite que você acesse os elementos de uma coleção (como as páginas de um livro) um por um, sem se preocupar com a estrutura interna da coleção.
 
-* **Template Method**: Imagina uma receita de bolo que tem passos fixos (misturar ingredientes, assar), mas alguns passos (decoração) podem ser personalizados por quem faz o bolo. O Template Method define o esqueleto do algoritmo, mas permite que subclasses implementem os detalhes específicos de certos passos.
+* **Mediator**: Centraliza a comunicação entre objetos para reduzir dependências diretas.
 
-* **Visitor**: Você tem uma coleção de figuras geométricas (círculos, quadrados, triângulos) e quer calcular a área de cada uma. Em vez de adicionar um método `calcular_area()` em cada classe de figura, o Visitor é como um "inspetor" que visita cada figura e sabe como calcular a área para cada tipo específico de figura, sem modificar as classes das figuras.
+Imagine uma torre de controle de aeroporto. Em vez de cada avião se comunicar diretamente com todos os outros aviões no espaço aéreo, a torre de controle (o mediador) coordena todas as comunicações, evitando colisões e simplificando o tráfego.
+
+* **Observer**: Notifica múltiplos objetos sobre mudanças em um sujeito.
+
+Você se inscreve para receber notificações de um canal de notícias. Sempre que há uma notícia nova (o estado do objeto "canal de notícias" muda), você (o observador) e todos os outros inscritos são automaticamente notificados.
+
+* **State**: Permite que um objeto altere seu comportamento dependendo do seu estado interno.
+
+Pensa em um semáforo. Ele pode estar no estado "vermelho", "amarelo" ou "verde". O comportamento do semáforo (o que ele faz) muda dependendo do seu estado atual. O padrão State permite que o objeto mude seu comportamento quando seu estado interno muda.
+
+* **Strategy**: Define uma família de algoritmos e permite que eles sejam selecionados em tempo de execução.
+
+Você está planejando uma viagem e pode escolher diferentes formas de transporte: carro, ônibus ou avião. Cada forma de transporte é uma "estratégia" para chegar ao seu destino. O padrão Strategy permite que você escolha qual estratégia usar em tempo de execução, dependendo da situação.
+
+* **Template Method**: Define a estrutura de um algoritmo, permitindo que os detalhes sejam implementados por subclasses.
+
+Imagina uma receita de bolo que tem passos fixos (misturar ingredientes, assar), mas alguns passos (decoração) podem ser personalizados por quem faz o bolo. O Template Method define o esqueleto do algoritmo, mas permite que subclasses implementem os detalhes específicos de certos passos.
+
+* **Visitor**: Adiciona novas operações a objetos sem modificar suas classes.
+
+Você tem uma coleção de figuras geométricas (círculos, quadrados, triângulos) e quer calcular a área de cada uma. Em vez de adicionar um método `calcular_area()` em cada classe de figura, o Visitor é como um "inspetor" que visita cada figura e sabe como calcular a área para cada tipo específico de figura, sem modificar as classes das figuras.
 
 
 
