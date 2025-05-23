@@ -1769,8 +1769,6 @@ print(objeto1 is objeto2)  # True, ambas as instâncias são a mesma
 
 ## Estrutura
 
-Claro! Vou explicar agora os padrões de **estrutura** e dar exemplos em Python para cada um deles.
-
 ### 1. **Adapter**
 
 O padrão **Adapter** é usado para adaptar uma interface de uma classe para que ela possa ser utilizada em uma outra classe. Em outras palavras, ele permite que classes com interfaces incompatíveis possam trabalhar juntas.
@@ -2021,8 +2019,6 @@ print(proxy.request())  # Proxy verifica antes de fazer o pedido real
 * **Proxy**: Fornece um substituto ou representante de outro objeto, controlando o acesso ao objeto real.
 
 ## Comportamento
-
-Claro! Vou explicar os padrões de **comportamento** e dar exemplos em Python para cada um deles. Esses padrões são fundamentais para definir como objetos interagem uns com os outros e gerenciam suas responsabilidades. Vamos a eles:
 
 ### 1. **Chain of Responsibility**
 
@@ -2346,10 +2342,6 @@ contexto.estrategia = EstrategiaB()
 contexto.executar_estrategia()  #
 ```
 
-
-Executando Estratégia B
-
-````
 
 ### 9. **Template Method**
 
